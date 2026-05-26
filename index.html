@@ -4,64 +4,231 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Ablo Studio — Signup Launch — Day 6</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 :root {
-  --bg: #f7f5f1; --surface: #fff; --ink: #14110f; --ink-soft: #5a544d;
-  --line: #e8e3db; --accent: #1f1b16; --good: #1b7a4a; --warn: #b35900;
-  --bad: #b3261e; --shadow: 0 1px 2px rgba(20,17,15,0.04), 0 4px 16px rgba(20,17,15,0.04);
-  --radius: 14px;
+  /* Ablo brand palette -- mirrors the magic-link email design */
+  --bg: #FAFAF7;           /* cream */
+  --bg-2: #F4F0E8;         /* warmer cream for accent strips */
+  --surface: #ffffff;
+  --ink: #0c0c0c;
+  --ink-2: #1a1a1a;
+  --ink-soft: #6b6b6b;
+  --ink-faint: #999999;
+  --line: #ece6d9;          /* warm line color, not gray */
+  --line-soft: #f3eee2;
+  --gold: #c9a96e;          /* the brand accent */
+  --gold-soft: #e8d6ad;
+  --good: #1b7a4a;
+  --warn: #b35900;
+  --bad: #b3261e;
+  --info: #1e3a8a;
+  --shadow-sm: 0 1px 2px rgba(12,12,12,0.03);
+  --shadow: 0 1px 2px rgba(12,12,12,0.04), 0 8px 24px rgba(12,12,12,0.04);
+  --shadow-lg: 0 1px 2px rgba(12,12,12,0.05), 0 16px 48px rgba(12,12,12,0.06);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
 }
-*{box-sizing:border-box}html,body{margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1200px;margin:0 auto;padding:48px 32px 96px}
-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;border-bottom:1px solid var(--line);padding-bottom:22px}
-.title{font-size:28px;font-weight:600;letter-spacing:-0.01em;margin:0 0 6px}
-.subtitle{color:var(--ink-soft);font-size:14px;margin:0}
-.meta{text-align:right;font-size:13px;color:var(--ink-soft)}
-.meta a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
-.pill{display:inline-block;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--ink-soft);background:var(--surface);margin-right:6px}
-.pill.status-active{background:#dcf3e6;color:var(--good);border-color:#b7e2c8}
-.pill.fresh{background:#dcf3e6;color:var(--good);border-color:#b7e2c8}
-.pill.stale{background:#faecd4;color:var(--warn);border-color:#e2cf99}
-.alert-banner{margin:0 0 16px;padding:14px 18px;border-radius:10px;font-size:13px}
-.alert-banner.critical{background:#fbe5e5;border:1px solid #f0c5c5;border-left:4px solid var(--bad);color:#6b1e1e}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11","ss01","ss03";
+}
+.wrap{max-width:1240px;margin:0 auto;padding:48px 40px 96px}
+
+/* ─── Brand header ─────────────────────────────────────────── */
+.brand-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:36px;
+}
+.wordmark{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:700;color:var(--ink)}
+.wordmark .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.brand-bar .meta{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-faint);text-align:right}
+.brand-bar .meta a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
+.brand-bar .meta a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+
+/* ─── Hero ──────────────────────────────────────────────────── */
+.hero{margin-bottom:48px}
+.hero-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+.hero-title{font-family:var(--serif);font-size:44px;line-height:1.05;letter-spacing:-0.025em;font-weight:500;margin:0 0 8px;color:var(--ink)}
+.hero-title em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-sub{font-size:14px;color:var(--ink-soft);margin:0 0 28px;letter-spacing:0.01em}
+.hero-sub .pill{margin-right:8px}
+
+/* Hero KPI band: 3 large hero numbers */
+.hero-band{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.hero-cell{padding:28px 32px;position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
+.hero-cell + .hero-cell{border-left:1px solid var(--line)}
+.hero-cell .hk-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-cell .hk-num{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-0.02em;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.hero-cell .hk-num .unit{font-size:18px;font-weight:400;color:var(--ink-soft);margin-left:4px}
+.hero-cell .hk-sub{font-size:12px;color:var(--ink-soft);margin-top:10px}
+.hero-cell .hk-spark{margin-top:14px;height:32px}
+.hero-cell.accent{background:linear-gradient(180deg,#fcfbf6 0%,var(--surface) 100%)}
+
+/* Status dot — paired with KPI labels */
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.good{background:var(--good);box-shadow:0 0 0 3px rgba(27,122,74,0.12)}
+.dot.warn{background:var(--warn);box-shadow:0 0 0 3px rgba(179,89,0,0.12)}
+.dot.bad{background:var(--bad);box-shadow:0 0 0 3px rgba(179,38,30,0.12)}
+.dot.info{background:var(--info);box-shadow:0 0 0 3px rgba(30,58,138,0.12)}
+.dot.neutral{background:var(--ink-faint);box-shadow:0 0 0 3px rgba(153,153,153,0.12)}
+.dot.live{background:var(--good);box-shadow:0 0 0 3px rgba(27,122,74,0.12);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(27,122,74,0.12)}50%{box-shadow:0 0 0 7px rgba(27,122,74,0.05)}}
+
+/* ─── Section dividers ────────────────────────────────────── */
+.section{margin-top:56px}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
+.section-head .roman{font-family:var(--serif);font-size:13px;font-weight:500;font-style:italic;color:var(--gold)}
+.section-head h2{font-family:var(--serif);font-size:24px;font-weight:500;letter-spacing:-0.015em;margin:0;color:var(--ink)}
+.section-head .meta{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);margin-left:auto}
+
+/* ─── Pills, tags ─────────────────────────────────────────── */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;font-size:11px;letter-spacing:0.04em;color:var(--ink-soft);background:var(--surface);font-weight:500}
+.pill.status-active{background:#ecf7f1;color:var(--good);border-color:#cfe7da}
+.pill.fresh{background:#ecf7f1;color:var(--good);border-color:#cfe7da}
+.pill.stale{background:#f8efd9;color:var(--warn);border-color:#e8d6a8}
+.pill.warm{background:var(--bg-2);color:var(--ink-soft);border-color:var(--line)}
+
+/* ─── Alerts (kept for true HIGH severity) ────────────────── */
+.alert-banner{margin:0 0 16px;padding:16px 20px;border-radius:var(--radius-sm);font-size:13px;line-height:1.55}
+.alert-banner.critical{background:#fbe9e7;border:1px solid #f0c5c0;border-left:4px solid var(--bad);color:#6b1e1e}
 .alert-banner.critical strong{color:#4a1414}
-.alert-banner.good{background:#dcf3e6;border:1px solid #b7e2c8;border-left:4px solid var(--good);color:#0b3d24}
-.alert-banner code{background:#fff;padding:1px 5px;border-radius:3px;font-size:12px}
-.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:22px}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;box-shadow:var(--shadow)}
-.kpi-label{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
-.kpi-value{font-size:26px;font-weight:600;letter-spacing:-0.02em}
-.kpi-sub{font-size:11px;color:var(--ink-soft);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);display:flex;justify-content:space-between}
-.good-num{color:var(--good)}.stuck-num{color:var(--bad)}
-h2{font-size:16px;font-weight:600;letter-spacing:-0.005em;margin:32px 0 12px}
-h2 .pill{margin-left:4px;vertical-align:middle}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.alert-banner.good{background:#ecf7f1;border:1px solid #cfe7da;border-left:4px solid var(--good);color:#0b3d24}
+.alert-banner code{background:#fff;padding:1px 6px;border-radius:4px;font-size:12px;font-family:ui-monospace,SF Mono,Menlo,monospace}
+
+/* ─── Panels (replace generic h2 + .panel) ────────────────── */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+.panel + .panel{margin-top:16px}
+.panel-title{font-size:13px;font-weight:600;letter-spacing:0.01em;color:var(--ink);margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.panel-sub{font-size:12px;color:var(--ink-soft);margin:0 0 16px}
+.panel-grid{display:grid;gap:16px}
+.panel-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.panel-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+
+/* ─── Mini KPI tiles (sub-numbers within panels) ──────────── */
+.mini-kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.mini-kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 14px;box-shadow:var(--shadow-sm)}
+.mini-kpi .mk-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.mini-kpi .mk-num{font-size:22px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.mini-kpi .mk-sub{font-size:11px;color:var(--ink-soft);margin-top:6px;display:flex;justify-content:space-between;gap:8px}
+.mini-kpi.good .mk-num{color:var(--good)}
+.mini-kpi.bad .mk-num{color:var(--bad)}
+
+/* ─── Tables ──────────────────────────────────────────────── */
 table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
-th,td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line)}
+th,td{text-align:right;padding:10px 12px;border-bottom:1px solid var(--line-soft)}
 th:first-child,td:first-child{text-align:left}
-thead th{font-weight:500;color:var(--ink-soft);font-size:11px;text-transform:uppercase;letter-spacing:0.04em}
-tbody tr:hover{background:#faf6ee}
-.tag{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:600;margin-right:4px;white-space:nowrap}
-.tag.healthy{background:#dcf3e6;color:var(--good)}
-.tag.warming{background:#e5edfb;color:#1e3a8a}
-.tag.warning{background:#faecd4;color:var(--warn)}
-.tag.critical{background:#fbe5e5;color:var(--bad)}
-.zero{color:#cbc4b6}
-.reco-list{display:flex;flex-direction:column;gap:10px}
-.reco{display:grid;grid-template-columns:100px 1fr;gap:14px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-.reco.high{border-left:4px solid var(--bad)}.reco.medium{border-left:4px solid var(--warn)}.reco.low{border-left:4px solid var(--ink-soft)}.reco.good{border-left:4px solid var(--good)}
-.reco-id{font-size:12px;font-weight:600;color:var(--ink-soft)}
-.reco-id .sub{display:block;color:var(--ink);font-size:11px;margin-top:2px;font-weight:500}
-.reco-body .reco-action{font-size:14px;font-weight:600;margin-bottom:4px}
-.reco-body .reco-target{font-size:12px;color:var(--ink-soft);margin-bottom:8px}
-.reco-body .reco-why{font-size:13px;color:var(--ink)}
-.reco-body .reco-evidence{font-size:12px;color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-family:ui-monospace,SF Mono,Menlo,monospace}
-.reco-body a{color:var(--ink)}
-.read-of-data ul{margin:0;padding-left:20px;font-size:14px}
-.read-of-data li{margin-bottom:10px}
-footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-@media (max-width:1024px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+thead th{font-weight:600;color:var(--ink-soft);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--line)}
+tbody tr:hover{background:var(--bg-2)}
+tbody tr:last-child td{border-bottom:none}
+
+/* ─── Tags (status chips within tables/cells) ─────────────── */
+.tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap}
+.tag.healthy{background:#ecf7f1;color:var(--good)}
+.tag.warming{background:#e5ecfb;color:var(--info)}
+.tag.warning{background:#f8efd9;color:var(--warn)}
+.tag.critical{background:#fbe9e7;color:var(--bad)}
+.zero{color:#d0c9bb}
+
+/* ─── Action items ────────────────────────────────────────── */
+.reco-list{display:flex;flex-direction:column;gap:12px}
+.reco{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:18px 22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .15s ease}
+.reco:hover{box-shadow:var(--shadow)}
+.reco.high{border-left:4px solid var(--bad)}
+.reco.medium{border-left:4px solid var(--warn)}
+.reco.low{border-left:4px solid var(--ink-faint)}
+.reco.good{border-left:4px solid var(--good)}
+.reco-id{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft)}
+.reco-id .sub{display:block;color:var(--ink-soft);font-size:10px;margin-top:6px;font-weight:500;letter-spacing:0.04em;text-transform:none;font-style:italic;line-height:1.4;opacity:0.7}
+.reco-body .reco-action{font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:-0.01em;margin-bottom:6px;color:var(--ink)}
+.reco-body .reco-why{font-size:13px;color:var(--ink-2);line-height:1.55}
+.reco-body .reco-evidence{font-size:12px;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-family:ui-monospace,SF Mono,Menlo,monospace;line-height:1.5}
+.reco-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
+
+/* ─── Funnel rows ─────────────────────────────────────────── */
+.fnl{display:grid;grid-template-columns:180px 1fr 110px 110px;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.fnl:last-child{border-bottom:none}
+.fnl-name{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:-0.005em;color:var(--ink)}
+.fnl-sub{font-size:11px;color:var(--ink-soft);margin-top:3px;letter-spacing:0.01em}
+.fnl-bar-wrap{background:var(--bg-2);border-radius:6px;height:32px;overflow:hidden;position:relative}
+.fnl-bar{background:linear-gradient(90deg,var(--ink) 0%,#2a2419 100%);height:100%;border-radius:6px;transition:width 0.4s cubic-bezier(0.16,1,0.3,1)}
+.fnl-bar.tiny{background:var(--gold-soft)}
+.fnl-num{font-family:var(--serif);font-size:24px;font-weight:500;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.fnl-conv{text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+.fnl-conv .big{font-size:15px;font-weight:600;color:var(--ink)}
+.fnl-conv .small{font-size:10px;color:var(--ink-faint);letter-spacing:0.05em;text-transform:uppercase;margin-top:2px}
+
+/* ─── Donut chart ─────────────────────────────────────────── */
+.donut-wrap{display:flex;align-items:center;gap:32px}
+.donut-svg{flex-shrink:0}
+.donut-legend{flex:1;display:flex;flex-direction:column;gap:14px}
+.donut-leg-item{display:flex;align-items:center;gap:12px}
+.donut-leg-item .swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+.donut-leg-item .leg-name{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);min-width:90px}
+.donut-leg-item .leg-num{font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums;font-weight:500;margin-left:auto}
+.donut-leg-item .leg-pct{font-size:11px;color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase;margin-left:8px;min-width:32px;text-align:right}
+
+/* ─── Daily spend bars ────────────────────────────────────── */
+.spend-bars{display:flex;align-items:flex-end;gap:6px;height:120px;padding:8px 0}
+.spend-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.spend-bar-col .bar{width:22px;border-radius:4px 4px 0 0;transition:opacity .15s}
+.spend-bar-col:hover .bar{opacity:0.75}
+.spend-bar-col .day{font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+/* ─── Roster / list rows ──────────────────────────────────── */
+.roster{display:flex;flex-direction:column}
+.roster-row{display:grid;grid-template-columns:140px 1fr 110px;gap:18px;padding:12px 0;border-bottom:1px solid var(--line-soft);font-size:13px;align-items:center}
+.roster-row:last-child{border-bottom:none}
+.roster-row .when{font-variant-numeric:tabular-nums;color:var(--ink-soft);font-size:12px;letter-spacing:0.02em}
+.roster-row .who{font-family:var(--serif);font-size:15px;color:var(--ink);font-weight:500}
+.roster-row .meta{font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;text-transform:uppercase;text-align:right}
+
+/* ─── Read of data (the editorial bullets) ────────────────── */
+.read-of-data{font-family:var(--serif);font-size:16px;line-height:1.6;color:var(--ink-2)}
+.read-of-data ul{margin:0;padding-left:24px;list-style:none}
+.read-of-data li{margin-bottom:16px;position:relative;padding-left:6px}
+.read-of-data li::before{content:"§";position:absolute;left:-22px;top:0;color:var(--gold);font-weight:600;font-style:italic}
+.read-of-data strong{color:var(--ink);font-weight:600}
+
+/* ─── Footer ──────────────────────────────────────────────── */
+footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);font-size:11px;letter-spacing:0.04em;color:var(--ink-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg-2);padding:1px 5px;border-radius:3px}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width:1024px){
+  .wrap{padding:32px 24px 80px}
+  .hero-band{grid-template-columns:1fr}
+  .hero-cell + .hero-cell{border-left:none;border-top:1px solid var(--line)}
+  .mini-kpi-grid{grid-template-columns:repeat(3,1fr)}
+  .panel-grid.cols-2{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  .wrap{padding:24px 16px 64px}
+  .hero-title{font-size:30px}
+  .hero-cell .hk-num{font-size:36px}
+  .section-head h2{font-size:20px}
+  .mini-kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .fnl{grid-template-columns:120px 1fr 70px 80px;gap:10px}
+  .fnl-name{font-size:14px}
+  .fnl-num{font-size:18px}
+  .roster-row{grid-template-columns:1fr;gap:4px}
+  .roster-row .meta{text-align:left}
+  .reco{grid-template-columns:1fr;gap:10px;padding:16px 18px}
+  .donut-wrap{flex-direction:column}
+}
 </style>
 </head><body><div class="wrap">
 
@@ -71,8 +238,8 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
     <p class="subtitle">OUTCOME_SALES, AUCTION. Launched 2026-05-20 — day 6. Auto-refreshed by autopilot every 6h.</p>
   </div>
   <div class="meta">
-    <div><span class="pill status-active">ACTIVE</span><span class="pill">$100/day cap</span><span class="pill fresh">autopilot cycle 0.7h ago</span></div>
-    <div style="margin-top:6px;">Snapshot 2026-05-26 17:02 UTC</div>
+    <div><span class="pill status-active">ACTIVE</span><span class="pill">$100/day cap</span><span class="pill fresh">autopilot cycle 0.8h ago</span></div>
+    <div style="margin-top:6px;">Snapshot 2026-05-26 17:11 UTC</div>
     <div style="margin-top:4px;">
       <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager ↗</a> ·
       <a href="https://us.posthog.com/project/419152/dashboard/1608781" target="_blank">PostHog ↗</a> ·
@@ -108,7 +275,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
   <div class="reco-id">WATCH</div>
   <div class="reco-body">
     <div class="reco-action">Monitoring attribution recovery (U11)</div>
-    <div class="reco-why">PostHog reports 15 real signups, 0 UTM-attributed. PR #21 deployed 1.5h ago; UTM attribution should populate within the next 46h as new signups flow through the patched code.</div>
+    <div class="reco-why">PostHog reports 15 real signups, 0 UTM-attributed. PR #21 deployed 1.7h ago; UTM attribution should populate within the next 46h as new signups flow through the patched code.</div>
     <div class="reco-evidence"><strong>Next:</strong> Re-check after 48h. No action required right now.</div>
   </div>
 </div>
@@ -175,15 +342,15 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
     <div style="font-size:11px;color:var(--ink-soft);">Unique pageviews (PostHog, all sources -- paid + organic mix)</div>
   </div>
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
-    <div style="background:var(--accent);height:100%;width:3.08%;border-radius:8px;"></div>
+    <div style="background:var(--accent);height:100%;width:3.07%;border-radius:8px;"></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">260</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">259</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">88.14%</strong></div>
+    <div><strong style="color:var(--ink);">87.80%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div>3.08%</div>
+    <div>3.07%</div>
     <div style="font-size:10px;">of impr</div>
   </div>
 </div>
@@ -197,7 +364,7 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
   </div>
   <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">13</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">5.00%</strong></div>
+    <div><strong style="color:var(--ink);">5.02%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
@@ -924,7 +1091,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
 <div class="panel">
 <table>
 <thead><tr><th>Date</th><th>Magic-link req</th><th>Signups</th><th>Exceptions</th><th>Models gen</th><th>Try-ons</th></tr></thead>
-<tbody><tr><td>2026-05-20</td><td>14</td><td>4</td><td class="zero">0</td><td class="zero">0</td><td>3</td></tr><tr><td>2026-05-21</td><td>10</td><td>4</td><td class="zero">0</td><td>2</td><td>1</td></tr><tr><td>2026-05-22</td><td>13</td><td>6</td><td class="zero">0</td><td>5</td><td>5</td></tr><tr><td>2026-05-24</td><td>1</td><td class="zero">0</td><td class="zero">0</td><td>15</td><td class="zero">0</td></tr><tr><td>2026-05-25</td><td>3</td><td>1</td><td class="zero">0</td><td>2</td><td>3</td></tr><tr style="font-weight:600;"><td>Total</td><td>41</td><td>15</td><td>0</td><td>24</td><td>12</td></tr></tbody>
+<tbody><tr><td>2026-05-20</td><td>14</td><td>4</td><td class="zero">0</td><td class="zero">0</td><td>3</td></tr><tr><td>2026-05-21</td><td>10</td><td>4</td><td class="zero">0</td><td>2</td><td>1</td></tr><tr><td>2026-05-22</td><td>13</td><td>6</td><td class="zero">0</td><td>5</td><td>5</td></tr><tr><td>2026-05-24</td><td>1</td><td class="zero">0</td><td class="zero">0</td><td>15</td><td class="zero">0</td></tr><tr><td>2026-05-25</td><td>3</td><td>1</td><td class="zero">0</td><td>2</td><td>3</td></tr><tr><td>2026-05-26</td><td>1</td><td class="zero">0</td><td class="zero">0</td><td class="zero">0</td><td class="zero">0</td></tr><tr style="font-weight:600;"><td>Total</td><td>42</td><td>15</td><td>0</td><td>24</td><td>12</td></tr></tbody>
 </table>
 </div>
 
@@ -963,10 +1130,10 @@ Autopilot runs every 6h. Source of truth: <code>autopilot/state/last-cycle.json<
 </div>
 
 <h2>Read of the data</h2>
-<div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 17:02 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
+<div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 17:11 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
 
 <footer>
-<div>Auto-generated by <code>autopilot/render_dashboard.py</code> at 2026-05-26 17:02 UTC.<br>Data: Meta Marketing API v22.0 (direct), PostHog HogQL (project 419152), autopilot state file.</div>
+<div>Auto-generated by <code>autopilot/render_dashboard.py</code> at 2026-05-26 17:11 UTC.<br>Data: Meta Marketing API v22.0 (direct), PostHog HogQL (project 419152), autopilot state file.</div>
 <div>Re-run via <code>/campaign-status</code> or wait for next autopilot cycle (≤6h).</div>
 </footer>
 
