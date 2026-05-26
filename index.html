@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ablo Studio — Signup Launch — Day 6</title>
+<style>
+:root {
+  --bg: #f7f5f1; --surface: #fff; --ink: #14110f; --ink-soft: #5a544d;
+  --line: #e8e3db; --accent: #1f1b16; --good: #1b7a4a; --warn: #b35900;
+  --bad: #b3261e; --shadow: 0 1px 2px rgba(20,17,15,0.04), 0 4px 16px rgba(20,17,15,0.04);
+  --radius: 14px;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:48px 32px 96px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;border-bottom:1px solid var(--line);padding-bottom:22px}
+.title{font-size:28px;font-weight:600;letter-spacing:-0.01em;margin:0 0 6px}
+.subtitle{color:var(--ink-soft);font-size:14px;margin:0}
+.meta{text-align:right;font-size:13px;color:var(--ink-soft)}
+.meta a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.pill{display:inline-block;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--ink-soft);background:var(--surface);margin-right:6px}
+.pill.status-active{background:#dcf3e6;color:var(--good);border-color:#b7e2c8}
+.pill.fresh{background:#dcf3e6;color:var(--good);border-color:#b7e2c8}
+.pill.stale{background:#faecd4;color:var(--warn);border-color:#e2cf99}
+.alert-banner{margin:0 0 16px;padding:14px 18px;border-radius:10px;font-size:13px}
+.alert-banner.critical{background:#fbe5e5;border:1px solid #f0c5c5;border-left:4px solid var(--bad);color:#6b1e1e}
+.alert-banner.critical strong{color:#4a1414}
+.alert-banner.good{background:#dcf3e6;border:1px solid #b7e2c8;border-left:4px solid var(--good);color:#0b3d24}
+.alert-banner code{background:#fff;padding:1px 5px;border-radius:3px;font-size:12px}
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:22px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;box-shadow:var(--shadow)}
+.kpi-label{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.kpi-value{font-size:26px;font-weight:600;letter-spacing:-0.02em}
+.kpi-sub{font-size:11px;color:var(--ink-soft);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);display:flex;justify-content:space-between}
+.good-num{color:var(--good)}.stuck-num{color:var(--bad)}
+h2{font-size:16px;font-weight:600;letter-spacing:-0.005em;margin:32px 0 12px}
+h2 .pill{margin-left:4px;vertical-align:middle}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{font-weight:500;color:var(--ink-soft);font-size:11px;text-transform:uppercase;letter-spacing:0.04em}
+tbody tr:hover{background:#faf6ee}
+.tag{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:600;margin-right:4px;white-space:nowrap}
+.tag.healthy{background:#dcf3e6;color:var(--good)}
+.tag.warming{background:#e5edfb;color:#1e3a8a}
+.tag.warning{background:#faecd4;color:var(--warn)}
+.tag.critical{background:#fbe5e5;color:var(--bad)}
+.zero{color:#cbc4b6}
+.reco-list{display:flex;flex-direction:column;gap:10px}
+.reco{display:grid;grid-template-columns:100px 1fr;gap:14px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.reco.high{border-left:4px solid var(--bad)}.reco.medium{border-left:4px solid var(--warn)}.reco.low{border-left:4px solid var(--ink-soft)}.reco.good{border-left:4px solid var(--good)}
+.reco-id{font-size:12px;font-weight:600;color:var(--ink-soft)}
+.reco-id .sub{display:block;color:var(--ink);font-size:11px;margin-top:2px;font-weight:500}
+.reco-body .reco-action{font-size:14px;font-weight:600;margin-bottom:4px}
+.reco-body .reco-target{font-size:12px;color:var(--ink-soft);margin-bottom:8px}
+.reco-body .reco-why{font-size:13px;color:var(--ink)}
+.reco-body .reco-evidence{font-size:12px;color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-family:ui-monospace,SF Mono,Menlo,monospace}
+.reco-body a{color:var(--ink)}
+.read-of-data ul{margin:0;padding-left:20px;font-size:14px}
+.read-of-data li{margin-bottom:10px}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:1024px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div>
+    <p class="title">Ablo Studio -- Signup Launch -- May 20 2026</p>
+    <p class="subtitle">OUTCOME_SALES, AUCTION. Launched 2026-05-20 — day 6. Auto-refreshed by autopilot every 6h.</p>
+  </div>
+  <div class="meta">
+    <div><span class="pill status-active">ACTIVE</span><span class="pill">$100/day cap</span><span class="pill fresh">autopilot cycle 0.3h ago</span></div>
+    <div style="margin-top:6px;">Snapshot 2026-05-26 16:39 UTC</div>
+    <div style="margin-top:4px;">
+      <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager ↗</a> ·
+      <a href="https://us.posthog.com/project/419152/dashboard/1608781" target="_blank">PostHog ↗</a> ·
+      <a href="https://github.com/denizozzgur/ablo-tech/pull/21" target="_blank">PR #21 ↗</a>
+    </div>
+  </div>
+</header>
+
+
+<div class="alert-banner critical">
+  <strong>U13 DELIVERY HEALTH — MEDIUM.</strong> The autopilot should have caught this earlier; new in this dashboard build, will be promoted into <code>autopilot/decisions.py</code> so the ClickUp comment fires too.
+  <ul style='margin:6px 0 0 20px;'><li>Stalled 2 days ago, delivery has since resumed. 2 zero-spend day(s) in last 7: 2026-05-24, 2026-05-23.</li></ul>
+  <div style="margin-top:10px;font-size:12px;">
+    Account: status code <strong>1</strong> (1 = ACTIVE) ·
+    Funding: <strong>American Express *1004</strong> ·
+    Balance: <strong>$12.49</strong>
+  </div>
+  <div style="margin-top:8px;font-size:12px;color:#4a1414;">
+    First action: open <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager</a>
+    and check Billing → Payment methods + Account Quality. If you see "Account flagged" or "Payment failed", fix that first; everything else waits.
+  </div>
+</div>
+
+
+<div class="alert-banner critical"><strong>U11 FUNNEL_ATTRIBUTION_ARTIFACT.</strong> Unfiltered PostHog says <strong>15</strong> signups since launch, UTM-filtered says <strong>0</strong>. Either the post-verify <code>posthog.identify()</code> hasn't deployed yet, or the new code is live and the lag will close over the next 24-48h. Check <a href="https://github.com/denizozzgur/ablo-tech/pull/21" target="_blank">PR #21</a> merged status and watch this number across the next two cycles.</div>
+
+
+<h2>Action items <span class="pill">3 items, prioritized</span></h2>
+<div class="reco-list">
+<div class="reco medium">
+  <div class="reco-id">IMPORTANT</div>
+  <div class="reco-body">
+    <div class="reco-action">Attribution still leaking (U11)</div>
+    <div class="reco-why">PostHog reports 15 real signups but only 0 are UTM-attributed. PR #21 (CAPI + identify) just deployed; lag should close in 24-48h.</div>
+    <div class="reco-evidence"><strong>Next:</strong> Wait 48h and re-run /campaign-status. If the gap persists past Wed, dig into why posthog.identify() isn&#x27;t merging sessions.</div>
+  </div>
+</div>
+<div class="reco medium">
+  <div class="reco-id">IMPORTANT</div>
+  <div class="reco-body">
+    <div class="reco-action">Install LinkedIn Insight Tag on studio.ablo.ai</div>
+    <div class="reco-why">LinkedIn drove 188 clicks last campaign, 0 conversions tracked. Without the Insight Tag, LinkedIn can&#x27;t optimize toward signups and we can&#x27;t isolate LinkedIn&#x27;s contribution to the blended CPL. Same pattern as PR #21 (Meta CAPI): a small one-time install that unlocks every future campaign.</div>
+    <div class="reco-evidence"><strong>Next:</strong> (1) LinkedIn Campaign Manager → Account Assets → Insight Tag → grab the Partner ID. (2) Ship a PR to ablo-tech that loads snap.licdn.com/li.lms-analytics/insight.min.js via a React mount component, gated on VITE_LINKEDIN_PARTNER_ID. (3) Add a conversion fire in AuthVerifyPage.tsx alongside fbq, calling window.lintrk(&#x27;track&#x27;, { conversion_id: ... }) when isNewUser. (4) Define the matching conversion in LinkedIn Campaign Manager → Conversions. Ask the assistant to ship this PR -- mirrors PR #21 shape.</div>
+  </div>
+</div>
+<div class="reco low">
+  <div class="reco-id">WATCH</div>
+  <div class="reco-body">
+    <div class="reco-action">Klaviyo roster missing signups</div>
+    <div class="reco-why">PostHog: 15 signups. Klaviyo: 12 profiles. 3 silent failures.</div>
+    <div class="reco-evidence"><strong>Next:</strong> Check Railway logs for klaviyo errors around magic-link verify times. subscribeNewSignup is fire-and-forget so failures don&#x27;t block signup.</div>
+  </div>
+</div></div>
+
+
+
+    <section class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Total spend (all channels)</div>
+        <div class="kpi-value">$308.18</div>
+        <div class="kpi-sub"><span>Meta 51% · LinkedIn 49%</span><span>day 6</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Total impressions</div>
+        <div class="kpi-value">8,440</div>
+        <div class="kpi-sub"><span>Meta 6,441</span><span>LI 1,999</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Total clicks</div>
+        <div class="kpi-value">295</div>
+        <div class="kpi-sub"><span>Blended CTR 3.50%</span><span>$1.04 CPC</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Real signups</div>
+        <div class="kpi-value good-num">15</div>
+        <div class="kpi-sub"><span>PostHog</span><span>truth</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Meta-counted (CR)</div>
+        <div class="kpi-value stuck-num">5</div>
+        <div class="kpi-sub"><span>33% of real</span><span>CAPI lagging</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Blended CPL</div>
+        <div class="kpi-value">$20.55</div>
+        <div class="kpi-sub"><span>vs Meta-only $31.64</span><span>all channels</span></div>
+      </div>
+    </section>
+    
+
+
+<h2>Channel mix <span class="pill">Meta + LinkedIn</span></h2>
+<div class="panel">
+<table>
+<thead>
+  <tr>
+    <th>Channel</th><th>Spend</th><th>Share</th><th>Impressions</th><th>Clicks</th>
+    <th>CTR</th><th>CPC</th><th>Conv. (platform)</th><th>Status</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><strong>Meta</strong></td>
+    <td>$158.18</td>
+    <td>51%</td>
+    <td>6,441</td>
+    <td>107</td>
+    <td>2.76%</td>
+    <td>$1.48</td>
+    <td>5</td>
+    <td><span class="tag healthy">running</span></td>
+  </tr>
+  <tr>
+    <td><strong>LinkedIn</strong></td>
+    <td>$150.00</td>
+    <td>49%</td>
+    <td>1,999</td>
+    <td>188</td>
+    <td>9.40%</td>
+    <td>$0.80</td>
+    <td>0</td>
+    <td><span class="tag warming">ended</span></td>
+  </tr>
+  <tr style="font-weight:600;background:#faf6ee;">
+    <td>Combined</td>
+    <td>$308.18</td>
+    <td>100%</td>
+    <td>8,440</td>
+    <td>295</td>
+    <td>3.50%</td>
+    <td>$1.04</td>
+    <td>5</td>
+    <td>—</td>
+  </tr>
+</tbody>
+</table>
+<div style="margin-top:14px;font-size:12px;color:var(--ink-soft);">
+<strong>Reading this:</strong> Real signups (PostHog) is <strong>15</strong> across both channels. Blended CPL <strong>$20.55</strong> = $308.18 / 15. Meta's own conversion count (5) and LinkedIn's (0) both undercount truth -- Meta because of fbq blocking (CAPI fixing this), LinkedIn because no Insight Tag installed. "Platform-attributed conversions" columns are useful for the platform's optimization signal, NOT for true CAC math.
+</div>
+</div>
+
+
+
+<h2>Daily spend trend <span class="pill">14d</span></h2>
+<div class="panel">
+  <div style="display:flex;align-items:flex-end;gap:6px;">
+    
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-13 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-13</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-14 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-14</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-15 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-15</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-16 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-16</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-17 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-17</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-18 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-18</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-19 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-19</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-20 $1.13" style="width:18px;height:8px;background:var(--accent);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-20</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-21 $97.88" style="width:18px;height:80px;background:var(--accent);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-21</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-22 $19.68" style="width:18px;height:16px;background:var(--accent);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-22</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-23 $0.00 ZERO" style="width:18px;height:4px;background:var(--bad);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-23</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-24 $0.00 ZERO" style="width:18px;height:4px;background:var(--bad);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-24</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-25 $39.49" style="width:18px;height:32px;background:var(--accent);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-25</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-26 $0.00 ZERO" style="width:18px;height:4px;background:var(--bad);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-26</div>
+</div>
+  </div>
+  <div style="margin-top:14px;font-size:12px;color:var(--ink-soft);">
+    Red bars = zero-spend days on an ACTIVE campaign (delivery stalled). Light gray = pre-launch. Hover for daily total.
+  </div>
+</div>
+
+
+
+<h2>LinkedIn ads <span class="pill">Deniz - Studio Launch - May 19</span></h2>
+<div class="panel">
+
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+  <div><div class="kpi-label">Spend</div><div class="kpi-value">$150.00</div></div>
+  <div><div class="kpi-label">Impressions</div><div class="kpi-value">1,999</div></div>
+  <div><div class="kpi-label">Clicks</div><div class="kpi-value">188</div></div>
+  <div><div class="kpi-label">CTR</div><div class="kpi-value">9.40%</div></div>
+  <div><div class="kpi-label">CPC</div><div class="kpi-value">$0.80</div></div>
+  <div><div class="kpi-label">Conversions</div><div class="kpi-value stuck-num">0</div></div>
+</div>
+
+<table>
+<thead><tr><th>Date</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Leads</th></tr></thead>
+<tbody><tr><td>2026-05-20</td><td>$53.00</td><td>828</td><td>72</td><td>8.70%</td><td>0</td></tr><tr><td>2026-05-21</td><td>$50.97</td><td>550</td><td>67</td><td>12.18%</td><td>0</td></tr><tr><td>2026-05-22</td><td>$46.03</td><td>621</td><td>49</td><td>7.89%</td><td>0</td></tr></tbody>
+</table>
+
+<div style="margin-top:14px;font-size:12px;color:var(--ink-soft);">
+<strong>Ad set:</strong> Deniz - Studio Launch - May 19 · <strong>Objective:</strong> Engagement · <strong>Avg dwell:</strong> 7.7s · <strong>Reactions:</strong> 2 · <strong>Video views:</strong> 1,511<br>
+Source: <code>/Users/alejo/Documents/Claude/Brain/projects/ablo/Ablo Studio/analytics/linkedin-export.csv</code> (3 rows).
+<br><br>
+<strong>9.4% CTR is exceptional for LinkedIn</strong> (industry avg ~0.5%). Engagement objective drove 188 clicks; only 156 reached the landing page -- LinkedIn counts a 'click' loosely (includes profile views, post expands, etc).
+</div>
+</div>
+
+
+
+<h2>LinkedIn demographics <span class="pill">Deniz - Studio Launch - May 19</span></h2>
+<div class="panel">
+<div style="font-size:12px;color:var(--ink-soft);margin-bottom:14px;">
+Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 -- <code>linkedin-demographics.json</code>.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+<div style="margin-bottom:18px;">
+  <div style="font-size:13px;font-weight:600;margin-bottom:6px;">Job titles <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">· top 10</span></div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:4px;border-bottom:1px solid var(--line);margin-bottom:4px;">
+  <div></div><div></div>
+  <div style="text-align:right;">Impr</div>
+  <div style="text-align:right;">Clicks</div>
+  <div style="text-align:right;">CTR</div>
+</div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Founder">Founder</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:100.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">874</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">77</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.8%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Chief Executive Officer">Chief Executive Officer</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:56.6%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">495</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">47</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9.5%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Co-Founder">Co-Founder</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:34.1%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">298</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">26</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.7%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Owner">Owner</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:18.9%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">165</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">17</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">10.3%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Creative Director">Creative Director</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:18.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">157</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">10</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">6.4%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Co-Owner">Co-Owner</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:8.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">70</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">11</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">15.7%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="President">President</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:7.2%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">63</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">11.1%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Entrepreneur">Entrepreneur</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:7.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">61</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">11.5%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Brand Manager">Brand Manager</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:6.3%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">55</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">14.6%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Designer">Designer</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:5.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">44</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">4</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9.1%</div>
+</div>
+</div>
+<div style="margin-bottom:18px;">
+  <div style="font-size:13px;font-weight:600;margin-bottom:6px;">Job seniority <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">· top 8</span></div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:4px;border-bottom:1px solid var(--line);margin-bottom:4px;">
+  <div></div><div></div>
+  <div style="text-align:right;">Impr</div>
+  <div style="text-align:right;">Clicks</div>
+  <div style="text-align:right;">CTR</div>
+</div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Owner">Owner</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:100.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">1325</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">127</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9.6%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="CXO">CXO</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:43.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">570</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">51</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.9%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Director">Director</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:34.4%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">456</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">36</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7.9%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Manager">Manager</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:9.2%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">122</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">11</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Senior">Senior</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:6.8%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">90</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">10</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">11.1%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="VP">VP</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:6.2%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">82</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">4</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">4.9%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Partner">Partner</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:5.4%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">71</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.4%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Entry">Entry</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:2.3%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">31</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+</div>
+<div style="margin-bottom:18px;">
+  <div style="font-size:13px;font-weight:600;margin-bottom:6px;">Company size <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">· top 9</span></div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:4px;border-bottom:1px solid var(--line);margin-bottom:4px;">
+  <div></div><div></div>
+  <div style="text-align:right;">Impr</div>
+  <div style="text-align:right;">Clicks</div>
+  <div style="text-align:right;">CTR</div>
+</div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="2-10 employees">2-10 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:100.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">792</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">64</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.1%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="11-50 employees">11-50 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:50.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">396</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">27</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">6.8%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="1 employee">1 employee</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:28.2%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">223</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">18</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.1%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="51-200 employees">51-200 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:22.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">180</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">10</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">5.6%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="10001+ employees">10001+ employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:17.4%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">138</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">20</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">14.5%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="201-500 employees">201-500 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:10.6%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">84</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">5</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">6.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="1001-5000 employees">1001-5000 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:10.5%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">83</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7.2%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="501-1000 employees">501-1000 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:7.3%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">58</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">15.5%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="5001-10000 employees">5001-10000 employees</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:3.5%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">28</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+</div>
+<div style="margin-bottom:18px;">
+  <div style="font-size:13px;font-weight:600;margin-bottom:6px;">Job functions <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">· top 10</span></div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:4px;border-bottom:1px solid var(--line);margin-bottom:4px;">
+  <div></div><div></div>
+  <div style="text-align:right;">Impr</div>
+  <div style="text-align:right;">Clicks</div>
+  <div style="text-align:right;">CTR</div>
+</div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Business Development">Business Development</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:100.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">1650</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">158</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9.6%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Arts and Design">Arts and Design</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:23.8%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">393</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">30</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7.6%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Marketing">Marketing</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:19.9%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">328</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">28</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.5%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Operations">Operations</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:12.5%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">207</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">15</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7.2%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Sales">Sales</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:9.5%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">156</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">13</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">8.3%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Media and Communication">Media and Communication</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:7.1%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">117</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">11</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">9.4%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Education">Education</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:4.8%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">79</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">5</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">6.3%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Entrepreneurship">Entrepreneurship</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:3.2%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">52</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">7</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">13.5%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Community and Social Services">Community and Social Services</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:3.1%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">51</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Consulting">Consulting</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:3.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">49</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">10</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">20.4%</div>
+</div>
+</div>
+<div style="margin-bottom:18px;">
+  <div style="font-size:13px;font-weight:600;margin-bottom:6px;">Companies <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">· top 10</span></div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:4px;border-bottom:1px solid var(--line);margin-bottom:4px;">
+  <div></div><div></div>
+  <div style="text-align:right;">Impr</div>
+  <div style="text-align:right;">Clicks</div>
+  <div style="text-align:right;">CTR</div>
+</div>
+  
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="The Learning Web">The Learning Web</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:100.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">9</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Nike">Nike</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:100.0%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">9</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Walmart">Walmart</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:66.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="LOOK AND ADORN">LOOK AND ADORN</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:66.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Stitch Fix">Stitch Fix</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:66.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="The Closet">The Closet</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:66.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="USA Basketball">USA Basketball</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:66.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Army National Guard">Army National Guard</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:66.7%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">6</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="McDonald's">McDonald's</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:55.6%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">5</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+<div style="display:grid;grid-template-columns:170px 1fr 60px 60px 60px;gap:8px;align-items:center;padding:4px 0;font-size:13px;">
+  <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="H & H Treasures">H & H Treasures</div>
+  <div style="background:#f3eee6;height:12px;border-radius:3px;overflow:hidden;">
+    <div style="background:var(--accent);height:100%;width:55.6%;border-radius:3px;"></div>
+  </div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;">5</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0</div>
+  <div style="text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft);">0.0%</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<h2>Daily activity <span class="pill">PostHog unfiltered, since launch</span></h2>
+<div class="panel">
+<table>
+<thead><tr><th>Date</th><th>Magic-link req</th><th>Signups</th><th>Exceptions</th><th>Models gen</th><th>Try-ons</th></tr></thead>
+<tbody><tr><td>2026-05-20</td><td>14</td><td>4</td><td class="zero">0</td><td class="zero">0</td><td>3</td></tr><tr><td>2026-05-21</td><td>10</td><td>4</td><td class="zero">0</td><td>2</td><td>1</td></tr><tr><td>2026-05-22</td><td>13</td><td>6</td><td class="zero">0</td><td>5</td><td>5</td></tr><tr><td>2026-05-24</td><td>1</td><td class="zero">0</td><td class="zero">0</td><td>15</td><td class="zero">0</td></tr><tr><td>2026-05-25</td><td>3</td><td>1</td><td class="zero">0</td><td>2</td><td>3</td></tr><tr style="font-weight:600;"><td>Total</td><td>41</td><td>15</td><td>0</td><td>24</td><td>12</td></tr></tbody>
+</table>
+</div>
+
+<h2>Ad sets <span class="pill">lifetime</span></h2>
+<div class="panel">
+<table>
+<thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
+<tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$20</td><td>$39.04</td><td>1,394</td><td>3.59%</td><td>$0.78</td><td>1</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$40.29</td><td>1,983</td><td>2.27%</td><td>$0.90</td><td>2</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$37.21</td><td>1,541</td><td>2.60%</td><td>$0.93</td><td>0</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$25</td><td>$41.64</td><td>1,523</td><td>2.82%</td><td>$0.97</td><td>2</td><td><span class="tag warming">WARMING</span></td></tr></tbody>
+</table>
+<div style="margin-top:14px;font-size:12px;color:var(--ink-soft);">Autopilot column reflects last cycle (20260526-1621Z). Updated every 6h.</div>
+</div>
+
+<h2>Signups roster <span class="pill">Klaviyo, since launch</span></h2>
+<div class="panel">
+
+<div style="font-size:13px;margin-bottom:12px;"><strong style="color:var(--warn);">Note:</strong> PostHog reports <strong>15</strong> signups but Klaviyo only has <strong>12</strong> profiles. The <strong>3</strong> missing profiles likely silently failed the Klaviyo upsert (fire-and-forget). Worth a look at server logs if the gap grows.</div>
+<table>
+<thead><tr><th>Signed up</th><th>Email</th><th>First name</th><th>Source</th><th>Method</th></tr></thead>
+<tbody><tr><td>2026-05-25 16:17</td><td>jaimit1988@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-22 12:20</td><td>g.russo9257@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-22 10:14</td><td>giuliettafranco1993@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-22 10:05</td><td>zerocoreshop@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-22 08:37</td><td>djtiros@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-22 07:46</td><td>serignefall883@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-22 07:05</td><td>helpttl@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-21 21:23</td><td>watervixenswim@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-21 19:50</td><td>mhedvall@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-21 17:57</td><td>cincyredstarsgm@gmail.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-21 17:45</td><td>jhwcreates@icloud.com</td><td>—</td><td>ablo_studio_web</td><td>magic_link</td></tr><tr><td>2026-05-20 10:02</td><td>nsofugil@gmail.com</td><td>Nsofugil</td><td>ablo_studio_web</td><td>magic_link</td></tr></tbody>
+</table>
+<div style="margin-top:12px;font-size:12px;color:var(--ink-soft);">
+Klaviyo upserts a profile on every magic-link verify (<code>apps/server/src/services/klaviyo.service.ts</code>). Filter applied: <code>email NOT ICONTAINS spacerunners.com</code> (same as PostHog).
+</div>
+
+</div>
+
+<h2>Latest autopilot cycle <span class="pill">20260526-1621Z</span></h2>
+<div class="panel">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:13px;">
+<div><strong>Actions executed:</strong><em>No actions this cycle.</em></div>
+<div><strong>Flags raised (no action):</strong><ul><li><strong>DELIVERY_HEALTH</strong>: 2 zero-spend day(s) in the last 14 since launch: 2026-05-24, 2026-05-23. Campaign is set ACTIVE but delivered nothing on those days.</li></ul></div>
+</div>
+<div style="margin-top:14px;font-size:12px;color:var(--ink-soft);">
+Autopilot runs every 6h. Source of truth: <code>autopilot/state/last-cycle.json</code>. Decisions ledger: <code>autopilot/state/decisions-ledger.jsonl</code>.
+</div>
+</div>
+
+<h2>Read of the data</h2>
+<div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 16:39 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
+
+<footer>
+<div>Auto-generated by <code>autopilot/render_dashboard.py</code> at 2026-05-26 16:39 UTC.<br>Data: Meta Marketing API v22.0 (direct), PostHog HogQL (project 419152), autopilot state file.</div>
+<div>Re-run via <code>/campaign-status</code> or wait for next autopilot cycle (≤6h).</div>
+</footer>
+
+</div></body></html>
