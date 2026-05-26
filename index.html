@@ -22,6 +22,10 @@
   --warn: #b35900;
   --bad: #b3261e;
   --info: #1e3a8a;
+  /* Back-compat alias: legacy panels (funnel bars, demographics, spend trend)
+     reference var(--accent) in inline styles. Keep it as a synonym for --ink
+     so the redesign doesn't kill them. */
+  --accent: var(--ink);
   --shadow-sm: 0 1px 2px rgba(12,12,12,0.03);
   --shadow: 0 1px 2px rgba(12,12,12,0.04), 0 8px 24px rgba(12,12,12,0.04);
   --shadow-lg: 0 1px 2px rgba(12,12,12,0.05), 0 16px 48px rgba(12,12,12,0.06);
@@ -158,6 +162,13 @@ tbody tr:last-child td{border-bottom:none}
 .reco-body .reco-evidence{font-size:12px;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-family:ui-monospace,SF Mono,Menlo,monospace;line-height:1.5}
 .reco-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
 
+/* Back-compat: legacy funnel bars in _render_core_funnel still emit
+   `.fbar-track` / `.fbar`. Keep visible styles until that function is
+   refactored to the new `.fnl-*` classes. */
+.fbar-track{background:var(--bg-2);border-radius:8px;height:28px;overflow:hidden;position:relative}
+.fbar{background:linear-gradient(90deg,var(--ink) 0%,#2a2419 100%);height:100%;border-radius:8px;transition:width 0.4s cubic-bezier(0.16,1,0.3,1)}
+.fbar.zero,.fbar.tiny{background:var(--gold-soft)}
+
 /* ─── Funnel rows ─────────────────────────────────────────── */
 .fnl{display:grid;grid-template-columns:180px 1fr 110px 110px;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-soft)}
 .fnl:last-child{border-bottom:none}
@@ -235,7 +246,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-26 17:15 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-26 17:17 UTC</span>
   </div>
 </div>
 
@@ -289,7 +300,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-26 17:15 UTC</span>
+    <span class="meta">prioritized · 2026-05-26 17:17 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">4 items, prioritized</span></h2>
@@ -1237,9 +1248,9 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
   <div class="section-head">
     <span class="roman">vi.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-26 17:15 UTC</span>
+    <span class="meta">opinion · 2026-05-26 17:17 UTC</span>
   </div>
-  <div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 17:15 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
+  <div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 17:17 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
   <div class="panel" style="margin-top:14px;">
     <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260526-1621Z</span></div>
     <div class="panel-sub">Runs every 6h · source of truth at <code>autopilot/state/last-cycle.json</code></div>
