@@ -71,8 +71,8 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
     <p class="subtitle">OUTCOME_SALES, AUCTION. Launched 2026-05-20 — day 6. Auto-refreshed by autopilot every 6h.</p>
   </div>
   <div class="meta">
-    <div><span class="pill status-active">ACTIVE</span><span class="pill">$100/day cap</span><span class="pill fresh">autopilot cycle 0.4h ago</span></div>
-    <div style="margin-top:6px;">Snapshot 2026-05-26 16:45 UTC</div>
+    <div><span class="pill status-active">ACTIVE</span><span class="pill">$100/day cap</span><span class="pill fresh">autopilot cycle 0.5h ago</span></div>
+    <div style="margin-top:6px;">Snapshot 2026-05-26 16:49 UTC</div>
     <div style="margin-top:4px;">
       <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager ↗</a> ·
       <a href="https://us.posthog.com/project/419152/dashboard/1608781" target="_blank">PostHog ↗</a> ·
@@ -82,32 +82,18 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
 </header>
 
 
-<div class="alert-banner critical">
-  <strong>U13 DELIVERY HEALTH — MEDIUM.</strong> The autopilot should have caught this earlier; new in this dashboard build, will be promoted into <code>autopilot/decisions.py</code> so the ClickUp comment fires too.
-  <ul style='margin:6px 0 0 20px;'><li>Stalled 2 days ago, delivery has since resumed. 2 zero-spend day(s) in last 7: 2026-05-24, 2026-05-23.</li></ul>
-  <div style="margin-top:10px;font-size:12px;">
-    Account: status code <strong>1</strong> (1 = ACTIVE) ·
-    Funding: <strong>American Express *1004</strong> ·
-    Balance: <strong>$0.00</strong>
-  </div>
-  <div style="margin-top:8px;font-size:12px;color:#4a1414;">
-    First action: open <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager</a>
-    and check Billing → Payment methods + Account Quality. If you see "Account flagged" or "Payment failed", fix that first; everything else waits.
-  </div>
-</div>
 
 
-<div class="alert-banner critical"><strong>U11 FUNNEL_ATTRIBUTION_ARTIFACT.</strong> Unfiltered PostHog says <strong>15</strong> signups since launch, UTM-filtered says <strong>0</strong>. Either the post-verify <code>posthog.identify()</code> hasn't deployed yet, or the new code is live and the lag will close over the next 24-48h. Check <a href="https://github.com/denizozzgur/ablo-tech/pull/21" target="_blank">PR #21</a> merged status and watch this number across the next two cycles.</div>
 
 
-<h2>Action items <span class="pill">3 items, prioritized</span></h2>
+<h2>Action items <span class="pill">4 items, prioritized</span></h2>
 <div class="reco-list">
 <div class="reco medium">
   <div class="reco-id">IMPORTANT</div>
   <div class="reco-body">
-    <div class="reco-action">Attribution still leaking (U11)</div>
-    <div class="reco-why">PostHog reports 15 real signups but only 0 are UTM-attributed. PR #21 (CAPI + identify) just deployed; lag should close in 24-48h.</div>
-    <div class="reco-evidence"><strong>Next:</strong> Wait 48h and re-run /campaign-status. If the gap persists past Wed, dig into why posthog.identify() isn&#x27;t merging sessions.</div>
+    <div class="reco-action">Recent delivery stall, recovering</div>
+    <div class="reco-why">Stalled 2 days ago, delivery has since resumed. 2 zero-spend day(s) in last 7: 2026-05-24, 2026-05-23.</div>
+    <div class="reco-evidence"><strong>Next:</strong> No action -- yesterday delivered. Watch the spend chart for the next 2 days to confirm the trend holds. Will age off the dashboard in 5 days.</div>
   </div>
 </div>
 <div class="reco medium">
@@ -116,6 +102,14 @@ footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-si
     <div class="reco-action">Install LinkedIn Insight Tag on studio.ablo.ai</div>
     <div class="reco-why">LinkedIn drove 188 clicks last campaign, 0 conversions tracked. Without the Insight Tag, LinkedIn can&#x27;t optimize toward signups and we can&#x27;t isolate LinkedIn&#x27;s contribution to the blended CPL. Same pattern as PR #21 (Meta CAPI): a small one-time install that unlocks every future campaign.</div>
     <div class="reco-evidence"><strong>Next:</strong> (1) LinkedIn Campaign Manager → Account Assets → Insight Tag → grab the Partner ID. (2) Ship a PR to ablo-tech that loads snap.licdn.com/li.lms-analytics/insight.min.js via a React mount component, gated on VITE_LINKEDIN_PARTNER_ID. (3) Add a conversion fire in AuthVerifyPage.tsx alongside fbq, calling window.lintrk(&#x27;track&#x27;, { conversion_id: ... }) when isNewUser. (4) Define the matching conversion in LinkedIn Campaign Manager → Conversions. Ask the assistant to ship this PR -- mirrors PR #21 shape.</div>
+  </div>
+</div>
+<div class="reco low">
+  <div class="reco-id">WATCH</div>
+  <div class="reco-body">
+    <div class="reco-action">Monitoring attribution recovery (U11)</div>
+    <div class="reco-why">PostHog reports 15 real signups, 0 UTM-attributed. PR #21 deployed 1.3h ago; UTM attribution should populate within the next 47h as new signups flow through the patched code.</div>
+    <div class="reco-evidence"><strong>Next:</strong> Re-check after 48h. No action required right now.</div>
   </div>
 </div>
 <div class="reco low">
@@ -843,10 +837,10 @@ Autopilot runs every 6h. Source of truth: <code>autopilot/state/last-cycle.json<
 </div>
 
 <h2>Read of the data</h2>
-<div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 16:45 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
+<div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 15 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 16:49 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $20.55</strong> across <strong>$308.18</strong> in total spend (Meta + LinkedIn). Meta-only view would say $31.64 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
 
 <footer>
-<div>Auto-generated by <code>autopilot/render_dashboard.py</code> at 2026-05-26 16:45 UTC.<br>Data: Meta Marketing API v22.0 (direct), PostHog HogQL (project 419152), autopilot state file.</div>
+<div>Auto-generated by <code>autopilot/render_dashboard.py</code> at 2026-05-26 16:49 UTC.<br>Data: Meta Marketing API v22.0 (direct), PostHog HogQL (project 419152), autopilot state file.</div>
 <div>Re-run via <code>/campaign-status</code> or wait for next autopilot cycle (≤6h).</div>
 </footer>
 
