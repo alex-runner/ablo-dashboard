@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ablo Studio -- Signup Launch -- Status (corrected)</title>
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --surface: #ffffff;
+      --ink: #14110f;
+      --ink-soft: #5a544d;
+      --line: #e8e3db;
+      --accent: #1f1b16;
+      --good: #1b7a4a;
+      --warn: #b35900;
+      --bad: #b3261e;
+      --shadow: 0 1px 2px rgba(20, 17, 15, 0.04), 0 4px 16px rgba(20, 17, 15, 0.04);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 48px 32px 96px; }
+
+    header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+    .title { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 6px; }
+    .subtitle { color: var(--ink-soft); font-size: 14px; margin: 0; }
+    .meta { text-align: right; font-size: 13px; color: var(--ink-soft); }
+    .meta a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    .pill { display: inline-block; padding: 3px 8px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; color: var(--ink-soft); background: var(--surface); margin-right: 6px; }
+    .pill.status-active { background: #dcf3e6; color: var(--good); border-color: #b7e2c8; }
+    .pill.status-info { background: #e5edfb; color: #1e3a8a; border-color: #c4d1f0; }
+
+    .alert-banner { margin: 0 0 20px; padding: 14px 18px; background: #e5edfb; border: 1px solid #c4d1f0; border-left: 4px solid #1e3a8a; border-radius: 10px; color: #1a2a4f; font-size: 13px; }
+    .alert-banner strong { color: #0f1d3b; }
+    .alert-banner code { background: #fff; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 22px; }
+    .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 14px; box-shadow: var(--shadow); }
+    .kpi-label { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .kpi-value { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+    .kpi-sub { font-size: 11px; color: var(--ink-soft); margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; }
+    .good-num { color: var(--good); }
+
+    h2 { font-size: 16px; font-weight: 600; letter-spacing: -0.005em; margin: 32px 0 12px; }
+    h2 .pill { margin-left: 4px; vertical-align: middle; }
+
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+    th, td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { font-weight: 500; color: var(--ink-soft); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+    tbody tr:hover { background: #faf6ee; }
+    .diag-tag { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: 11px; font-weight: 600; margin-right: 4px; white-space: nowrap; }
+    .diag-tag.healthy { background: #dcf3e6; color: var(--good); }
+    .diag-tag.warming { background: #e5edfb; color: #1e3a8a; }
+    .diag-tag.warning { background: #faecd4; color: var(--warn); }
+
+    .funnel-rows { display: flex; flex-direction: column; gap: 10px; }
+    .frow { display: grid; grid-template-columns: 220px 1fr 80px 150px; gap: 14px; align-items: center; }
+    .fname { font-size: 14px; font-weight: 500; }
+    .fbar-track { background: #f3eee6; border-radius: 8px; height: 28px; overflow: hidden; }
+    .fbar { background: var(--accent); height: 100%; border-radius: 8px; }
+    .fnum { font-size: 14px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+    .fconv { font-size: 13px; color: var(--ink-soft); text-align: right; font-variant-numeric: tabular-nums; }
+    .fconv strong { color: var(--ink); }
+
+    .reco-list { display: flex; flex-direction: column; gap: 10px; }
+    .reco { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .reco.shipped { border-left: 4px solid var(--good); }
+    .reco.queued { border-left: 4px solid #1e3a8a; }
+    .reco.note { border-left: 4px solid var(--ink-soft); }
+    .reco-id { font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+    .reco-id .sub { display: block; color: var(--ink); font-size: 11px; margin-top: 2px; font-weight: 500; }
+    .reco-body .reco-action { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .reco-body .reco-target { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+    .reco-body .reco-why { font-size: 13px; color: var(--ink); }
+    .reco-body .reco-evidence { font-size: 12px; color: var(--ink-soft); margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); font-family: ui-monospace, SF Mono, Menlo, monospace; }
+    .reco-body a { color: var(--ink); }
+
+    .read-of-data ul { margin: 0; padding-left: 20px; font-size: 14px; }
+    .read-of-data li { margin-bottom: 10px; }
+
+    .strike { text-decoration: line-through; color: #c9c4ba; }
+
+    footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 1024px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .frow { grid-template-columns: 110px 1fr 60px 100px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div>
+        <p class="title">Ablo Studio -- Signup Launch -- May 20 2026</p>
+        <p class="subtitle">OUTCOME_SALES, AUCTION. Launched 2026-05-20 -- day 3. <strong>Diagnosis corrected after first pull.</strong></p>
+      </div>
+      <div class="meta">
+        <div>
+          <span class="pill status-active">ACTIVE</span>
+          <span class="pill">$100/day cap</span>
+          <span class="pill">4 ad sets</span>
+        </div>
+        <div style="margin-top:6px;">Snapshot 2026-05-22 UTC</div>
+        <div style="margin-top:4px;">
+          <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager &#8599;</a>
+          &nbsp;&middot;&nbsp;
+          <a href="https://us.posthog.com/project/419152/dashboard/1608781" target="_blank">PostHog dashboard &#8599;</a>
+          &nbsp;&middot;&nbsp;
+          <a href="https://github.com/denizozzgur/ablo-tech/pull/21" target="_blank">PR #21 &#8599;</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="alert-banner">
+      <strong>DIAGNOSIS CORRECTED.</strong> First version of this dashboard claimed the verify flow was broken (0 signups from 12 magic-link requests). It isn't. PostHog's unfiltered trend shows <strong>14 signups in 3 days</strong> (38% verify-conversion). The "0" was a funnel-attribution artifact: the UTM filter on step 1 + missing <code>posthog.identify()</code> after verify means PostHog can't tie the signup back to the ad landing. <strong>The verify code is healthy.</strong> The actual problem is two attribution leaks, both fixed in <a href="https://github.com/denizozzgur/ablo-tech/pull/21" target="_blank">PR #21</a>.
+    </div>
+
+    <!-- KPI strip -->
+    <section class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Spend (life)</div>
+        <div class="kpi-value">$118.65</div>
+        <div class="kpi-sub"><span>7d: $98.97</span><span>$40/d run-rate</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Impressions</div>
+        <div class="kpi-value">4,708</div>
+        <div class="kpi-sub"><span>7d: 3,865</span><span>Reach 2,971</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Link clicks</div>
+        <div class="kpi-value">89</div>
+        <div class="kpi-sub"><span>CTR 1.89%</span><span>CPC $1.33</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Real signups (PostHog)</div>
+        <div class="kpi-value good-num">14</div>
+        <div class="kpi-sub"><span>3 days</span><span>38% verify rate</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Meta-counted</div>
+        <div class="kpi-value">5</div>
+        <div class="kpi-sub"><span>= 36% of real</span><span>CAPI fixes this</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">True CPL</div>
+        <div class="kpi-value">$8.48</div>
+        <div class="kpi-sub"><span>$118.65 / 14</span><span>Meta says $23.73</span></div>
+      </div>
+    </section>
+
+    <!-- Funnel -->
+    <h2>Two funnels, two stories <span class="pill">why they disagree</span></h2>
+    <div class="panel">
+      <div style="font-size:13px; color:var(--ink-soft); margin-bottom:14px;">
+        Both numbers below are correct. They count different cohorts.
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+
+        <div>
+          <div style="font-size:12px; font-weight:600; color:var(--ink); margin-bottom:8px;">A. Unfiltered (everyone)</div>
+          <div class="funnel-rows">
+            <div class="frow">
+              <div class="fname">Magic link requested</div>
+              <div class="fbar-track"><div class="fbar" style="width:100%"></div></div>
+              <div class="fnum">37</div>
+              <div class="fconv"><strong>100%</strong></div>
+            </div>
+            <div class="frow">
+              <div class="fname">Signup completed</div>
+              <div class="fbar-track"><div class="fbar" style="width:38%"></div></div>
+              <div class="fnum">14</div>
+              <div class="fconv"><strong>38%</strong> of requests</div>
+            </div>
+          </div>
+          <div style="margin-top:8px; font-size:12px; color:var(--ink-soft);">Healthy. The flow works.</div>
+        </div>
+
+        <div>
+          <div style="font-size:12px; font-weight:600; color:var(--ink); margin-bottom:8px;">B. UTM-filtered (ad-attributed)</div>
+          <div class="funnel-rows">
+            <div class="frow">
+              <div class="fname">Landing (ad UTM)</div>
+              <div class="fbar-track"><div class="fbar" style="width:100%"></div></div>
+              <div class="fnum">134</div>
+              <div class="fconv"><strong>100%</strong></div>
+            </div>
+            <div class="frow">
+              <div class="fname">Magic link requested</div>
+              <div class="fbar-track"><div class="fbar" style="width:9%"></div></div>
+              <div class="fnum">12</div>
+              <div class="fconv"><strong>8.96%</strong></div>
+            </div>
+            <div class="frow">
+              <div class="fname">Signup completed</div>
+              <div class="fbar-track"><div class="fbar" style="width:1%"></div></div>
+              <div class="fnum">0</div>
+              <div class="fconv"><strong>0%</strong> -- attribution artifact</div>
+            </div>
+          </div>
+          <div style="margin-top:8px; font-size:12px; color:var(--ink-soft);">Funnel can't link verify-session to ad-landing-session. Same person, different distinct_ids. Fixed in PR #21.</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:18px; padding-top:14px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--ink-soft);">
+        <strong style="color:var(--ink);">Why funnel B says 0 even though signups happened:</strong> the funnel requires step 1 to match `utm_campaign = <campaign>`, then tracks the same person through the rest. PostHog never received <code>identify()</code> after verify, so the post-verify session is a different identity than the pre-verify landing session. Same person, two distinct_ids, no merge -- funnel sees the gap as drop-off. PR #21 calls <code>posthog.identify(user.id, { email })</code> on the verify page, which fixes same-device cases. Cross-device (mobile ad &rarr; desktop email) still leaks and is queued separately.
+      </div>
+    </div>
+
+    <!-- Ad sets -->
+    <h2>Ad sets <span class="pill">4 active, all warming</span></h2>
+    <div class="panel">
+      <table>
+        <thead>
+          <tr>
+            <th>Ad set</th>
+            <th>Daily</th>
+            <th>Spend (life)</th>
+            <th>Impr.</th>
+            <th>CTR</th>
+            <th>CPC</th>
+            <th>Meta CR</th>
+            <th>Diagnosis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Kids &amp; babywear</td><td>$30</td><td>$30.25</td><td>1,453</td><td>3.03%</td><td>$0.69</td><td>2</td><td><span class="diag-tag warming">WARMING</span><span class="diag-tag healthy">HEALTHY</span></td></tr>
+          <tr><td>Size-inclusive women's (curve)</td><td>$25</td><td>$26.31</td><td>1,092</td><td>2.93%</td><td>$0.82</td><td>0</td><td><span class="diag-tag warming">WARMING</span></td></tr>
+          <tr><td>Contemporary women's &amp; swim</td><td>$20</td><td>$29.57</td><td>1,063</td><td>3.67%</td><td>$0.76</td><td>1</td><td><span class="diag-tag warming">WARMING</span><span class="diag-tag healthy">STRONG CTR</span></td></tr>
+          <tr><td>Streetwear &amp; menswear</td><td>$25</td><td>$32.52</td><td>1,100</td><td>3.00%</td><td>$0.99</td><td>2</td><td><span class="diag-tag warming">WARMING</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px; font-size:12px; color:var(--ink-soft);">
+        CTR (2.93%-3.67%) and CPC ($0.69-$0.99) are above-benchmark across all ad sets. Every ad set is still below the 5,000-impression learning floor; CPL signal is too noisy to act on per-segment. Hold the autopilot for at least one more cycle.
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <h2>Actions <span class="pill">shipped + queued</span></h2>
+    <div class="reco-list">
+      <div class="reco shipped">
+        <div class="reco-id">SHIPPED<span class="sub">PR #21</span></div>
+        <div class="reco-body">
+          <div class="reco-action">Server-side Meta CAPI from magic-link verify + PostHog identify on verify page</div>
+          <div class="reco-target">Target: ablo-tech, branch <code>fix/attribution-capi-and-identify-2026-05-22</code></div>
+          <div class="reco-why">Two attribution leaks fixed: (1) Meta CAPI fires server-side with hashed PII when isNewUser, dedup'd with client-side fbq via event_id, so ad blockers + in-app webviews stop dropping conversions. (2) <code>posthog.identify()</code> is called after setAuth, linking the anonymous landing session to the signed-in user so the funnel can attribute same-device signups.</div>
+          <div class="reco-evidence">6 files, +191 -6. Server typecheck: 0 errors. Web typecheck: clean.<br>PR: <a href="https://github.com/denizozzgur/ablo-tech/pull/21" target="_blank">https://github.com/denizozzgur/ablo-tech/pull/21</a></div>
+        </div>
+      </div>
+
+      <div class="reco queued">
+        <div class="reco-id">QUEUED<span class="sub">ClickUp</span></div>
+        <div class="reco-body">
+          <div class="reco-action">Cross-device PostHog attribution via distinct_id in magic-link URL</div>
+          <div class="reco-target">Target: ablo-tech, requires Prisma migration on MagicLinkToken</div>
+          <div class="reco-why">PR #21 fixes same-device attribution. Cross-device (e.g. mobile ad → desktop email click) still leaks because PostHog can't link the two sessions. The fix is to capture the landing-session's distinct_id at magic-link-request time, store it on the token, and pass it through the URL so the verify page can <code>posthog.alias()</code> it. Heavier scope; not blocking.</div>
+          <div class="reco-evidence">Tracked in ClickUp as a follow-up task on the Ablo Studio list.</div>
+        </div>
+      </div>
+
+      <div class="reco note">
+        <div class="reco-id">NOTE<span class="sub">no action</span></div>
+        <div class="reco-body">
+          <div class="reco-action">Hold autopilot Rule 2 / Rule 3 actions for another cycle</div>
+          <div class="reco-target">Target: every ad set</div>
+          <div class="reco-why">Every ad set is below the 5000-impression statistical floor. CTR (2.93-3.67%) and CPC ($0.69-$0.99) are healthy across the board. Frequency at 1.58 -- below the 3.0 fatigue threshold. Nothing to fix on the Meta side. Let it run while the verify-attribution fix lands.</div>
+          <div class="reco-evidence">Max ad-set impressions: 1,453 (kids) -- floor: 5,000</div>
+        </div>
+      </div>
+
+      <div class="reco note">
+        <div class="reco-id">NOTE<span class="sub">retraction</span></div>
+        <div class="reco-body">
+          <div class="reco-action"><span class="strike">Pixel CompleteRegistration is misfiring -- needs remap</span></div>
+          <div class="reco-target">Original dashboard claim, now retracted</div>
+          <div class="reco-why">Re-read of <code>AuthVerifyPage.tsx</code> shows fbq fires only on <code>isNewUser=true</code> -- which is correct. The 5 Meta CRs vs 14 PostHog signups gap is fbq dropping calls in webviews / behind ad blockers, NOT a Pixel mapping bug. CAPI in PR #21 fixes this. No Pixel UI remap is needed.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Read of the data -->
+    <h2>Read of the data <span class="pill">opinion, post-correction</span></h2>
+    <div class="panel read-of-data">
+      <ul>
+        <li><strong>The campaign is working.</strong> True CPL is $8.48 (118.65 / 14 actual signups), not $23.73. That's strong for day 3 of a brand-new acquisition channel. Meta thinking the number is $23.73 has been making it optimize sub-optimally -- worth understanding the recovery curve once CAPI lands.</li>
+        <li><strong>Verify flow code is healthy.</strong> 38% magic-link → signup conversion. 0 exceptions in the window. Don't waste cycles "fixing" this.</li>
+        <li><strong>The dashboard's first version was wrong.</strong> I read the UTM-filtered funnel and didn't cross-check against the unfiltered trend. The campaign-status skill is now patched to never make that mistake again: a new <code>FUNNEL_ATTRIBUTION_ARTIFACT</code> rule fires whenever a UTM-filtered funnel shows 0 conversions but the unfiltered version shows &gt;0 in the same window.</li>
+        <li><strong>Don't touch the Pixel in Events Manager.</strong> It's mapped correctly. Pixel remap as a recommendation is retracted.</li>
+        <li><strong>Cross-device attribution is the next ceiling.</strong> Mobile-ad → desktop-email is still untraceable in PostHog after PR #21. Worth fixing when same-device numbers feel solid -- not now.</li>
+      </ul>
+    </div>
+
+    <footer>
+      <div>
+        Snapshot generated 2026-05-22 UTC -- numbers are point-in-time.<br>
+        Data sources: Meta Marketing API v21.0 (direct curl), PostHog MCP project 419152, ablo-tech code review.
+      </div>
+      <div>
+        Generated by <code>campaign-status</code> skill v2 (with corrections from v1 run).<br>
+        Re-run with <code>/campaign-status ablo studio signup launch</code> to refresh.
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
