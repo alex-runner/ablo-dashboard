@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Ablo Studio · Campaign Dashboard · Day 6</title>
+<title>Ablo Studio · Campaign Dashboard · Day 7</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
 :root {
@@ -246,13 +246,13 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-26 23:15 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-27 01:07 UTC</span>
   </div>
 </div>
 
 <section class="hero">
   <div class="hero-eyebrow">Campaign · 2026-05-20 → today</div>
-  <h1 class="hero-title">Signup Launch, <em>day 6.</em></h1>
+  <h1 class="hero-title">Signup Launch, <em>day 7.</em></h1>
   <p class="hero-sub">
     <span class="pill status-active"><span class="dot good"></span>active</span>
     <span class="pill warm">$100/day cap</span>
@@ -267,26 +267,26 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <div class="hero-cell accent">
       <div class="hk-label"><span class="dot good"></span>Signups so far</div>
       <div>
-        <div class="hk-num">17</div>
-        <div class="hk-sub">PostHog · ~85/month run-rate</div>
+        <div class="hk-num">18</div>
+        <div class="hk-sub">PostHog · ~77/month run-rate</div>
       </div>
-      <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32" preserveAspectRatio="none"><polygon points="178,31 2.0,11.7 37.2,11.7 72.4,3.0 107.6,29.0 142.8,24.7 178.0,20.3 2,31" fill="var(--gold)" fill-opacity="0.10"/><polyline points="2.0,11.7 37.2,11.7 72.4,3.0 107.6,29.0 142.8,24.7 178.0,20.3" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32" preserveAspectRatio="none"><polygon points="178,31 2.0,11.7 31.3,11.7 60.7,3.0 90.0,29.0 119.3,24.7 148.7,16.0 178.0,29.0 2,31" fill="var(--gold)" fill-opacity="0.10"/><polyline points="2.0,11.7 31.3,11.7 60.7,3.0 90.0,29.0 119.3,24.7 148.7,16.0 178.0,29.0" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
     <div class="hero-cell">
       <div class="hk-label"><span class="dot good"></span>Blended CPL</div>
       <div>
-        <div class="hk-num">$19.48</div>
+        <div class="hk-num">$18.85</div>
         <div class="hk-sub">Total spend ÷ real signups</div>
       </div>
       <div class="hk-spark" style="font-size:11px;color:var(--ink-faint);padding-top:18px;letter-spacing:0.04em;">
-        Meta-only would say $36.25 · they undercount via fbq blocking
+        Meta-only would say $37.87 · they undercount via fbq blocking
       </div>
     </div>
     <div class="hero-cell">
       <div class="hk-label"><span class="dot neutral"></span>Total spend</div>
       <div>
-        <div class="hk-num">$331.23</div>
-        <div class="hk-sub">Meta $181.23 · LinkedIn $150.00</div>
+        <div class="hk-num">$339.36</div>
+        <div class="hk-sub">Meta $189.36 · LinkedIn $150.00</div>
       </div>
       <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32" preserveAspectRatio="none"><polygon points="178,31 2.0,28.7 60.7,3.0 119.3,23.8 178.0,18.5 2,31" fill="var(--gold)" fill-opacity="0.10"/><polyline points="2.0,28.7 60.7,3.0 119.3,23.8 178.0,18.5" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
@@ -294,23 +294,37 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 </section>
 
 
+<div class="alert-banner critical">
+  <strong>U13 DELIVERY HEALTH — HIGH.</strong> The autopilot should have caught this earlier; new in this dashboard build, will be promoted into <code>autopilot/decisions.py</code> so the ClickUp comment fires too.
+  <ul style='margin:6px 0 0 20px;'><li>Delivery broken yesterday or today. 3 zero-spend day(s) in last 7: 2026-05-26, 2026-05-24, 2026-05-23.</li></ul>
+  <div style="margin-top:10px;font-size:12px;">
+    Account: status code <strong>1</strong> (1 = ACTIVE) ·
+    Funding: <strong>American Express *1004</strong> ·
+    Balance: <strong>$1.12</strong>
+  </div>
+  <div style="margin-top:8px;font-size:12px;color:#4a1414;">
+    First action: open <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120247477598980414" target="_blank">Meta Ads Manager</a>
+    and check Billing → Payment methods + Account Quality. If you see "Account flagged" or "Payment failed", fix that first; everything else waits.
+  </div>
+</div>
+
 
 
 <div class="section">
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-26 23:15 UTC</span>
+    <span class="meta">prioritized · 2026-05-27 01:07 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">5 items, prioritized</span></h2>
 <div class="reco-list">
-<div class="reco medium">
-  <div class="reco-id">IMPORTANT</div>
+<div class="reco high">
+  <div class="reco-id">URGENT</div>
   <div class="reco-body">
-    <div class="reco-action">Recent delivery stall, recovering</div>
-    <div class="reco-why">Stalled 2 days ago, delivery has since resumed. 2 zero-spend day(s) in last 7: 2026-05-24, 2026-05-23.</div>
-    <div class="reco-evidence"><strong>Next:</strong> No action -- yesterday delivered. Watch the spend chart for the next 2 days to confirm the trend holds. Will age off the dashboard in 5 days.</div>
+    <div class="reco-action">Delivery stalled in last 2 days</div>
+    <div class="reco-why">Delivery broken yesterday or today. 3 zero-spend day(s) in last 7: 2026-05-26, 2026-05-24, 2026-05-23.</div>
+    <div class="reco-evidence"><strong>Next:</strong> Confirm in Meta Ads Manager that today is delivering. If still $0, look at billing first; if billing is fine, check ad-account-level limits and ad-disapproval review.</div>
   </div>
 </div>
 <div class="reco medium">
@@ -325,7 +339,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="reco-id">WATCH</div>
   <div class="reco-body">
     <div class="reco-action">Monitoring attribution recovery (U11)</div>
-    <div class="reco-why">PostHog reports 17 real signups, 0 UTM-attributed. PR #21 deployed 7.7h ago; UTM attribution should populate within the next 40h as new signups flow through the patched code.</div>
+    <div class="reco-why">PostHog reports 18 real signups, 0 UTM-attributed. PR #21 deployed 9.6h ago; UTM attribution should populate within the next 38h as new signups flow through the patched code.</div>
     <div class="reco-evidence"><strong>Next:</strong> Re-check after 48h. No action required right now.</div>
   </div>
 </div>
@@ -333,7 +347,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="reco-id">WATCH</div>
   <div class="reco-body">
     <div class="reco-action">Klaviyo roster missing signups</div>
-    <div class="reco-why">PostHog: 17 signups. Klaviyo: 13 profiles. 4 silent failures.</div>
+    <div class="reco-why">PostHog: 18 signups. Klaviyo: 14 profiles. 4 silent failures.</div>
     <div class="reco-evidence"><strong>Next:</strong> Check Railway logs for klaviyo errors around magic-link verify times. subscribeNewSignup is fire-and-forget so failures don&#x27;t block signup.</div>
   </div>
 </div>
@@ -368,12 +382,12 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
   <div>
     <div style="font-size:14px;font-weight:500;">Saw the ad</div>
-    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 7,130 + LI 1,999)</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 7,346 + LI 1,999)</div>
   </div>
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
     <div style="background:var(--accent);height:100%;width:100.00%;border-radius:8px;"></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">9,129</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">9,345</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
     <div><strong style="color:var(--ink);">—</strong></div>
     <div style="font-size:10px;">of prev</div>
@@ -386,18 +400,18 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
   <div>
     <div style="font-size:14px;font-weight:500;">Clicked</div>
-    <div style="font-size:11px;color:var(--ink-soft);">Meta link clicks + LinkedIn clicks (Meta 123 + LI 188)</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Meta link clicks + LinkedIn clicks (Meta 127 + LI 188)</div>
   </div>
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
-    <div style="background:var(--accent);height:100%;width:3.41%;border-radius:8px;"></div>
+    <div style="background:var(--accent);height:100%;width:3.37%;border-radius:8px;"></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">311</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">315</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">3.41%</strong></div>
+    <div><strong style="color:var(--ink);">3.37%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div>3.41%</div>
+    <div>3.37%</div>
     <div style="font-size:10px;">of impr</div>
   </div>
 </div>
@@ -407,15 +421,15 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <div style="font-size:11px;color:var(--ink-soft);">Unique pageviews (PostHog, all sources -- paid + organic mix)</div>
   </div>
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
-    <div style="background:var(--accent);height:100%;width:3.20%;border-radius:8px;"></div>
+    <div style="background:var(--accent);height:100%;width:3.19%;border-radius:8px;"></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">292</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">298</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">93.89%</strong></div>
+    <div><strong style="color:var(--ink);">94.60%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div>3.20%</div>
+    <div>3.19%</div>
     <div style="font-size:10px;">of impr</div>
   </div>
 </div>
@@ -427,13 +441,13 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
     <div style="background:var(--accent);height:100%;width:0.50%;border-radius:8px;"></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">15</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">16</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">5.14%</strong></div>
+    <div><strong style="color:var(--ink);">5.37%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div>0.16%</div>
+    <div>0.17%</div>
     <div style="font-size:10px;">of impr</div>
   </div>
 </div>
@@ -445,13 +459,13 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
     <div style="background:var(--accent);height:100%;width:0.50%;border-radius:8px;"></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">10</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">12</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">66.67%</strong></div>
+    <div><strong style="color:var(--ink);">75.00%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div>0.11%</div>
+    <div>0.13%</div>
     <div style="font-size:10px;">of impr</div>
   </div>
 </div>
@@ -465,7 +479,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   </div>
   <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">1</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
-    <div><strong style="color:var(--ink);">10.00%</strong></div>
+    <div><strong style="color:var(--ink);">8.33%</strong></div>
     <div style="font-size:10px;">of prev</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
@@ -474,7 +488,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   </div>
 </div>
 <div style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink-soft);">
-<strong style="color:var(--ink);">Biggest leak:</strong> Saw the ad → Clicked (3.4% keep). <strong style="color:var(--ink);">Truth signal:</strong> 15 signups, 10 of them tried the product (66.67%), 1 reached purchase intent.<br><br>
+<strong style="color:var(--ink);">Biggest leak:</strong> Saw the ad → Clicked (3.4% keep). <strong style="color:var(--ink);">Truth signal:</strong> 16 signups, 12 of them tried the product (75.00%), 1 reached purchase intent.<br><br>
 <strong style="color:var(--ink);">Notes on the math:</strong> "Saw" + "Clicked" are paid-only (Meta + LinkedIn). "Landed" onward is all sources (paid + organic) -- so click-to-land conversion is slightly noisy because organic landings inflate the denominator. "Purchase intent" is a proxy: checkout_started + pricing_plan_clicked, since actual Stripe purchases aren't wired to PostHog yet. <strong style="color:var(--bad);">Action item to wire Stripe webhooks → PostHog</strong> is in the action items panel above.
 </div>
 </div>
@@ -495,35 +509,35 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <svg class="donut-svg" width="180" height="180" viewBox="0 0 180 180">
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--line-soft)" stroke-width="22"/>
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--ink)" stroke-width="22"
-            stroke-dasharray="240.65 439.82"
+            stroke-dasharray="245.42 439.82"
             stroke-dashoffset="0" transform="rotate(-90 90 90)"/>
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--gold)" stroke-width="22"
-            stroke-dasharray="199.18 439.82"
-            stroke-dashoffset="-240.65" transform="rotate(-90 90 90)"/>
-    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$331.23</text>
+            stroke-dasharray="194.41 439.82"
+            stroke-dashoffset="-245.42" transform="rotate(-90 90 90)"/>
+    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$339.36</text>
     <text x="90" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="0.1em" fill="var(--ink-soft)">TOTAL SPEND</text>
   </svg>
   <div class="donut-legend">
     <div class="donut-leg-item">
       <span class="swatch" style="background:var(--ink);"></span>
       <span class="leg-name">Meta</span>
-      <span class="leg-num">$181.23</span>
-      <span class="leg-pct">55%</span>
+      <span class="leg-num">$189.36</span>
+      <span class="leg-pct">56%</span>
     </div>
     <div style="padding-left:26px;font-size:11px;color:var(--ink-soft);margin-top:-8px;letter-spacing:0.02em;">
-      123 link clicks · 5 platform-attributed CR
+      127 link clicks · 5 platform-attributed CR
     </div>
     <div class="donut-leg-item">
       <span class="swatch" style="background:var(--gold);"></span>
       <span class="leg-name">LinkedIn</span>
       <span class="leg-num">$150.00</span>
-      <span class="leg-pct">45%</span>
+      <span class="leg-pct">44%</span>
     </div>
     <div style="padding-left:26px;font-size:11px;color:var(--ink-soft);margin-top:-8px;letter-spacing:0.02em;">
       188 clicks · 0 platform-attributed conv
     </div>
     <div style="padding-top:14px;margin-top:8px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink-soft);">
-      Real signups (PostHog): <strong style="color:var(--ink);">17</strong> · Blended CPL <strong style="color:var(--ink);">$19.48</strong>
+      Real signups (PostHog): <strong style="color:var(--ink);">18</strong> · Blended CPL <strong style="color:var(--ink);">$18.85</strong>
     </div>
   </div>
 </div>
@@ -534,10 +548,6 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="panel">
   <div style="display:flex;align-items:flex-end;gap:6px;">
     
-<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
-  <div title="2026-05-13 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
-  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-13</div>
-</div>
 <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
   <div title="2026-05-14 pre-launch" style="width:18px;height:4px;background:#e8e3db;border-radius:3px 3px 0 0;"></div>
   <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-14</div>
@@ -590,6 +600,10 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div title="2026-05-26 $0.00 ZERO" style="width:18px;height:4px;background:var(--bad);border-radius:3px 3px 0 0;"></div>
   <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-26</div>
 </div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100px;gap:4px;">
+  <div title="2026-05-27 $0.00 ZERO" style="width:18px;height:4px;background:var(--bad);border-radius:3px 3px 0 0;"></div>
+  <div style="font-size:10px;color:var(--ink-soft);white-space:nowrap;">05-27</div>
+</div>
   </div>
   <div style="margin-top:14px;font-size:12px;color:var(--ink-soft);">
     Red bars = zero-spend days on an ACTIVE campaign (delivery stalled). Light gray = pre-launch. Hover for daily total.
@@ -634,11 +648,19 @@ Source: <code>/Users/alejo/Documents/Claude/Brain/projects/ablo/Ablo Studio/anal
 <div class="panel">
   <div class="panel-title">
     Signups roster
-    <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">Klaviyo · 13 profiles</span>
+    <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">Klaviyo · 14 profiles</span>
      <span style="color:var(--warn);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;margin-left:8px;">PostHog +4 missing</span>
   </div>
   <div class="panel-sub">Real people who completed magic-link verify. spacerunners.com excluded.</div>
   <div class="roster">
+<div class="roster-row">
+  <div class="when">2026-05-26 23:17</div>
+  <div class="who">
+    <strong style="font-family:var(--sans);font-weight:500;color:var(--ink);font-size:13px;display:block;">—</strong>
+    <span style="font-family:ui-monospace,SF Mono,Menlo,monospace;font-size:12px;color:var(--ink-soft);">gbrandrea86@gmail.com</span>
+  </div>
+  <div class="meta">web/magic</div>
+</div>
 <div class="roster-row">
   <div class="when">2026-05-26 22:34</div>
   <div class="who">
@@ -1244,10 +1266,10 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
   </div>
   <div class="panel">
     <div class="panel-title">Ad sets</div>
-    <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260526-2314Z.</div>
+    <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260527-0107Z.</div>
     <table>
       <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
-      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$20</td><td>$43.93</td><td>1,532</td><td>3.85%</td><td>$0.74</td><td>1</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$47.87</td><td>2,248</td><td>2.40%</td><td>$0.89</td><td>2</td><td><span class="tag warming">WARMING</span><span class="tag critical">TRACKING</span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$42.70</td><td>1,698</td><td>2.65%</td><td>$0.95</td><td>0</td><td><span class="tag warming">WARMING</span><span class="tag critical">TRACKING</span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$25</td><td>$46.73</td><td>1,652</td><td>2.72%</td><td>$1.04</td><td>2</td><td><span class="tag warming">WARMING</span><span class="tag warning">LANDING</span></td></tr></tbody>
+      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$20</td><td>$45.26</td><td>1,567</td><td>4.08%</td><td>$0.71</td><td>1</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$50.16</td><td>2,317</td><td>2.37%</td><td>$0.91</td><td>2</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$45.30</td><td>1,759</td><td>2.56%</td><td>$1.01</td><td>0</td><td><span class="tag warming">WARMING</span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$25</td><td>$48.64</td><td>1,703</td><td>2.76%</td><td>$1.03</td><td>2</td><td><span class="tag warming">WARMING</span></td></tr></tbody>
     </table>
   </div>
   <div class="panel">
@@ -1255,7 +1277,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
     <div class="panel-sub">PostHog unfiltered (spacerunners excluded). Top-to-bottom: launch day onward.</div>
     <table>
       <thead><tr><th>Date</th><th>Magic-link req</th><th>Signups</th><th>Exceptions</th><th>Models gen</th><th>Try-ons</th></tr></thead>
-      <tbody><tr><td>2026-05-20</td><td>14</td><td>4</td><td class="zero">0</td><td class="zero">0</td><td>3</td></tr><tr><td>2026-05-21</td><td>10</td><td>4</td><td class="zero">0</td><td>2</td><td>1</td></tr><tr><td>2026-05-22</td><td>13</td><td>6</td><td class="zero">0</td><td>5</td><td>5</td></tr><tr><td>2026-05-24</td><td>1</td><td class="zero">0</td><td class="zero">0</td><td>15</td><td class="zero">0</td></tr><tr><td>2026-05-25</td><td>3</td><td>1</td><td class="zero">0</td><td>2</td><td>3</td></tr><tr><td>2026-05-26</td><td>5</td><td>2</td><td class="zero">0</td><td>1</td><td>1</td></tr><tr style="font-weight:600;"><td>Total</td><td>46</td><td>17</td><td>0</td><td>25</td><td>13</td></tr></tbody>
+      <tbody><tr><td>2026-05-20</td><td>14</td><td>4</td><td class="zero">0</td><td class="zero">0</td><td>3</td></tr><tr><td>2026-05-21</td><td>10</td><td>4</td><td class="zero">0</td><td>2</td><td>1</td></tr><tr><td>2026-05-22</td><td>13</td><td>6</td><td class="zero">0</td><td>5</td><td>5</td></tr><tr><td>2026-05-24</td><td>1</td><td class="zero">0</td><td class="zero">0</td><td>15</td><td class="zero">0</td></tr><tr><td>2026-05-25</td><td>3</td><td>1</td><td class="zero">0</td><td>2</td><td>3</td></tr><tr><td>2026-05-26</td><td>6</td><td>3</td><td class="zero">0</td><td>1</td><td>2</td></tr><tr><td>2026-05-27</td><td class="zero">0</td><td class="zero">0</td><td class="zero">0</td><td>1</td><td class="zero">0</td></tr><tr style="font-weight:600;"><td>Total</td><td>47</td><td>18</td><td>0</td><td>26</td><td>14</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -1264,15 +1286,15 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
   <div class="section-head">
     <span class="roman">vi.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-26 23:15 UTC</span>
+    <span class="meta">opinion · 2026-05-27 01:07 UTC</span>
   </div>
-  <div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 17 signups. UTM-filtered: 0. PR #21 just merged (2026-05-26 23:15 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $19.48</strong> across <strong>$331.23</strong> in total spend (Meta + LinkedIn). Meta-only view would say $36.25 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
+  <div class="panel read-of-data"><ul><li><strong>U11 still firing.</strong> Unfiltered: 18 signups. UTM-filtered: 0. PR #21 just merged (2026-05-27 01:07 UTC) — give it 24-48h to see UTM-filtered catch up.</li><li><strong>Blended CPL $18.85</strong> across <strong>$339.36</strong> in total spend (Meta + LinkedIn). Meta-only view would say $37.87 per registration but that's missing both the CAPI lag AND the LinkedIn spend.</li></ul></div>
   <div class="panel" style="margin-top:14px;">
-    <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260526-2314Z</span></div>
+    <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260527-0107Z</span></div>
     <div class="panel-sub">Runs every 6h · source of truth at <code>autopilot/state/last-cycle.json</code></div>
     <div class="panel-grid cols-2" style="font-size:13px;">
       <div><strong style="color:var(--ink);">Actions executed</strong><em>No actions this cycle.</em></div>
-      <div><strong style="color:var(--ink);">Flags raised (no action)</strong><ul><li><strong>DELIVERY_HEALTH</strong>: Stalled 2 days ago, delivery has since resumed. 2 zero-spend day(s) in last 7: 2026-05-24, 2026-05-23.</li><li><strong>LANDING_BOTTLENECK</strong>: AD vs LANDING — 49 mixed-source PageViews, 0 signups. Ads may be driving fine; landing/signup UX is suspect. Confirm via PostHog UTM split when available.</li><li><strong>TRACKING_ISSUE</strong>: TRACKING — clicks but no PageViews. Pixel may not fire on this route. Verify in Pixel Helper before acting.</li><li><strong>TRACKING_ISSUE</strong>: TRACKING — clicks but no PageViews. Pixel may not fire on this route. Verify in Pixel Helper before acting.</li></ul></div>
+      <div><strong style="color:var(--ink);">Flags raised (no action)</strong><ul><li><strong>DELIVERY_HEALTH</strong>: Delivery broken yesterday or today. 3 zero-spend day(s) in last 7: 2026-05-26, 2026-05-24, 2026-05-23.</li></ul></div>
     </div>
   </div>
 </div>
