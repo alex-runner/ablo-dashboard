@@ -224,6 +224,11 @@ tbody tr:last-child td{border-bottom:none}
 .bench-chip.bench-na{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
 .bench-chip .bench-arrow{font-size:9px;opacity:0.8}
 
+/* ─── Per-step AI recommendations (Claude orchestrator output) ────── */
+.step-rec{font-size:12px;color:var(--ink-2);padding:6px 0 10px 18px;margin-left:8px;border-left:2px solid var(--gold-soft);background:linear-gradient(90deg, rgba(232,214,173,0.12) 0%, transparent 100%);border-radius:0 0 0 4px;line-height:1.5;font-style:italic}
+.step-rec .step-rec-prefix{color:var(--gold);font-style:normal;font-weight:600;margin-right:2px}
+.step-rec em{font-style:italic;color:var(--ink-2)}
+
 /* ─── WoW / DoD delta arrows (inline next to KPI values) ──────────── */
 .kpi-delta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 .kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:10px;letter-spacing:0.04em;font-weight:600;font-variant-numeric:tabular-nums;padding:1px 6px;border-radius:3px;text-transform:uppercase}
@@ -306,7 +311,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-28 02:14 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-28 02:16 UTC</span>
   </div>
 </div>
 
@@ -347,9 +352,9 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <div class="hero-cell">
       <div class="hk-label"><span class="dot neutral"></span>Total spend</div>
       <div>
-        <div class="hk-num">$478.80</div>
+        <div class="hk-num">$478.83</div>
         <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-na">— vs y'day</span> <span class="kpi-delta kpi-delta-na">— vs last wk</span></div>
-        <div class="hk-sub">Meta $390.48 · LinkedIn $88.32</div>
+        <div class="hk-sub">Meta $390.51 · LinkedIn $88.32</div>
       </div>
       <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32" preserveAspectRatio="none"><polygon points="178,31 2.0,28.7 46.0,3.0 90.0,23.8 134.0,18.5 178.0,14.5 2,31" fill="var(--gold)" fill-opacity="0.10"/><polyline points="2.0,28.7 46.0,3.0 90.0,23.8 134.0,18.5 178.0,14.5" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
@@ -377,7 +382,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-28 02:14 UTC</span>
+    <span class="meta">prioritized · 2026-05-28 02:16 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">3 items, prioritized</span></h2>
@@ -437,12 +442,12 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
   <div>
     <div style="font-size:14px;font-weight:500;">Saw the ad</div>
-    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 14,128 + LI 1,264)</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 14,129 + LI 1,264)</div>
   </div>
   <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;">
     <div style="height:100%;width:100.00%;border-radius:8px;overflow:hidden;"><div style="background:var(--accent);height:100%;width:100%;border-radius:8px;"></div></div>
   </div>
-  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">15,392</div>
+  <div style="text-align:right;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">15,393</div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
     <div><strong style="color:var(--ink);">—</strong></div>
     <div style="font-size:10px;">of prev</div>
@@ -654,7 +659,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <input type="radio" id="chan-tab-linkedin" name="channel-tab">
   <div class="channel-tab-bar">
     <label for="chan-tab-all">All <span class="tab-pill">blended</span></label>
-    <label for="chan-tab-meta">Meta <span class="tab-pill">$390</span></label>
+    <label for="chan-tab-meta">Meta <span class="tab-pill">$391</span></label>
     <label for="chan-tab-linkedin">LinkedIn <span class="tab-pill">$88</span></label>
   </div>
   <div class="channel-tab-content" data-tab="all">
@@ -666,19 +671,19 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <svg class="donut-svg" width="180" height="180" viewBox="0 0 180 180">
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--line-soft)" stroke-width="22"/>
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--ink)" stroke-width="22"
-            stroke-dasharray="358.69 439.82"
+            stroke-dasharray="358.70 439.82"
             stroke-dashoffset="0" transform="rotate(-90 90 90)"/>
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--gold)" stroke-width="22"
             stroke-dasharray="81.13 439.82"
-            stroke-dashoffset="-358.69" transform="rotate(-90 90 90)"/>
-    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$478.80</text>
+            stroke-dashoffset="-358.70" transform="rotate(-90 90 90)"/>
+    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$478.83</text>
     <text x="90" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="0.1em" fill="var(--ink-soft)">TOTAL SPEND</text>
   </svg>
   <div class="donut-legend">
     <div class="donut-leg-item">
       <span class="swatch" style="background:var(--ink);"></span>
       <span class="leg-name">Meta</span>
-      <span class="leg-num">$390.48</span>
+      <span class="leg-num">$390.51</span>
       <span class="leg-pct">82%</span>
     </div>
     <div style="padding-left:26px;font-size:11px;color:var(--ink-soft);margin-top:-8px;letter-spacing:0.02em;">
@@ -772,11 +777,11 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="chan-kpi-strip">
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Spend</div>
-    <div class="chan-kpi-value">$390</div>
+    <div class="chan-kpi-value">$391</div>
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Impressions</div>
-    <div class="chan-kpi-value">14,128</div>
+    <div class="chan-kpi-value">14,129</div>
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Link clicks</div>
@@ -1587,7 +1592,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
     <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260527-1906Z.</div>
     <table>
       <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
-      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$20</td><td>$90.12</td><td>2,962</td><td>3.54%</td><td>$0.86</td><td>3</td><td><span class="tag warning">LANDING</span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$110.42</td><td>4,562</td><td>2.35%</td><td>$1.03</td><td>4</td><td><span class="tag critical">TRACKING</span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$93.72</td><td>3,296</td><td>2.28%</td><td>$1.25</td><td>2</td><td><span class="tag critical">TRACKING</span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$25</td><td>$96.22</td><td>3,308</td><td>2.15%</td><td>$1.36</td><td>2</td><td><span class="tag warning">LANDING</span></td></tr></tbody>
+      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$20</td><td>$90.12</td><td>2,962</td><td>3.54%</td><td>$0.86</td><td>3</td><td><span class="tag warning">LANDING</span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$110.45</td><td>4,563</td><td>2.34%</td><td>$1.03</td><td>4</td><td><span class="tag critical">TRACKING</span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$93.72</td><td>3,296</td><td>2.28%</td><td>$1.25</td><td>2</td><td><span class="tag critical">TRACKING</span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$25</td><td>$96.22</td><td>3,308</td><td>2.15%</td><td>$1.36</td><td>2</td><td><span class="tag warning">LANDING</span></td></tr></tbody>
     </table>
   </div>
   <div class="panel">
@@ -1604,9 +1609,9 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
   <div class="section-head">
     <span class="roman">vi.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-28 02:14 UTC</span>
+    <span class="meta">opinion · 2026-05-28 02:16 UTC</span>
   </div>
-  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (11) tracking real (27). PR #21 in production.</li><li><strong>Blended CPL $17.73</strong> on $478.80 total spend (Meta + LinkedIn).</li></ul></div>
+  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (11) tracking real (27). PR #21 in production.</li><li><strong>Blended CPL $17.73</strong> on $478.83 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
     <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260527-1906Z</span></div>
     <div class="panel-sub">Runs every 6h · source of truth at <code>autopilot/state/last-cycle.json</code></div>
