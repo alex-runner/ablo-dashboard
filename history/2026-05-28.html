@@ -225,6 +225,29 @@ tbody tr:last-child td{border-bottom:none}
 .bench-chip.bench-bad{background:#fbe9e7;color:var(--bad);border:1px solid #f0c5c0}
 .bench-chip.bench-na{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
 .bench-chip .bench-arrow{font-size:9px;opacity:0.8}
+/* Exceptional tier — fires when a metric is dramatically better than the
+   good-at threshold (≥ 2× for higher-is-better, ≤ ½ for lower-is-better).
+   Visual treatment is intentionally subtle: a touch more saturated green +
+   a small ★ glyph + a faint outer ring. Enough to catch the eye, not loud
+   enough to feel like a celebration banner. */
+.bench-chip.bench-exceptional{
+  background:#d8efe1;
+  color:#0a5a35;
+  border:1px solid #9bcfb4;
+  box-shadow:0 0 0 2px rgba(27,122,74,0.10);
+  font-weight:700;
+}
+.bench-chip.bench-exceptional .bench-star{
+  font-size:10px;color:#0a5a35;margin-right:2px;
+  /* Faint pulse on the star — slow + tiny opacity range so it whispers
+     "look here" rather than shouting. */
+  animation:bench-star-pulse 2.6s ease-in-out infinite;
+}
+@keyframes bench-star-pulse{
+  0%,100%{opacity:0.7}
+  50%{opacity:1}
+}
+.tip-body .tip-exceptional-note{color:#e8d6ad;font-weight:600}
 
 /* ─── Hover tooltip primitive (.tip-host / .tip-body) ──────────────── */
 /* Used by benchmark chips AND ad-set autopilot tags. Pure CSS — no JS.
@@ -342,13 +365,13 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-28 16:22 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-28 16:25 UTC</span>
   </div>
 </div>
 
 <section class="hero">
   <div class="hero-eyebrow">Campaign · 2026-05-20 → today</div>
-  <h1 class="hero-title">Signup Launch, <em>day 8.</em></h1>
+  <h1 class="hero-title">Soft Launch, <em>day 8.</em></h1>
   <p class="hero-sub">
     <span class="pill status-active"><span class="dot good"></span>active</span>
     <span class="pill warm">$100/day cap</span>
@@ -399,7 +422,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-28 16:22 UTC</span>
+    <span class="meta">prioritized · 2026-05-28 16:25 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">3 items, prioritized</span></h2>
@@ -900,11 +923,11 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <div class="chan-kpi-value">265</div>
   </div>
   <div class="chan-kpi-cell">
-    <div class="chan-kpi-label">CTR <span class="tip-host"><span class="bench-chip bench-good" title="LinkedIn CTR: your value 5.95% vs industry 0.50% (LinkedIn Marketing Solutions 2024 benchmarks (B2B median))"><span class="bench-arrow">↑</span>+5.4% vs industry</span><span class="tip-body"><strong>LinkedIn CTR</strong><br>Your value: <strong>5.95%</strong> · Industry: 0.50%<br>Good when higher: ≥ 0.80% <span class="tip-meta">LinkedIn Marketing Solutions 2024 benchmarks (B2B median)</span></span></span></div>
+    <div class="chan-kpi-label">CTR <span class="tip-host"><span class="bench-chip bench-exceptional" title="LinkedIn CTR: your value 5.95% vs industry 0.50% (LinkedIn Marketing Solutions 2024 benchmarks (B2B median))"><span class="bench-star">★</span> <span class="bench-arrow">↑</span>+5.4% vs industry</span><span class="tip-body"><strong>LinkedIn CTR</strong><br>Your value: <strong>5.95%</strong> · Industry: 0.50%<br>Good when higher: ≥ 0.80% <span class="tip-meta">LinkedIn Marketing Solutions 2024 benchmarks (B2B median)</span><span class="tip-meta tip-exceptional-note">Exceptional — well past the good-at threshold</span></span></span></div>
     <div class="chan-kpi-value">5.95%</div>
   </div>
   <div class="chan-kpi-cell">
-    <div class="chan-kpi-label">CPC <span class="tip-host"><span class="bench-chip bench-good" title="LinkedIn CPC: your value $1.15 vs industry $5.39 (LinkedIn Marketing Solutions 2024 B2B median ($5.39))"><span class="bench-arrow">↓</span>+$4.24 vs industry</span><span class="tip-body"><strong>LinkedIn CPC</strong><br>Your value: <strong>$1.15</strong> · Industry: $5.39<br>Good when lower: ≤ $4.00 <span class="tip-meta">LinkedIn Marketing Solutions 2024 B2B median ($5.39)</span></span></span></div>
+    <div class="chan-kpi-label">CPC <span class="tip-host"><span class="bench-chip bench-exceptional" title="LinkedIn CPC: your value $1.15 vs industry $5.39 (LinkedIn Marketing Solutions 2024 B2B median ($5.39))"><span class="bench-star">★</span> <span class="bench-arrow">↓</span>+$4.24 vs industry</span><span class="tip-body"><strong>LinkedIn CPC</strong><br>Your value: <strong>$1.15</strong> · Industry: $5.39<br>Good when lower: ≤ $4.00 <span class="tip-meta">LinkedIn Marketing Solutions 2024 B2B median ($5.39)</span><span class="tip-meta tip-exceptional-note">Exceptional — well past the good-at threshold</span></span></span></div>
     <div class="chan-kpi-value">$1.15</div>
   </div>
 </div>
@@ -1657,7 +1680,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
     <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260528-0706Z.</div>
     <table>
       <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
-      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$25</td><td>$105.13</td><td>3,403</td><td>3.53%</td><td>$0.88</td><td>7</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$134.04</td><td>5,398</td><td>2.50%</td><td>$0.99</td><td>4</td><td><span class="tip-host"><span class="tag critical" title="Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.">TRACKING</span><span class="tip-body">Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.</span></span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$123.60</td><td>4,182</td><td>2.22%</td><td>$1.33</td><td>4</td><td><span class="tip-host"><span class="tag critical" title="Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.">TRACKING</span><span class="tip-body">Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$20</td><td>$121.67</td><td>3,887</td><td>2.08%</td><td>$1.50</td><td>3</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr></tbody>
+      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$25</td><td>$105.14</td><td>3,406</td><td>3.52%</td><td>$0.88</td><td>7</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$30</td><td>$134.10</td><td>5,400</td><td>2.50%</td><td>$0.99</td><td>4</td><td><span class="tip-host"><span class="tag critical" title="Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.">TRACKING</span><span class="tip-body">Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.</span></span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$25</td><td>$123.66</td><td>4,184</td><td>2.22%</td><td>$1.33</td><td>4</td><td><span class="tip-host"><span class="tag critical" title="Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.">TRACKING</span><span class="tip-body">Pixel or PostHog event isn't firing. Diagnosis is unreliable until tracking is fixed.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$20</td><td>$121.87</td><td>3,889</td><td>2.08%</td><td>$1.50</td><td>3</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr></tbody>
     </table>
   </div>
   <div class="panel">
@@ -1674,7 +1697,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-26 --
   <div class="section-head">
     <span class="roman">vi.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-28 16:22 UTC</span>
+    <span class="meta">opinion · 2026-05-28 16:25 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (18) tracking real (35). PR #21 in production.</li><li><strong>Blended CPL $22.57</strong> on $789.92 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
