@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ablo Studio -- Soft Launch Dashboard</title>
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #0e0e0e;
                   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
     .tabs { display: flex; gap: 0; background: #1a1a1a; padding: 6px 16px 0;
-             overflow-x: auto; border-bottom: 1px solid #2a2a2a; }
+             overflow-x: auto; -webkit-overflow-scrolling: touch; border-bottom: 1px solid #2a2a2a;
+             position: sticky; top: 0; z-index: 10; }
     .tab { background: transparent; border: 0; padding: 10px 14px;
             cursor: pointer; color: #8a8a8a; font-size: 13px;
             border-bottom: 2px solid transparent; font-family: inherit;
@@ -26,6 +28,20 @@
   <script>
     const tabs = document.getElementById('tabs');
     const view = document.getElementById('view');
+    // On phones, grow the iframe to its content so the whole page scrolls
+    // naturally (no trapped nested scroll). Desktop keeps the fixed-viewport
+    // iframe. Same-origin only; falls back silently to the CSS height.
+    const isMobile = () => window.matchMedia('(max-width: 680px)').matches;
+    function sizeView() {
+      if (!isMobile()) { view.style.height = ''; return; }
+      try {
+        const d = view.contentWindow.document;
+        const h = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight);
+        if (h > 0) view.style.height = h + 'px';
+      } catch (err) { /* cross-origin or not ready: keep CSS height */ }
+    }
+    view.addEventListener('load', () => { sizeView(); setTimeout(sizeView, 250); });
+    window.addEventListener('resize', sizeView);
     tabs.addEventListener('click', (e) => {
       const day = e.target.dataset && e.target.dataset.day;
       if (!day) return;
