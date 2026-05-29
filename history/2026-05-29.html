@@ -530,7 +530,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-29 23:45 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-29 23:47 UTC</span>
   </div>
 </div>
 
@@ -628,7 +628,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-29 23:45 UTC</span>
+    <span class="meta">prioritized · 2026-05-29 23:47 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">3 items, prioritized</span></h2>
@@ -901,29 +901,37 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:14px;">Rule-based baseline over live PostHog behaviour — refreshes with the data each cycle. The deeper Claude reasoning pass will replace this with re-thought insights on the next cycle.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">The macro funnel beats every industry benchmark — so the wins are inside the steps: signup's email round-trip and the /studio import path. New this cycle: lots of pricing interest, almost no tracked checkout intent.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 0m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">Most people who open the signup modal never finish it</div>
-            <div class="reco-why">Make “Continue with Google” the primary, full-width button and demote email magic-link to a secondary “use email instead” link. Magic-link forces users to leave for their inbox and come back — the single biggest avoidable drop here.</div>
-            <div class="reco-evidence">127 people opened the signup modal, only 45 completed (35%). Mobile 36% vs desktop 37% — roughly even, so it's the flow, not the layout. 52 people requested a magic link — that inbox round-trip is the likely leak. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Make Google sign-in the default — the email link is leaking signups</div>
+            <div class="reco-why">Promote “Continue with Google” to the primary full-width button and demote “Email me a link” to a secondary option. The magic-link inbox round-trip is the single biggest avoidable drop in the whole funnel.</div>
+            <div class="reco-evidence">127 people opened the signup modal, only 45 finished (35%). 52 requested a magic link but just 3 ever completed a login event. The “Email me a link” button (64 clicks) is out-competing “Continue with Google” (47) for the primary slot — backwards, given Google needs no round-trip. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Rage-clicks are piling up on /studio</div>
-            <div class="reco-why">Open the session recordings for this page and find the control that looks clickable but doesn’t respond (or is too slow). This sits right before the “generate model” aha moment, so every frustrated exit here is a lost activation.</div>
-            <div class="reco-evidence">10 people rage-clicked 30 times on /studio — about 17% of the 58 who entered the studio. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Fix the unresponsive control causing rage-clicks on /studio</div>
+            <div class="reco-why">Watch the /studio recordings and find the element that looks clickable but doesn’t respond (or is slow). This sits immediately before the “generate model” aha moment, so every frustrated exit here is a lost activation.</div>
+            <div class="reco-evidence">10 distinct people rage-clicked 30 times on /studio — ~17% of the 58 who entered the studio. No other page comes close (next is /pricing with 3 clicks). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
           </div>
         </div>
-        <div class="reco high">
-          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
+        <div class="reco medium">
+          <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">The product-URL importer fails more often than it works</div>
-            <div class="reco-why">Harden scraping for the domains people actually paste, and surface the manual / photo-upload fallback immediately on the first failure instead of after a retry. This importer is a wall right before model generation.</div>
-            <div class="reco-evidence">9 of 11 people who submitted a product URL hit a scrape failure (only 4 succeeded).</div>
+            <div class="reco-action">Steer users to the working import path, not the URL paste</div>
+            <div class="reco-why">The product-URL paste fails most of the time, but a different import path is clearly working — so lead with the photo/library import and offer URL-paste as the fallback, not the default. Also harden scraping for the domains people actually paste.</div>
+            <div class="reco-evidence">Of 11 people who pasted a product URL, 9 hit a scrape failure (only 4 succeeded). Yet 20 people imported a product successfully via other paths — the URL path is the broken one, not import itself.</div>
+          </div>
+        </div>
+        <div class="reco medium">
+          <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Purchase intent</span></div>
+          <div class="reco-body">
+            <div class="reco-action">Pricing interest isn’t turning into tracked checkout intent — verify the wiring</div>
+            <div class="reco-why">There’s real pricing curiosity but almost no recorded intent. Either the plan-select / checkout events aren’t firing (a tracking gap that would hide real revenue signal) or people bounce at the plan screen. Confirm pricing_plan_clicked / checkout_started fire on the live pricing page before reading this as a true drop-off.</div>
+            <div class="reco-evidence">“Pricing” was clicked 48 times and the credit/generate CTAs ~53 times, but only 2 pricing_plan_clicked or checkout_started events fired all campaign. That gap looks more like under-instrumentation than disinterest.</div>
           </div>
         </div></div>
 </div>
@@ -2243,7 +2251,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-29 23:45 UTC</span>
+    <span class="meta">opinion · 2026-05-29 23:47 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (30) tracking real (47). PR #21 in production.</li><li><strong>Blended CPL $19.93</strong> on $936.75 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
