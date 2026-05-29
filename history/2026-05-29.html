@@ -170,6 +170,13 @@ tbody tr:last-child td{border-bottom:none}
 .reco-body .reco-why{font-size:13px;color:var(--ink-2);line-height:1.55}
 .reco-body .reco-evidence{font-size:12px;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-family:ui-monospace,SF Mono,Menlo,monospace;line-height:1.5}
 .reco-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
+/* Per-card trend chart — line or bars, color-coded by improving/worsening */
+.reco-chart{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.reco-chart-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+.reco-chart-title{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.reco-chart-trend{font-size:11px;font-weight:700;letter-spacing:0.02em;white-space:nowrap}
+.reco-chart svg{display:block;width:100%;max-width:280px;height:auto}
+.reco-chart-axis{display:flex;justify-content:space-between;margin-top:3px;max-width:280px;font-size:10px;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:0.03em}
 
 /* Back-compat: legacy funnel bars in _render_core_funnel still emit
    `.fbar-track` / `.fbar`. Keep visible styles until that function is
@@ -530,7 +537,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-29 23:47 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-29 23:58 UTC</span>
   </div>
 </div>
 
@@ -571,9 +578,9 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <div class="hero-cell">
       <div class="hk-label"><span class="dot neutral"></span>Total spend</div>
       <div>
-        <div class="hk-num">$936.75</div>
+        <div class="hk-num">$936.77</div>
         <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-good">▲ 137% vs y'day</span> <span class="kpi-delta kpi-delta-na">— vs last wk</span></div>
-        <div class="hk-sub">Meta $631.28 · LinkedIn $305.47</div>
+        <div class="hk-sub">Meta $631.30 · LinkedIn $305.47</div>
       </div>
       <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32" preserveAspectRatio="none"><polygon points="178,31 2.0,28.8 31.3,15.0 60.7,26.2 90.0,23.4 119.3,21.2 148.7,3.0 178.0,5.8 2,31" fill="var(--gold)" fill-opacity="0.10"/><polyline points="2.0,28.8 31.3,15.0 60.7,26.2 90.0,23.4 119.3,21.2 148.7,3.0 178.0,5.8" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
@@ -628,7 +635,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-29 23:47 UTC</span>
+    <span class="meta">prioritized · 2026-05-29 23:58 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">3 items, prioritized</span></h2>
@@ -688,11 +695,11 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
   <div>
     <div style="font-size:14px;font-weight:500;">Saw the ad</div>
-    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 22,713 + LI 4,454)</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 22,714 + LI 4,454)</div>
   </div>
   <div></div>
   <div style="text-align:right;">
-    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">27,167</div>
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">27,168</div>
     <div class="fnl-dod fnl-dod-good">▲&nbsp;20% vs y'day</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
@@ -901,13 +908,14 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">The macro funnel beats every industry benchmark — so the wins are inside the steps: signup's email round-trip and the /studio import path. New this cycle: lots of pricing interest, almost no tracked checkout intent.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 0m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Macro funnel beats every benchmark, so the wins are inside the steps — and signup abandonment and /studio rage-clicks are both trending the wrong way this week.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 0m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
             <div class="reco-action">Make Google sign-in the default — the email link is leaking signups</div>
             <div class="reco-why">Promote “Continue with Google” to the primary full-width button and demote “Email me a link” to a secondary option. The magic-link inbox round-trip is the single biggest avoidable drop in the whole funnel.</div>
-            <div class="reco-evidence">127 people opened the signup modal, only 45 finished (35%). 52 requested a magic link but just 3 ever completed a login event. The “Email me a link” button (64 clicks) is out-competing “Continue with Google” (47) for the primary slot — backwards, given Google needs no round-trip. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">127 people opened the signup modal, only 45 finished (35%). 52 requested a magic link but just 3 ever completed a login event. “Email me a link” (64 clicks) is out-competing “Continue with Google” (47) for the primary slot — backwards, given Google needs no round-trip. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="22.6" width="28.4" height="21.4" rx="1.5" fill="var(--bad)"/><rect x="31.4" y="6.9" width="28.4" height="37.1" rx="1.5" fill="var(--bad)"/><rect x="62.9" y="24.0" width="28.4" height="20.0" rx="1.5" fill="var(--bad)"/><rect x="94.3" y="39.7" width="28.4" height="4.3" rx="1.5" fill="var(--bad)"/><rect x="125.8" y="35.4" width="28.4" height="8.6" rx="1.5" fill="var(--bad)"/><rect x="157.2" y="31.1" width="28.4" height="12.9" rx="1.5" fill="var(--bad)"/><rect x="188.7" y="4.0" width="28.4" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="220.1" y="21.1" width="28.4" height="22.9" rx="1.5" fill="var(--bad)"/><rect x="251.6" y="19.7" width="28.4" height="24.3" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div>
         <div class="reco high">
@@ -915,7 +923,8 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">Fix the unresponsive control causing rage-clicks on /studio</div>
             <div class="reco-why">Watch the /studio recordings and find the element that looks clickable but doesn’t respond (or is slow). This sits immediately before the “generate model” aha moment, so every frustrated exit here is a lost activation.</div>
-            <div class="reco-evidence">10 distinct people rage-clicked 30 times on /studio — ~17% of the 58 who entered the studio. No other page comes close (next is /pricing with 3 clicks). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">10 distinct people rage-clicked 30 times on /studio — ~17% of the 58 who entered the studio. No other page comes close. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 36.5,41.0 71.0,41.0 105.5,27.4 140.0,38.3 174.5,32.9 209.0,22.0 243.5,38.3 278.0,22.0 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,3.0 36.5,41.0 71.0,41.0 105.5,27.4 140.0,38.3 174.5,32.9 209.0,22.0 243.5,38.3 278.0,22.0" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div>
         <div class="reco medium">
@@ -924,6 +933,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
             <div class="reco-action">Steer users to the working import path, not the URL paste</div>
             <div class="reco-why">The product-URL paste fails most of the time, but a different import path is clearly working — so lead with the photo/library import and offer URL-paste as the fallback, not the default. Also harden scraping for the domains people actually paste.</div>
             <div class="reco-evidence">Of 11 people who pasted a product URL, 9 hit a scrape failure (only 4 succeeded). Yet 20 people imported a product successfully via other paths — the URL path is the broken one, not import itself.</div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="28.4" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="31.4" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="62.9" y="42.3" width="28.4" height="1.7" rx="1.5" fill="var(--bad)"/><rect x="94.3" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="125.8" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="157.2" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="188.7" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="220.1" y="40.7" width="28.4" height="3.3" rx="1.5" fill="var(--bad)"/><rect x="251.6" y="35.7" width="28.4" height="8.3" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div>
         <div class="reco medium">
@@ -932,6 +942,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
             <div class="reco-action">Pricing interest isn’t turning into tracked checkout intent — verify the wiring</div>
             <div class="reco-why">There’s real pricing curiosity but almost no recorded intent. Either the plan-select / checkout events aren’t firing (a tracking gap that would hide real revenue signal) or people bounce at the plan screen. Confirm pricing_plan_clicked / checkout_started fire on the live pricing page before reading this as a true drop-off.</div>
             <div class="reco-evidence">“Pricing” was clicked 48 times and the credit/generate CTAs ~53 times, but only 2 pricing_plan_clicked or checkout_started events fired all campaign. That gap looks more like under-instrumentation than disinterest.</div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Checkout-intent events, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,41.0 36.5,41.0 71.0,41.0 105.5,3.0 140.0,41.0 174.5,41.0 209.0,3.0 243.5,41.0 278.0,41.0 2,43" fill="var(--ink-soft)" fill-opacity="0.10"/><polyline points="2.0,41.0 36.5,41.0 71.0,41.0 105.5,3.0 140.0,41.0 174.5,41.0 209.0,3.0 243.5,41.0 278.0,41.0" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div></div>
 </div>
@@ -966,14 +977,14 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--gold)" stroke-width="22"
             stroke-dasharray="143.42 439.82"
             stroke-dashoffset="-296.40" transform="rotate(-90 90 90)"/>
-    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$936.75</text>
+    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$936.77</text>
     <text x="90" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="0.1em" fill="var(--ink-soft)">TOTAL SPEND</text>
   </svg>
   <div class="donut-legend">
     <div class="donut-leg-item">
       <span class="swatch" style="background:var(--ink);"></span>
       <span class="leg-name">Meta</span>
-      <span class="leg-num">$631.28</span>
+      <span class="leg-num">$631.30</span>
       <span class="leg-pct">67%</span>
     </div>
     <div style="padding-left:26px;font-size:11px;color:var(--ink-soft);margin-top:-8px;letter-spacing:0.02em;">
@@ -1103,7 +1114,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Impressions</div>
-    <div class="chan-kpi-value">22,713</div>
+    <div class="chan-kpi-value">22,714</div>
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Link clicks</div>
@@ -2234,7 +2245,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
     <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260529-1907Z.</div>
     <table>
       <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
-      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$30</td><td>$141.86</td><td>4,814</td><td>3.24%</td><td>$0.91</td><td>11</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$25</td><td>$184.79</td><td>7,621</td><td>2.41%</td><td>$1.00</td><td>7</td><td><span class="tip-host"><span class="tag healthy" title="No issues detected by autopilot this cycle.">OK</span><span class="tip-body">No issues detected by autopilot this cycle.</span></span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$30</td><td>$164.54</td><td>5,620</td><td>2.08%</td><td>$1.41</td><td>7</td><td><span class="tip-host"><span class="tag healthy" title="No issues detected by autopilot this cycle.">OK</span><span class="tip-body">No issues detected by autopilot this cycle.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$15</td><td>$140.09</td><td>4,658</td><td>2.04%</td><td>$1.47</td><td>5</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr></tbody>
+      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$30</td><td>$141.86</td><td>4,814</td><td>3.24%</td><td>$0.91</td><td>11</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$25</td><td>$184.79</td><td>7,621</td><td>2.41%</td><td>$1.00</td><td>7</td><td><span class="tip-host"><span class="tag healthy" title="No issues detected by autopilot this cycle.">OK</span><span class="tip-body">No issues detected by autopilot this cycle.</span></span></td></tr><tr><td>Size-inclusive women's fashion -- US/UK/EU</td><td>$30</td><td>$164.56</td><td>5,621</td><td>2.08%</td><td>$1.41</td><td>7</td><td><span class="tip-host"><span class="tag healthy" title="No issues detected by autopilot this cycle.">OK</span><span class="tip-body">No issues detected by autopilot this cycle.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$15</td><td>$140.09</td><td>4,658</td><td>2.04%</td><td>$1.47</td><td>5</td><td><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr></tbody>
     </table>
   </div>
   <div class="panel">
@@ -2251,9 +2262,9 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-29 23:47 UTC</span>
+    <span class="meta">opinion · 2026-05-29 23:58 UTC</span>
   </div>
-  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (30) tracking real (47). PR #21 in production.</li><li><strong>Blended CPL $19.93</strong> on $936.75 total spend (Meta + LinkedIn).</li></ul></div>
+  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (30) tracking real (47). PR #21 in production.</li><li><strong>Blended CPL $19.93</strong> on $936.77 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
     <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260529-1907Z</span></div>
     <div class="panel-sub">Runs every 12h · source of truth at <code>autopilot/state/last-cycle.json</code></div>
