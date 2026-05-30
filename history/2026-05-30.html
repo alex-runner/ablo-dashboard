@@ -537,7 +537,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-30 07:07 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-30 07:10 UTC</span>
   </div>
 </div>
 
@@ -635,7 +635,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-30 07:07 UTC</span>
+    <span class="meta">prioritized · 2026-05-30 07:10 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">3 items, prioritized</span></h2>
@@ -908,40 +908,40 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Macro funnel beats every benchmark, so the wins are inside the steps — and signup abandonment and /studio rage-clicks are both trending the wrong way this week.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 7h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Engagement is climbing (try-ons hit an all-time-high 10 on May 29) but the URL importer regressed this week — scrape failures jumped from ~0 to 5/day; the biggest lever stays the signup modal, where 126 opens become just 45 finishes.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · -1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">Make Google sign-in the default — the email link is leaking signups</div>
-            <div class="reco-why">Promote “Continue with Google” to the primary full-width button and demote “Email me a link” to a secondary option. The magic-link inbox round-trip is the single biggest avoidable drop in the whole funnel.</div>
-            <div class="reco-evidence">127 people opened the signup modal, only 45 finished (35%). 52 requested a magic link but just 3 ever completed a login event. “Email me a link” (64 clicks) is out-competing “Continue with Google” (47) for the primary slot — backwards, given Google needs no round-trip. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Two of every three signup-modal opens never finish</div>
+            <div class="reco-why">Promote “Continue with Google” to the primary, full-width button and demote “Email me a link” to a small secondary “use email instead” link. The magic-link path forces an inbox round-trip most people never return from — and right now it's winning the primary slot it shouldn't.</div>
+            <div class="reco-evidence">126 people opened the modal, only 45 finished (36%). “Email me a link” (64 clicks) out-clicks “Continue with Google” (48) — backwards, since Google needs no round-trip: 52 people requested a magic link but only 3 ever completed a login. Mobile is 71% of opens (89) and converts the same as desktop (36% vs 38%), so fix the flow mobile-first, not the layout. The “×” close got 33 clicks and signup_abandoned is running 16–28/day. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="22.6" width="28.4" height="21.4" rx="1.5" fill="var(--bad)"/><rect x="31.4" y="6.9" width="28.4" height="37.1" rx="1.5" fill="var(--bad)"/><rect x="62.9" y="24.0" width="28.4" height="20.0" rx="1.5" fill="var(--bad)"/><rect x="94.3" y="39.7" width="28.4" height="4.3" rx="1.5" fill="var(--bad)"/><rect x="125.8" y="35.4" width="28.4" height="8.6" rx="1.5" fill="var(--bad)"/><rect x="157.2" y="31.1" width="28.4" height="12.9" rx="1.5" fill="var(--bad)"/><rect x="188.7" y="4.0" width="28.4" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="220.1" y="21.1" width="28.4" height="22.9" rx="1.5" fill="var(--bad)"/><rect x="251.6" y="19.7" width="28.4" height="24.3" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Fix the unresponsive control causing rage-clicks on /studio</div>
-            <div class="reco-why">Watch the /studio recordings and find the element that looks clickable but doesn’t respond (or is slow). This sits immediately before the “generate model” aha moment, so every frustrated exit here is a lost activation.</div>
-            <div class="reco-evidence">10 distinct people rage-clicked 30 times on /studio — ~17% of the 58 who entered the studio. No other page comes close. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 36.5,41.0 71.0,41.0 105.5,27.4 140.0,38.3 174.5,32.9 209.0,22.0 243.5,38.3 278.0,22.0 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,3.0 36.5,41.0 71.0,41.0 105.5,27.4 140.0,38.3 174.5,32.9 209.0,22.0 243.5,38.3 278.0,22.0" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
+            <div class="reco-action">The product-URL importer broke again after a clean week</div>
+            <div class="reco-why">Treat this as a live regression: pull the failing URLs from the last 48h and re-harden scraping for those domains. Meanwhile, steer people to the import path that already works — lead with photo/library import and make URL-paste the fallback, surfacing it immediately on the first failure instead of after a retry.</div>
+            <div class="reco-evidence">9 of 11 people who pasted a product URL hit a scrape failure (only 4 succeeded) — yet 20 people imported successfully via other paths, so import itself isn't broken, the URL path is. Failures were ~0/day May 21–27, then spiked to 2 (May 28) and 5 (May 29). The recovery fallback was shown to 9 people but only 5 acted, so it's landing too late or reading as a dead end.</div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="28.4" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="31.4" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="62.9" y="42.3" width="28.4" height="1.7" rx="1.5" fill="var(--bad)"/><rect x="94.3" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="125.8" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="157.2" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="188.7" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="220.1" y="40.7" width="28.4" height="3.3" rx="1.5" fill="var(--bad)"/><rect x="251.6" y="35.7" width="28.4" height="8.3" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div>
-        <div class="reco medium">
-          <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
+        <div class="reco high">
+          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Steer users to the working import path, not the URL paste</div>
-            <div class="reco-why">The product-URL paste fails most of the time, but a different import path is clearly working — so lead with the photo/library import and offer URL-paste as the fallback, not the default. Also harden scraping for the domains people actually paste.</div>
-            <div class="reco-evidence">Of 11 people who pasted a product URL, 9 hit a scrape failure (only 4 succeeded). Yet 20 people imported a product successfully via other paths — the URL path is the broken one, not import itself.</div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="28.4" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="31.4" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="62.9" y="42.3" width="28.4" height="1.7" rx="1.5" fill="var(--bad)"/><rect x="94.3" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="125.8" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="157.2" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="188.7" y="44.0" width="28.4" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="220.1" y="40.7" width="28.4" height="3.3" rx="1.5" fill="var(--bad)"/><rect x="251.6" y="35.7" width="28.4" height="8.3" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
+            <div class="reco-action">Half who enter the studio never generate a model — and rage-clicks cluster there</div>
+            <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow) before “Generate Model”. This is the aha-moment step, so the entry→generation gap is the biggest activation drop after signup.</div>
+            <div class="reco-evidence">58 people entered the studio but only 28 generated a model (52% never do). Within that, 10 people rage-clicked /studio 30 times — the largest rage-click cluster by far (next is /pricing with 3). Generation itself is healthy and trending up (17 on May 27, 11 on May 29), so the wall is getting INTO the first generate, not the model engine. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 36.5,41.0 71.0,41.0 105.5,27.4 140.0,38.3 174.5,32.9 209.0,22.0 243.5,38.3 278.0,22.0 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,3.0 36.5,41.0 71.0,41.0 105.5,27.4 140.0,38.3 174.5,32.9 209.0,22.0 243.5,38.3 278.0,22.0" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div>
         <div class="reco medium">
           <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Purchase intent</span></div>
           <div class="reco-body">
-            <div class="reco-action">Pricing interest isn’t turning into tracked checkout intent — verify the wiring</div>
-            <div class="reco-why">There’s real pricing curiosity but almost no recorded intent. Either the plan-select / checkout events aren’t firing (a tracking gap that would hide real revenue signal) or people bounce at the plan screen. Confirm pricing_plan_clicked / checkout_started fire on the live pricing page before reading this as a true drop-off.</div>
-            <div class="reco-evidence">“Pricing” was clicked 48 times and the credit/generate CTAs ~53 times, but only 2 pricing_plan_clicked or checkout_started events fired all campaign. That gap looks more like under-instrumentation than disinterest.</div>
+            <div class="reco-action">Pricing interest routes to “book a call”, not tracked self-serve checkout — verify the wiring</div>
+            <div class="reco-why">Confirm pricing_plan_clicked / checkout_started actually fire on the live pricing page before reading the near-zero intent as disinterest — a tracking gap here would hide real revenue signal. If the events are firing, the pattern says self-serve checkout is losing to “book a call”, so make plan-selection more discoverable on the pricing page.</div>
+            <div class="reco-evidence">“Pricing” was clicked 48 times, but only 2 pricing_plan_clicked and 2 checkout_started fired all campaign — while 9 people clicked “book a call”. That 48→2 gap looks more like under-instrumentation (or a checkout people can't find) than lack of interest.</div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Checkout-intent events, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,41.0 36.5,41.0 71.0,41.0 105.5,3.0 140.0,41.0 174.5,41.0 209.0,3.0 243.5,41.0 278.0,41.0 2,43" fill="var(--ink-soft)" fill-opacity="0.10"/><polyline points="2.0,41.0 36.5,41.0 71.0,41.0 105.5,3.0 140.0,41.0 174.5,41.0 209.0,3.0 243.5,41.0 278.0,41.0" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/29</span></div></div>
           </div>
         </div></div>
@@ -2262,7 +2262,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-30 07:07 UTC</span>
+    <span class="meta">opinion · 2026-05-30 07:10 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (30) tracking real (47). PR #21 in production.</li><li><strong>Blended CPL $19.93</strong> on $936.78 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
