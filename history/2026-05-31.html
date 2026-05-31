@@ -537,7 +537,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-05-31 07:08 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-05-31 07:11 UTC</span>
   </div>
 </div>
 
@@ -649,7 +649,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-05-31 07:08 UTC</span>
+    <span class="meta">prioritized · 2026-05-31 07:11 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">4 items, prioritized</span></h2>
@@ -930,41 +930,41 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Behaviour is essentially flat vs this morning (modal opens 126→127, signups 45→46, studio entries 58→59) on a near-zero-traffic May 30, so the standing lever is unchanged: the signup modal, where only 46 of 127 opens finish and the email magic-link path leaks almost everyone (52 requested → 3 logged in).</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 12h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Ad delivery has now broken twice in 7 days (zero spend May 24 + May 30; May 30 near-zero across every signal), so behaviour is flat vs last cycle and the deltas are noise -- the standing, fixable lever is unchanged: the signup modal, where only 46 of 127 opens finish and the email magic-link path leaks almost everyone (52 requested -> 3 logged in).</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · -1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">Two of every three signup-modal opens never finish</div>
-            <div class="reco-why">Promote “Continue with Google” to the primary, full-width button and demote “Email me a link” to a small secondary “use email instead” link. The magic-link path forces an inbox round-trip most people never return from — and right now it's winning the primary slot it shouldn't. Fix it mobile-first, since mobile is the bulk of the traffic.</div>
-            <div class="reco-evidence">127 people opened the modal, only 46 finished (36%). “Email me a link” (64 clicks) out-clicks “Continue with Google” (49) — backwards, since Google needs no round-trip: 52 people requested a magic link but only 3 ever completed a login. Mobile is 71% of opens (90) and converts the same as desktop (37% vs 38%), so it's the flow, not the layout. The “×” close got 33 clicks and signup_abandoned runs 16–28/day on traffic-heavy days. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Two of every three signup-modal opens never finish -- and email is winning the slot it shouldn't</div>
+            <div class="reco-why">Promote "Continue with Google" to the primary, full-width button and demote "Email me a link" to a small secondary "use email instead" link. The magic-link path forces an inbox round-trip most people never return from, yet it currently out-clicks Google. Fix it mobile-first, since mobile is the bulk of the traffic.</div>
+            <div class="reco-evidence">127 people opened the modal, only 46 finished (36%). "Email me a link" (64 clicks) out-clicks "Continue with Google" (49) -- backwards, since Google needs no round-trip: 52 people requested a magic link but only 3 ever completed a login (~6%). Mobile is 71% of opens (90) and converts the same as desktop (37% vs 38%), so it's the flow, not the layout. The "x" close got 33 clicks and signup_abandoned runs 16-28/day on traffic-heavy days. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="22.6" width="25.3" height="21.4" rx="1.5" fill="var(--good)"/><rect x="28.3" y="6.9" width="25.3" height="37.1" rx="1.5" fill="var(--good)"/><rect x="56.6" y="24.0" width="25.3" height="20.0" rx="1.5" fill="var(--good)"/><rect x="84.9" y="39.7" width="25.3" height="4.3" rx="1.5" fill="var(--good)"/><rect x="113.2" y="35.4" width="25.3" height="8.6" rx="1.5" fill="var(--good)"/><rect x="141.5" y="31.1" width="25.3" height="12.9" rx="1.5" fill="var(--good)"/><rect x="169.8" y="4.0" width="25.3" height="40.0" rx="1.5" fill="var(--good)"/><rect x="198.1" y="21.1" width="25.3" height="22.9" rx="1.5" fill="var(--good)"/><rect x="226.4" y="19.7" width="25.3" height="24.3" rx="1.5" fill="var(--good)"/><rect x="254.7" y="42.6" width="25.3" height="1.4" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/30</span></div></div>
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Half who enter the studio never generate a model — and rage-clicks cluster there</div>
-            <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow) before “Generate Model”. This is the aha-moment step, so the entry→generation gap is the biggest activation drop after signup.</div>
-            <div class="reco-evidence">59 people entered the studio but only 28 generated a model (53% never do). Within that, 10 people rage-clicked /studio 30 times — the largest rage-click cluster by far (next is /pricing with 3, n=3). Generation itself is healthy and trending up (17 on May 27, 11 on May 29), so the wall is getting INTO the first generate, not the model engine. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Half who enter the studio never generate a model -- and rage-clicks cluster there</div>
+            <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow) before "Generate Model". This is the aha-moment step, so the entry->generation gap is the biggest activation drop after signup.</div>
+            <div class="reco-evidence">59 people entered the studio but only 28 generated a model (53% never do). Within that, 10 people rage-clicked /studio 30 times -- the largest rage-click cluster by far (next is /pricing with 3, n=3). Generation itself is healthy and trending up (17 on May 27, 11 on May 29), so the wall is getting INTO the first generate, not the model engine. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 32.7,41.0 63.3,41.0 94.0,27.4 124.7,38.3 155.3,32.9 186.0,22.0 216.7,38.3 247.3,22.0 278.0,41.0 2,43" fill="var(--good)" fill-opacity="0.10"/><polyline points="2.0,3.0 32.7,41.0 63.3,41.0 94.0,27.4 124.7,38.3 155.3,32.9 186.0,22.0 216.7,38.3 247.3,22.0 278.0,41.0" fill="none" stroke="var(--good)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/30</span></div></div>
-          </div>
-        </div>
-        <div class="reco medium">
-          <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Purchase intent</span></div>
-          <div class="reco-body">
-            <div class="reco-action">Pricing interest routes to “book a call”, not tracked self-serve checkout — verify the wiring</div>
-            <div class="reco-why">Confirm pricing_plan_clicked / checkout_started actually fire on the live pricing page before reading the near-zero intent as disinterest — a tracking gap here would hide real revenue signal. If the events ARE firing, the pattern says self-serve checkout is losing to “book a call”, so make plan-selection more discoverable on the pricing page.</div>
-            <div class="reco-evidence">“Pricing” was clicked 48 times, but only 2 pricing_plan_clicked and 2 checkout_started fired all campaign — while 9 people clicked “book a call”. That 48→2 gap looks more like under-instrumentation (or a checkout people can't find) than lack of interest. The 48 Pricing clicks and 9 book-a-call clicks are trustworthy; the 2 intent events are too thin to read on their own.</div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Checkout-intent events, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▼&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,41.0 32.7,41.0 63.3,41.0 94.0,3.0 124.7,41.0 155.3,41.0 186.0,3.0 216.7,41.0 247.3,41.0 278.0,41.0 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,41.0 32.7,41.0 63.3,41.0 94.0,3.0 124.7,41.0 155.3,41.0 186.0,3.0 216.7,41.0 247.3,41.0 278.0,41.0" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/30</span></div></div>
           </div>
         </div>
         <div class="reco medium">
           <div class="reco-id">UX · medium<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">URL importer is shaky but the fallback carries it — watch the late-week bump</div>
+            <div class="reco-action">URL importer is shaky but the fallback carries it -- watch the late-week bump</div>
             <div class="reco-why">Don't over-rotate: import works overall (20 people imported via photo/library paths), the URL-scrape path is the weak link. Keep leading with photo/library import and surface the fallback immediately on the first failure, not after a retry. Re-harden scraping for the domains that failed late this week before it becomes a real regression.</div>
-            <div class="reco-evidence">9 of 11 people who pasted a product URL hit a scrape failure (only 4 succeeded) — yet 20 people imported successfully via other paths, so the importer isn't broken, the URL path is. Failures were ~0/day May 21–27, bumped to 2 (May 28) and 5 (May 29), then 0 on May 30 — but May 30 had near-zero import traffic, so it's a watch, not a confirmed fix. Recovery was shown to 9 people but only 5 acted, so it reads as landing too late or as a dead end.</div>
+            <div class="reco-evidence">9 of 11 people who pasted a product URL hit a scrape failure (only 4 succeeded) -- yet 20 people imported successfully via other paths, so the importer isn't broken, the URL path is. Failures were ~0/day May 21-27, bumped to 2 (May 28) and 5 (May 29), then 0 on May 30 -- but May 30 had near-zero import traffic, so it's a watch, not a confirmed fix. Recovery was shown to 9 people but only 5 acted, so it reads as landing too late or as a dead end.</div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="25.3" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="28.3" y="44.0" width="25.3" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="56.6" y="42.3" width="25.3" height="1.7" rx="1.5" fill="var(--bad)"/><rect x="84.9" y="44.0" width="25.3" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="113.2" y="44.0" width="25.3" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="141.5" y="44.0" width="25.3" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="169.8" y="44.0" width="25.3" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="198.1" y="40.7" width="25.3" height="3.3" rx="1.5" fill="var(--bad)"/><rect x="226.4" y="35.7" width="25.3" height="8.3" rx="1.5" fill="var(--bad)"/><rect x="254.7" y="44.0" width="25.3" height="0.0" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>05/30</span></div></div>
+          </div>
+        </div>
+        <div class="reco medium">
+          <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
+          <div class="reco-body">
+            <div class="reco-action">"Surprise me" gets clicked a lot but almost never fires -- check it's working</div>
+            <div class="reco-why">Pull the /studio recordings for the "Surprise me" button. A popular control that registers clicks but rarely completes its action is a prime suspect for the /studio rage-clicks above -- if it's broken or slow, fixing it could clear both signals at once. If the explicit event simply isn't wired, fix the instrumentation so it stops masquerading as friction.</div>
+            <div class="reco-evidence">"Surprise me" is the 3rd-most-clicked control in the studio (39 autocapture clicks, behind only Start free and the auth buttons) yet the surprise_me_clicked event fired only once all campaign -- a 39:1 gap that points to either a broken/unresponsive button or missing instrumentation, both worth a 5-minute replay check. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            
           </div>
         </div></div>
 </div>
@@ -2290,7 +2290,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-05-31 07:08 UTC</span>
+    <span class="meta">opinion · 2026-05-31 07:11 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (30) tracking real (48). PR #21 in production.</li><li><strong>Blended CPL $19.52</strong> on $936.79 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
