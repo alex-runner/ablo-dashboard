@@ -538,7 +538,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-06-07 19:07 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-07 19:09 UTC</span>
   </div>
 </div>
 
@@ -569,7 +569,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
       <div class="hk-label"><span class="dot good"></span>Blended CPL <span class="tip-host"><span class="bench-chip bench-exceptional" title="Paid social CPL: your value $5.26 vs industry $25.00 (WordStream Facebook Ads 2024 (avg across industries: $23))"><span class="bench-star">★</span> <span class="bench-arrow">↓</span>+$19.74 vs industry</span><span class="tip-body"><strong>Paid social CPL</strong><br>Your value: <strong>$5.26</strong> · Industry: $25.00<br>Good when lower: ≤ $15.00 <span class="tip-meta">WordStream Facebook Ads 2024 (avg across industries: $23)</span><span class="tip-meta tip-exceptional-note">Exceptional — well past the good-at threshold</span></span></span></div>
       <div>
         <div class="hk-num">$5.26</div>
-        <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-bad">▲ 264% vs y'day</span> <span class="kpi-delta kpi-delta-good">▼ 60% vs last wk</span></div>
+        <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-bad">▲ 263% vs y'day</span> <span class="kpi-delta kpi-delta-good">▼ 60% vs last wk</span></div>
         <div class="hk-sub">Total spend ÷ real signups</div>
       </div>
       <div class="hk-spark" style="font-size:11px;color:var(--ink-faint);padding-top:18px;letter-spacing:0.04em;">
@@ -636,7 +636,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-06-07 19:07 UTC</span>
+    <span class="meta">prioritized · 2026-06-07 19:09 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">5 items, prioritized</span></h2>
@@ -712,11 +712,11 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
   <div>
     <div style="font-size:14px;font-weight:500;">Saw the ad</div>
-    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 6,185 + LI 4,454)</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 6,186 + LI 4,454)</div>
   </div>
   <div></div>
   <div style="text-align:right;">
-    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">10,639</div>
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">10,640</div>
     <div class="fnl-dod fnl-dod-good">▲&nbsp;12% vs y'day</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
@@ -925,49 +925,40 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Signups keep climbing week-over-week (48 → 78) but the magic-link auth leak is still the biggest fixable hole — 67 requested a link, only 7 finished (~10%) — and the new try-before-signup builder now shows it loses half its visitors before they even reach that wall.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 12h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Funnel is stable but the email magic-link round-trip is the single biggest leak (only 8 of 67 requesters complete login); the new TBS garment-builder flow shows a fresh 79% drop before users hit Generate.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 0m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">Magic-link is the signup leak — make Google the default path</div>
-            <div class="reco-why">Promote "Continue with Google" to a primary, full-width button and demote "Email me a link" to a small secondary "use email instead" link. The inbox round-trip is where signups die — almost nobody returns. Fix desktop first.</div>
-            <div class="reco-evidence">224 opened the modal, only 78 finished (35%). The smoking gun: 67 people requested a magic link but only 7 completed a login (~10%). Desktop converts worse than mobile (22/74 = 30% vs 56/149 = 38%). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Magic-link requests per day (the leaky path)</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="14.7" height="40.0" rx="1.5" fill="var(--good)"/><rect x="17.7" y="15.4" width="14.7" height="28.6" rx="1.5" fill="var(--good)"/><rect x="35.4" y="6.9" width="14.7" height="37.1" rx="1.5" fill="var(--good)"/><rect x="53.1" y="41.1" width="14.7" height="2.9" rx="1.5" fill="var(--good)"/><rect x="70.8" y="35.4" width="14.7" height="8.6" rx="1.5" fill="var(--good)"/><rect x="88.4" y="26.9" width="14.7" height="17.1" rx="1.5" fill="var(--good)"/><rect x="106.1" y="21.1" width="14.7" height="22.9" rx="1.5" fill="var(--good)"/><rect x="123.8" y="38.3" width="14.7" height="5.7" rx="1.5" fill="var(--good)"/><rect x="141.5" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="159.2" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--good)"/><rect x="176.9" y="38.3" width="14.7" height="5.7" rx="1.5" fill="var(--good)"/><rect x="194.6" y="21.1" width="14.7" height="22.9" rx="1.5" fill="var(--good)"/><rect x="212.2" y="26.9" width="14.7" height="17.1" rx="1.5" fill="var(--good)"/><rect x="229.9" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--good)"/><rect x="247.6" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--good)"/><rect x="265.3" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
+            <div class="reco-action">The email magic-link path is where signups die — push Google as the only primary option</div>
+            <div class="reco-why">Make “Continue with Google” the single full-width primary button and collapse email to a small “use email instead” text link. The magic-link inbox round-trip is the dominant leak: people leave for their inbox and never come back.</div>
+            <div class="reco-evidence">235 opened the modal, only 83 completed (35%). Of the email path specifically, 67 people requested a magic link but only 8 actually completed login — a 12% finish rate. That round-trip, not the form layout, is the leak (mobile 39% vs desktop 29% complete, roughly even). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="14.7" height="17.6" rx="1.5" fill="var(--good)"/><rect x="17.7" y="13.4" width="14.7" height="30.6" rx="1.5" fill="var(--good)"/><rect x="35.4" y="27.5" width="14.7" height="16.5" rx="1.5" fill="var(--good)"/><rect x="53.1" y="40.5" width="14.7" height="3.5" rx="1.5" fill="var(--good)"/><rect x="70.8" y="36.9" width="14.7" height="7.1" rx="1.5" fill="var(--good)"/><rect x="88.4" y="33.4" width="14.7" height="10.6" rx="1.5" fill="var(--good)"/><rect x="106.1" y="11.1" width="14.7" height="32.9" rx="1.5" fill="var(--good)"/><rect x="123.8" y="25.2" width="14.7" height="18.8" rx="1.5" fill="var(--good)"/><rect x="141.5" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="159.2" y="42.8" width="14.7" height="1.2" rx="1.5" fill="var(--good)"/><rect x="176.9" y="42.8" width="14.7" height="1.2" rx="1.5" fill="var(--good)"/><rect x="194.6" y="19.3" width="14.7" height="24.7" rx="1.5" fill="var(--good)"/><rect x="212.2" y="4.0" width="14.7" height="40.0" rx="1.5" fill="var(--good)"/><rect x="229.9" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="247.6" y="38.1" width="14.7" height="5.9" rx="1.5" fill="var(--good)"/><rect x="265.3" y="33.4" width="14.7" height="10.6" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">The new try-before-signup builder loses half its visitors at the very first choice</div>
-            <div class="reco-why">The TBS flow (live since Jun 4) gets strong top-of-funnel pull but bleeds before it can hook anyone. Cut the category step to fewer, clearer options or pre-select a sensible default so visitors reach "Generate" in one tap. Watch a few replays of people who view the TBS page but never pick a category.</div>
-            <div class="reco-evidence">In its first 3 days TBS pulled 153 people to the page, but only 72 picked a category (47%), 57 added a garment, and just 33 clicked Generate (22% of viewers). The page-view → category-select drop is the single biggest step loss in the new flow — and it happens before they ever hit the leaky auth wall. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="14.7" height="17.6" rx="1.5" fill="var(--good)"/><rect x="17.7" y="13.4" width="14.7" height="30.6" rx="1.5" fill="var(--good)"/><rect x="35.4" y="27.5" width="14.7" height="16.5" rx="1.5" fill="var(--good)"/><rect x="53.1" y="40.5" width="14.7" height="3.5" rx="1.5" fill="var(--good)"/><rect x="70.8" y="36.9" width="14.7" height="7.1" rx="1.5" fill="var(--good)"/><rect x="88.4" y="33.4" width="14.7" height="10.6" rx="1.5" fill="var(--good)"/><rect x="106.1" y="11.1" width="14.7" height="32.9" rx="1.5" fill="var(--good)"/><rect x="123.8" y="25.2" width="14.7" height="18.8" rx="1.5" fill="var(--good)"/><rect x="141.5" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="159.2" y="42.8" width="14.7" height="1.2" rx="1.5" fill="var(--good)"/><rect x="176.9" y="42.8" width="14.7" height="1.2" rx="1.5" fill="var(--good)"/><rect x="194.6" y="19.3" width="14.7" height="24.7" rx="1.5" fill="var(--good)"/><rect x="212.2" y="4.0" width="14.7" height="40.0" rx="1.5" fill="var(--good)"/><rect x="229.9" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="247.6" y="38.1" width="14.7" height="5.9" rx="1.5" fill="var(--good)"/><rect x="265.3" y="33.4" width="14.7" height="10.6" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
-          </div>
-        </div>
-        <div class="reco high">
-          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
-          <div class="reco-body">
-            <div class="reco-action">Half of studio visitors never generate their first model</div>
-            <div class="reco-why">Guide users to a first generation the instant they enter /studio — pre-select a seed model and make the first "Generate Model" one click (or auto-trigger it) so the aha lands before they bounce. The seed-model selector is the right lever; watch whether it lifts this ratio.</div>
-            <div class="reco-evidence">91 entered the studio but only 46 generated a model (51%) and 32 reached try-on — generation is the activation cliff. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Models generated, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▼&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,41.0 20.4,36.5 38.8,29.8 57.2,7.5 75.6,36.5 94.0,38.8 112.4,3.0 130.8,27.6 149.2,16.4 167.6,41.0 186.0,36.5 204.4,20.9 222.8,34.3 241.2,36.5 259.6,27.6 278.0,36.5 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,41.0 20.4,36.5 38.8,29.8 57.2,7.5 75.6,36.5 94.0,38.8 112.4,3.0 130.8,27.6 149.2,16.4 167.6,41.0 186.0,36.5 204.4,20.9 222.8,34.3 241.2,36.5 259.6,27.6 278.0,36.5" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
+            <div class="reco-action">New TBS garment-builder flow: 4 in 5 viewers never reach Generate</div>
+            <div class="reco-why">Watch recordings of the new TBS step and shorten it — collapse category→garment→sample into fewer required choices and make the Generate CTA persistent and visible from the first screen. This flow launched June 4 and now sits directly before the aha moment.</div>
+            <div class="reco-evidence">Since it went live (first_seen 2026-06-04), 173 people viewed the TBS page, 78 selected a category, 64 added a garment, 44 picked a sample, and only 37 clicked Generate — a 79% drop from view to generate-click in a 3-day window with solid volume. Signup abandonment also spiked the same days it launched (34 on Jun 4, the window high). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Signup abandons, per day (spiked at TBS launch Jun 4)</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="14.7" height="17.6" rx="1.5" fill="var(--good)"/><rect x="17.7" y="13.4" width="14.7" height="30.6" rx="1.5" fill="var(--good)"/><rect x="35.4" y="27.5" width="14.7" height="16.5" rx="1.5" fill="var(--good)"/><rect x="53.1" y="40.5" width="14.7" height="3.5" rx="1.5" fill="var(--good)"/><rect x="70.8" y="36.9" width="14.7" height="7.1" rx="1.5" fill="var(--good)"/><rect x="88.4" y="33.4" width="14.7" height="10.6" rx="1.5" fill="var(--good)"/><rect x="106.1" y="11.1" width="14.7" height="32.9" rx="1.5" fill="var(--good)"/><rect x="123.8" y="25.2" width="14.7" height="18.8" rx="1.5" fill="var(--good)"/><rect x="141.5" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="159.2" y="42.8" width="14.7" height="1.2" rx="1.5" fill="var(--good)"/><rect x="176.9" y="42.8" width="14.7" height="1.2" rx="1.5" fill="var(--good)"/><rect x="194.6" y="19.3" width="14.7" height="24.7" rx="1.5" fill="var(--good)"/><rect x="212.2" y="4.0" width="14.7" height="40.0" rx="1.5" fill="var(--good)"/><rect x="229.9" y="24.0" width="14.7" height="20.0" rx="1.5" fill="var(--good)"/><rect x="247.6" y="38.1" width="14.7" height="5.9" rx="1.5" fill="var(--good)"/><rect x="265.3" y="33.4" width="14.7" height="10.6" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
           </div>
         </div>
         <div class="reco medium">
           <div class="reco-id">UX · medium<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Rage-clicks keep clustering on /studio</div>
-            <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow) before "Generate Model" — it is the most likely mechanical cause of the generation cliff above.</div>
-            <div class="reco-evidence">23 people rage-clicked /studio 49 times — ~25% of the 91 who entered, and by far the largest cluster (next is /pricing at 3). It spiked on launch day, never cleared, and is still firing daily (8 on Jun 3, 6 on Jun 5, 7 on Jun 6). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Rage-clicks on /studio keep climbing</div>
+            <div class="reco-why">Open the /studio recordings and find the control that looks clickable but doesn’t respond (or is too slow). It sits right before “generate model,” so each frustrated exit is a lost activation. The trend is worsening, not flat.</div>
+            <div class="reco-evidence">25 people rage-clicked 57 times on /studio (~26% of the 96 who entered the studio). Daily rage-clicks are rising again: 6 on Jun 5, 7 on Jun 6, 8 on Jun 7 — the highest run since launch week. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▲&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 20.4,41.0 38.8,41.0 57.2,27.4 75.6,38.3 94.0,32.9 112.4,27.4 130.8,38.3 149.2,22.0 167.6,41.0 186.0,41.0 204.4,19.3 222.8,30.1 241.2,24.7 259.6,22.0 278.0,19.3 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,3.0 20.4,41.0 38.8,41.0 57.2,27.4 75.6,38.3 94.0,32.9 112.4,27.4 130.8,38.3 149.2,22.0 167.6,41.0 186.0,41.0 204.4,19.3 222.8,30.1 241.2,24.7 259.6,22.0 278.0,19.3" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
           </div>
         </div>
-        <div class="reco low">
-          <div class="reco-id">UX · low<span class="sub">Tried the product</span></div>
+        <div class="reco medium">
+          <div class="reco-id">UX · medium<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">URL-importer failures are mostly a launch-day artifact</div>
-            <div class="reco-why">Keep this below the auth and studio leaks. Still surface the photo-upload fallback on the first failure, but it is no longer today's wall.</div>
-            <div class="reco-evidence">The cumulative 12-of-16 failure rate is dominated by launch day — 24 scrape failures landed on May 20. Since then daily failures are near zero (5 on May 29, 3 on Jun 3, 0 on Jun 4–5, 3 on Jun 6).</div>
+            <div class="reco-action">The product-URL importer still fails more than it works</div>
+            <div class="reco-why">Harden scraping for the domains people actually paste, and surface the photo-upload / manual fallback immediately on the first failure instead of after a retry. Lower-volume than the signup leak but a hard wall when hit.</div>
+            <div class="reco-evidence">13 of 17 people who submitted a product URL hit a scrape failure (only 6 succeeded) — a 76% failure rate over the window.</div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="14.7" height="40.0" rx="1.5" fill="var(--ink-soft)"/><rect x="17.7" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="35.4" y="42.3" width="14.7" height="1.7" rx="1.5" fill="var(--ink-soft)"/><rect x="53.1" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="70.8" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="88.4" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="106.1" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="123.8" y="40.7" width="14.7" height="3.3" rx="1.5" fill="var(--ink-soft)"/><rect x="141.5" y="35.7" width="14.7" height="8.3" rx="1.5" fill="var(--ink-soft)"/><rect x="159.2" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="176.9" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="194.6" y="39.0" width="14.7" height="5.0" rx="1.5" fill="var(--ink-soft)"/><rect x="212.2" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="229.9" y="44.0" width="14.7" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="247.6" y="39.0" width="14.7" height="5.0" rx="1.5" fill="var(--ink-soft)"/><rect x="265.3" y="42.3" width="14.7" height="1.7" rx="1.5" fill="var(--ink-soft)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/07</span></div></div>
           </div>
         </div></div>
@@ -1140,7 +1131,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Impressions</div>
-    <div class="chan-kpi-value">6,185</div>
+    <div class="chan-kpi-value">6,186</div>
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Link clicks</div>
@@ -2624,7 +2615,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
     <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260607-1906Z.</div>
     <table>
       <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
-      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$10</td><td>$60.82</td><td>2,936</td><td>4.50%</td><td>$0.46</td><td>14</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$15</td><td>$80.58</td><td>3,245</td><td>2.34%</td><td>$1.06</td><td>4</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$5</td><td>$0.02</td><td>4</td><td>0.00%</td><td>$0.00</td><td>0</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr></tbody>
+      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$10</td><td>$60.82</td><td>2,937</td><td>4.49%</td><td>$0.46</td><td>14</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span><span class="tip-host"><span class="tag warning" title="Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.">LANDING</span><span class="tip-body">Landing page is the bottleneck — the AD works but the PAGE doesn't convert. Don't pause the ad.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$15</td><td>$80.58</td><td>3,245</td><td>2.34%</td><td>$1.06</td><td>4</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$5</td><td>$0.02</td><td>4</td><td>0.00%</td><td>$0.00</td><td>0</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr></tbody>
     </table>
   </div>
   <div class="panel">
@@ -2641,7 +2632,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-06-07 19:07 UTC</span>
+    <span class="meta">opinion · 2026-06-07 19:09 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (18) tracking real (85). PR #21 in production.</li><li><strong>Blended CPL $5.26</strong> on $446.89 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
