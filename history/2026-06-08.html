@@ -538,7 +538,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-06-08 19:07 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-08 19:09 UTC</span>
   </div>
 </div>
 
@@ -579,9 +579,9 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <div class="hero-cell">
       <div class="hk-label"><span class="dot neutral"></span>Total spend</div>
       <div>
-        <div class="hk-num">$473.03</div>
+        <div class="hk-num">$473.05</div>
         <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-good">▲ 277% vs y'day</span> <span class="kpi-delta kpi-delta-bad">▼ 25% vs last wk</span></div>
-        <div class="hk-sub">Meta $167.56 · LinkedIn $305.47</div>
+        <div class="hk-sub">Meta $167.58 · LinkedIn $305.47</div>
       </div>
       <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32" preserveAspectRatio="none"><polygon points="178,31 2.0,16.6 37.2,3.0 72.4,8.9 107.6,11.9 142.8,9.8 178.0,7.4 2,31" fill="var(--gold)" fill-opacity="0.10"/><polyline points="2.0,16.6 37.2,3.0 72.4,8.9 107.6,11.9 142.8,9.8 178.0,7.4" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
@@ -636,7 +636,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-06-08 19:07 UTC</span>
+    <span class="meta">prioritized · 2026-06-08 19:09 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">4 items, prioritized</span></h2>
@@ -704,11 +704,11 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
   <div>
     <div style="font-size:14px;font-weight:500;">Saw the ad</div>
-    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 7,340 + LI 4,454)</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 7,341 + LI 4,454)</div>
   </div>
   <div></div>
   <div style="text-align:right;">
-    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">11,794</div>
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">11,795</div>
     <div class="fnl-dod fnl-dod-good">▲&nbsp;11% vs y'day</div>
   </div>
   <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
@@ -917,40 +917,40 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Funnel is stable but the email magic-link round-trip is the single biggest leak (only 8 of 67 requesters complete login); the new TBS garment-builder flow shows a fresh 79% drop before users hit Generate.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 24h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Magic-link requests fell to 0 over the last 4 days (the leaky inbox round-trip looks demoted), so the biggest lever shifts to the modal itself — only 37% of openers sign up and nearly as many tap the × to close.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · -1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">The email magic-link path is where signups die — push Google as the only primary option</div>
-            <div class="reco-why">Make “Continue with Google” the single full-width primary button and collapse email to a small “use email instead” text link. The magic-link inbox round-trip is the dominant leak: people leave for their inbox and never come back.</div>
-            <div class="reco-evidence">235 opened the modal, only 83 completed (35%). Of the email path specifically, 67 people requested a magic link but only 8 actually completed login — a 12% finish rate. That round-trip, not the form layout, is the leak (mobile 39% vs desktop 29% complete, roughly even). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Half the people who open the signup modal close it instead of finishing</div>
+            <div class="reco-why">The magic-link demotion already started (see evidence), so the remaining loss is people bouncing off the modal itself. Add a one-line value reminder above the buttons ('Free — no card, your designs save instantly') and make the × less prominent so a hesitant tap doesn't end the session. Pull 5-10 replays of × closers to find the hesitation point.</div>
+            <div class="reco-evidence">251 opened the modal, 94 completed (37%). The '×' close was clicked 94 times — about as many closes as completions. Magic-link requests dropped from ~14/day at launch to 0 on Jun 5-8, so the inbox round-trip leak (last cycle's #1) appears already demoted. Mobile 41% vs desktop 31% completion — flow issue, not layout. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="13.6" height="17.6" rx="1.5" fill="var(--good)"/><rect x="16.6" y="13.4" width="13.6" height="30.6" rx="1.5" fill="var(--good)"/><rect x="33.3" y="27.5" width="13.6" height="16.5" rx="1.5" fill="var(--good)"/><rect x="49.9" y="40.5" width="13.6" height="3.5" rx="1.5" fill="var(--good)"/><rect x="66.6" y="36.9" width="13.6" height="7.1" rx="1.5" fill="var(--good)"/><rect x="83.2" y="33.4" width="13.6" height="10.6" rx="1.5" fill="var(--good)"/><rect x="99.9" y="11.1" width="13.6" height="32.9" rx="1.5" fill="var(--good)"/><rect x="116.5" y="25.2" width="13.6" height="18.8" rx="1.5" fill="var(--good)"/><rect x="133.2" y="24.0" width="13.6" height="20.0" rx="1.5" fill="var(--good)"/><rect x="149.8" y="42.8" width="13.6" height="1.2" rx="1.5" fill="var(--good)"/><rect x="166.5" y="42.8" width="13.6" height="1.2" rx="1.5" fill="var(--good)"/><rect x="183.1" y="19.3" width="13.6" height="24.7" rx="1.5" fill="var(--good)"/><rect x="199.8" y="4.0" width="13.6" height="40.0" rx="1.5" fill="var(--good)"/><rect x="216.4" y="24.0" width="13.6" height="20.0" rx="1.5" fill="var(--good)"/><rect x="233.1" y="38.1" width="13.6" height="5.9" rx="1.5" fill="var(--good)"/><rect x="249.7" y="29.9" width="13.6" height="14.1" rx="1.5" fill="var(--good)"/><rect x="266.4" y="40.5" width="13.6" height="3.5" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/08</span></div></div>
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">New TBS garment-builder flow: 4 in 5 viewers never reach Generate</div>
-            <div class="reco-why">Watch recordings of the new TBS step and shorten it — collapse category→garment→sample into fewer required choices and make the Generate CTA persistent and visible from the first screen. This flow launched June 4 and now sits directly before the aha moment.</div>
-            <div class="reco-evidence">Since it went live (first_seen 2026-06-04), 173 people viewed the TBS page, 78 selected a category, 64 added a garment, 44 picked a sample, and only 37 clicked Generate — a 79% drop from view to generate-click in a 3-day window with solid volume. Signup abandonment also spiked the same days it launched (34 on Jun 4, the window high). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
-            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Signup abandons, per day (spiked at TBS launch Jun 4)</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="13.6" height="17.6" rx="1.5" fill="var(--good)"/><rect x="16.6" y="13.4" width="13.6" height="30.6" rx="1.5" fill="var(--good)"/><rect x="33.3" y="27.5" width="13.6" height="16.5" rx="1.5" fill="var(--good)"/><rect x="49.9" y="40.5" width="13.6" height="3.5" rx="1.5" fill="var(--good)"/><rect x="66.6" y="36.9" width="13.6" height="7.1" rx="1.5" fill="var(--good)"/><rect x="83.2" y="33.4" width="13.6" height="10.6" rx="1.5" fill="var(--good)"/><rect x="99.9" y="11.1" width="13.6" height="32.9" rx="1.5" fill="var(--good)"/><rect x="116.5" y="25.2" width="13.6" height="18.8" rx="1.5" fill="var(--good)"/><rect x="133.2" y="24.0" width="13.6" height="20.0" rx="1.5" fill="var(--good)"/><rect x="149.8" y="42.8" width="13.6" height="1.2" rx="1.5" fill="var(--good)"/><rect x="166.5" y="42.8" width="13.6" height="1.2" rx="1.5" fill="var(--good)"/><rect x="183.1" y="19.3" width="13.6" height="24.7" rx="1.5" fill="var(--good)"/><rect x="199.8" y="4.0" width="13.6" height="40.0" rx="1.5" fill="var(--good)"/><rect x="216.4" y="24.0" width="13.6" height="20.0" rx="1.5" fill="var(--good)"/><rect x="233.1" y="38.1" width="13.6" height="5.9" rx="1.5" fill="var(--good)"/><rect x="249.7" y="29.9" width="13.6" height="14.1" rx="1.5" fill="var(--good)"/><rect x="266.4" y="40.5" width="13.6" height="3.5" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/08</span></div></div>
+            <div class="reco-action">New try-before-signup flow loses ~80% between viewing it and clicking Generate</div>
+            <div class="reco-why">The tbs_* flow (live since Jun 4) pulls cold visitors into the product before the signup wall, but most drop at the very first choice. Make category selection lighter — pre-select a popular default or show sample garments inline so people reach Generate in one click instead of building a selection. Watch replays of viewers who never select a category.</div>
+            <div class="reco-evidence">Since Jun 4: 213 viewed the tbs page, 92 selected a category (43%), 76 added a garment, 70 picked a sample, only 42 clicked generate (20% of viewers). Biggest single drop is page-view → category-select (213 → 92). Volume is solid (n>40) despite the flow being new. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            
           </div>
         </div>
-        <div class="reco medium">
-          <div class="reco-id">UX · medium<span class="sub">Tried the product</span></div>
+        <div class="reco high">
+          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Rage-clicks on /studio keep climbing</div>
-            <div class="reco-why">Open the /studio recordings and find the control that looks clickable but doesn’t respond (or is too slow). It sits right before “generate model,” so each frustrated exit is a lost activation. The trend is worsening, not flat.</div>
-            <div class="reco-evidence">25 people rage-clicked 57 times on /studio (~26% of the 96 who entered the studio). Daily rage-clicks are rising again: 6 on Jun 5, 7 on Jun 6, 8 on Jun 7 — the highest run since launch week. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Rage-clicks on /studio are still happening every day</div>
+            <div class="reco-why">This sits right before the 'generate model' aha moment, so every frustrated exit is a lost activation. Open the /studio replays and find the control that looks clickable but doesn't respond (or is too slow). It has not self-resolved — it recurs daily.</div>
+            <div class="reco-evidence">28 people rage-clicked /studio 60 times (~26% of the 109 who entered the studio), and it's persistent: 7 on Jun 6, 8 on Jun 7, 3 on Jun 8 — not a launch-week artifact. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 19.2,41.0 36.5,41.0 53.8,27.4 71.0,38.3 88.2,32.9 105.5,27.4 122.8,38.3 140.0,22.0 157.2,41.0 174.5,41.0 191.8,19.3 209.0,30.1 226.2,24.7 243.5,22.0 260.8,19.3 278.0,32.9 2,43" fill="var(--ink-soft)" fill-opacity="0.10"/><polyline points="2.0,3.0 19.2,41.0 36.5,41.0 53.8,27.4 71.0,38.3 88.2,32.9 105.5,27.4 122.8,38.3 140.0,22.0 157.2,41.0 174.5,41.0 191.8,19.3 209.0,30.1 226.2,24.7 243.5,22.0 260.8,19.3 278.0,32.9" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/08</span></div></div>
           </div>
         </div>
-        <div class="reco medium">
-          <div class="reco-id">UX · medium<span class="sub">Tried the product</span></div>
+        <div class="reco low">
+          <div class="reco-id">UX · low<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">The product-URL importer still fails more than it works</div>
-            <div class="reco-why">Harden scraping for the domains people actually paste, and surface the photo-upload / manual fallback immediately on the first failure instead of after a retry. Lower-volume than the signup leak but a hard wall when hit.</div>
-            <div class="reco-evidence">13 of 17 people who submitted a product URL hit a scrape failure (only 6 succeeded) — a 76% failure rate over the window.</div>
+            <div class="reco-action">Product-URL import failures have self-resolved — deprioritise</div>
+            <div class="reco-why">No action needed beyond keeping the manual/photo fallback visible. The earlier 'importer fails more than it works' read was skewed by the launch-day spike; recent scraping is healthy. Monitor, but it's no longer high-leverage.</div>
+            <div class="reco-evidence">The 13-of-18 lifetime failure rate is dominated by 24 failures on May 20 (launch). Recent days are near-zero: 3 on Jun 6, 1 on Jun 7, 0 on Jun 8, with successes ticking back up. The wall has effectively cleared itself.</div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="13.6" height="40.0" rx="1.5" fill="var(--ink-soft)"/><rect x="16.6" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="33.3" y="42.3" width="13.6" height="1.7" rx="1.5" fill="var(--ink-soft)"/><rect x="49.9" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="66.6" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="83.2" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="99.9" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="116.5" y="40.7" width="13.6" height="3.3" rx="1.5" fill="var(--ink-soft)"/><rect x="133.2" y="35.7" width="13.6" height="8.3" rx="1.5" fill="var(--ink-soft)"/><rect x="149.8" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="166.5" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="183.1" y="39.0" width="13.6" height="5.0" rx="1.5" fill="var(--ink-soft)"/><rect x="199.8" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="216.4" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="233.1" y="39.0" width="13.6" height="5.0" rx="1.5" fill="var(--ink-soft)"/><rect x="249.7" y="42.3" width="13.6" height="1.7" rx="1.5" fill="var(--ink-soft)"/><rect x="266.4" y="44.0" width="13.6" height="0.0" rx="1.5" fill="var(--ink-soft)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/08</span></div></div>
           </div>
         </div></div>
@@ -981,19 +981,19 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <svg class="donut-svg" width="180" height="180" viewBox="0 0 180 180">
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--line-soft)" stroke-width="22"/>
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--ink)" stroke-width="22"
-            stroke-dasharray="155.80 439.82"
+            stroke-dasharray="155.81 439.82"
             stroke-dashoffset="0" transform="rotate(-90 90 90)"/>
     <circle cx="90" cy="90" r="70" fill="none" stroke="var(--gold)" stroke-width="22"
-            stroke-dasharray="284.03 439.82"
-            stroke-dashoffset="-155.80" transform="rotate(-90 90 90)"/>
-    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$473.03</text>
+            stroke-dasharray="284.01 439.82"
+            stroke-dashoffset="-155.81" transform="rotate(-90 90 90)"/>
+    <text x="90" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="500" fill="var(--ink)">$473.05</text>
     <text x="90" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="0.1em" fill="var(--ink-soft)">TOTAL SPEND</text>
   </svg>
   <div class="donut-legend">
     <div class="donut-leg-item">
       <span class="swatch" style="background:var(--ink);"></span>
       <span class="leg-name">Meta</span>
-      <span class="leg-num">$167.56</span>
+      <span class="leg-num">$167.58</span>
       <span class="leg-pct">35%</span>
     </div>
     <div style="padding-left:26px;font-size:11px;color:var(--ink-soft);margin-top:-8px;letter-spacing:0.02em;">
@@ -1123,7 +1123,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Impressions</div>
-    <div class="chan-kpi-value">7,340</div>
+    <div class="chan-kpi-value">7,341</div>
   </div>
   <div class="chan-kpi-cell">
     <div class="chan-kpi-label">Link clicks</div>
@@ -2663,7 +2663,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
     <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260608-1907Z.</div>
     <table>
       <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
-      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$10</td><td>$73.27</td><td>3,545</td><td>4.17%</td><td>$0.50</td><td>16</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$15</td><td>$94.27</td><td>3,791</td><td>2.37%</td><td>$1.05</td><td>4</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$5</td><td>$0.02</td><td>4</td><td>0.00%</td><td>$0.00</td><td>0</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr></tbody>
+      <tbody><tr><td>Contemporary women's fashion & swim -- US/UK/EU</td><td>$10</td><td>$73.29</td><td>3,546</td><td>4.17%</td><td>$0.50</td><td>16</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr><tr><td>Kids & babywear fashion -- US/UK/EU</td><td>$15</td><td>$94.27</td><td>3,791</td><td>2.37%</td><td>$1.05</td><td>4</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr><tr><td>Streetwear & menswear -- US/UK/EU</td><td>$5</td><td>$0.02</td><td>4</td><td>0.00%</td><td>$0.00</td><td>0</td><td><span class="tip-host"><span class="tag warming" title="Below statistical floor (<100 clicks). Wait for more data before judging this ad set.">WARMING</span><span class="tip-body">Below statistical floor (<100 clicks). Wait for more data before judging this ad set.</span></span></td></tr></tbody>
     </table>
   </div>
   <div class="panel">
@@ -2680,9 +2680,9 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-06-08 19:07 UTC</span>
+    <span class="meta">opinion · 2026-06-08 19:09 UTC</span>
   </div>
-  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (20) tracking real (96). PR #21 in production.</li><li><strong>Blended CPL $4.93</strong> on $473.03 total spend (Meta + LinkedIn).</li></ul></div>
+  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (20) tracking real (96). PR #21 in production.</li><li><strong>Blended CPL $4.93</strong> on $473.05 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
     <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260608-1907Z</span></div>
     <div class="panel-sub">Runs every 12h · source of truth at <code>autopilot/state/last-cycle.json</code></div>
