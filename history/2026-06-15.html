@@ -538,7 +538,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-06-15 19:07 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-15 19:10 UTC</span>
   </div>
 </div>
 
@@ -636,7 +636,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-06-15 19:07 UTC</span>
+    <span class="meta">prioritized · 2026-06-15 19:10 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">5 items, prioritized</span></h2>
@@ -925,13 +925,13 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Sixth straight stable cycle (ads idle, $0 spend 24h): try-before-signup still sheds ~60% at category selection (436→174 people) and stays the top lever; signup-modal completion holds at 40% with the magic-link leak plugged for an 11th day.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 12h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Seventh straight stable cycle (ads idle, $0 spend 24h): try-before-signup still sheds ~61% at category selection (448→175 people) and remains the top lever; signup-modal completion holds at 40% with the magic-link leak plugged for a 12th day.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · -1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Try-before-signup loses ~60% at step one, before the garment picker</div>
+            <div class="reco-action">Try-before-signup loses ~61% at step one, before the garment picker</div>
             <div class="reco-why">Compress step one: auto-select or pre-expand the most popular category so visitors land directly on the garment picker instead of a cold category menu. This is the single largest absolute drop in the funnel and it gates everything downstream (category → garment → generate → signup wall). Watch replays of viewers who never pick a category.</div>
-            <div class="reco-evidence">TBS funnel (events first_seen Jun 4, so within-flow ratios are trustworthy): 436 people viewed the page → only 174 selected a category (40%, the biggest single drop, ~262 people lost) → 148 added a garment → 83 clicked generate → 82 hit the signup wall. The ~40% category pass-through has held across six cycles — a persistent structural leak, not noise. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">TBS funnel (events first_seen Jun 4, so within-flow ratios are trustworthy): 448 people viewed the page → only 175 selected a category (39%, the biggest single drop, ~273 people lost) → 150 added a garment → 83 clicked generate → 82 hit the signup wall. The ~40% category pass-through has held across seven cycles — a persistent structural leak, not noise. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             
           </div>
         </div>
@@ -940,7 +940,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">Fewer than half who reach /studio generate a model — rage-clicks are the mechanism</div>
             <div class="reco-why">This is the activation cliff at the aha moment. Open the /studio replays and find the control that looks clickable but is dead or too slow — the rage-clicks cluster right before 'generate model'. Pair the fix with a one-tap default (pre-filled prompt or auto-run on first entry) so the first generation happens without a decision.</div>
-            <div class="reco-evidence">144 people entered /studio but only 66 generated a model (46%) and 51 completed a try-on (35%). /studio is by far the most rage-clicked surface: 33 people rage-clicked 70 times (~23% of entrants), recurring daily (Jun 7: 8, Jun 11: 7, Jun 14: 7) — not a launch-week artifact. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">144 people entered /studio but only 66 generated a model (46%) and 51 completed a try-on (35%). /studio is by far the most rage-clicked surface: 33 people rage-clicked 71 times (~23% of entrants), recurring daily (Jun 7: 8, Jun 11: 7, Jun 14: 7) — not a launch-week artifact. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 14.0,41.0 26.0,41.0 38.0,27.4 50.0,38.3 62.0,32.9 74.0,27.4 86.0,38.3 98.0,22.0 110.0,41.0 122.0,41.0 134.0,19.3 146.0,30.1 158.0,24.7 170.0,22.0 182.0,19.3 194.0,30.1 206.0,38.3 218.0,30.1 230.0,22.0 242.0,41.0 254.0,38.3 266.0,22.0 278.0,38.3 2,43" fill="var(--good)" fill-opacity="0.10"/><polyline points="2.0,3.0 14.0,41.0 26.0,41.0 38.0,27.4 50.0,38.3 62.0,32.9 74.0,27.4 86.0,38.3 98.0,22.0 110.0,41.0 122.0,41.0 134.0,19.3 146.0,30.1 158.0,24.7 170.0,22.0 182.0,19.3 194.0,30.1 206.0,38.3 218.0,30.1 230.0,22.0 242.0,41.0 254.0,38.3 266.0,22.0 278.0,38.3" fill="none" stroke="var(--good)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/15</span></div></div>
           </div>
         </div>
@@ -949,7 +949,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">Signup-modal leak stays healed; remaining drop is the OAuth/desktop step, not email</div>
             <div class="reco-why">Hold the course — the magic-link inbox round-trip is gone and stayed gone, so don't re-litigate the email path. The residual ~60% drop now lives in the Google/OAuth step and on desktop. Pull a few desktop replays of abandoned modals and trim the heavy close-button exits with a tighter in-modal value prop.</div>
-            <div class="reco-evidence">Modal completion is 40% (132 of 331). magic_link_requested has been 0 for 11 straight days (Jun 5-15 inclusive), down from 8-14/day at launch, yet signup_abandoned held elevated over the same window (13 on Jun 11, 11 on Jun 14) — proving the leak is no longer the inbox detour but the in-modal step. Desktop lags at 37% (34 of 93) vs mobile 40% (95 of 235). The '×' close button drew 132 clicks. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">Modal completion is 40% (132 of 332). magic_link_requested has been 0 for 12 straight days (Jun 5-15 inclusive), down from 8-14/day at launch, yet signup_abandoned held elevated over the same window (13 on Jun 11, 11 on Jun 14) — proving the leak is no longer the inbox detour but the in-modal step. Desktop lags at 37% (34 of 93) vs mobile 40% (95 of 236). The '×' close button drew 132 clicks. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Signups completed, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▼&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,29.3 14.0,29.3 26.0,23.5 38.0,41.0 50.0,38.1 62.0,32.2 74.0,14.7 86.0,8.8 98.0,14.7 110.0,38.1 122.0,32.2 134.0,17.6 146.0,20.5 158.0,23.5 170.0,20.5 182.0,14.7 194.0,3.0 206.0,26.4 218.0,20.5 230.0,17.6 242.0,26.4 254.0,32.2 266.0,26.4 278.0,41.0 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,29.3 14.0,29.3 26.0,23.5 38.0,41.0 50.0,38.1 62.0,32.2 74.0,14.7 86.0,8.8 98.0,14.7 110.0,38.1 122.0,32.2 134.0,17.6 146.0,20.5 158.0,23.5 170.0,20.5 182.0,14.7 194.0,3.0 206.0,26.4 218.0,20.5 230.0,17.6 242.0,26.4 254.0,32.2 266.0,26.4 278.0,41.0" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/15</span></div></div>
           </div>
         </div>
@@ -958,7 +958,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">URL-import failures are historical — keep deprioritised</div>
             <div class="reco-why">Keep the photo/manual-upload fallback on the roadmap but de-prioritised; failures are dominated by the launch-day spike, not live users. Revisit only if daily failures start climbing.</div>
-            <div class="reco-evidence">The lifetime failure count is dominated by the May-20 launch spike (24 failures that day). Recent days are quiet (0 on Jun 12-14, 4 on Jun 11) — too thin to be the current bottleneck vs the 436→174 TBS drop. product_imported has reached 48 people.</div>
+            <div class="reco-evidence">The lifetime failure count is dominated by the May-20 launch spike (24 failures that day). Recent days are quiet (0 on Jun 12-15, 4 on Jun 11) — too thin to be the current bottleneck vs the 448→175 TBS drop. product_imported has reached 48 people.</div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="8.8" height="40.0" rx="1.5" fill="var(--good)"/><rect x="11.8" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="23.6" y="42.3" width="8.8" height="1.7" rx="1.5" fill="var(--good)"/><rect x="35.4" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="47.2" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="59.0" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="70.8" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="82.5" y="40.7" width="8.8" height="3.3" rx="1.5" fill="var(--good)"/><rect x="94.3" y="35.7" width="8.8" height="8.3" rx="1.5" fill="var(--good)"/><rect x="106.1" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="117.9" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="129.7" y="39.0" width="8.8" height="5.0" rx="1.5" fill="var(--good)"/><rect x="141.5" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="153.3" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="165.1" y="39.0" width="8.8" height="5.0" rx="1.5" fill="var(--good)"/><rect x="176.9" y="42.3" width="8.8" height="1.7" rx="1.5" fill="var(--good)"/><rect x="188.7" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="200.5" y="42.3" width="8.8" height="1.7" rx="1.5" fill="var(--good)"/><rect x="212.2" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="224.0" y="37.3" width="8.8" height="6.7" rx="1.5" fill="var(--good)"/><rect x="235.8" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="247.6" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="259.4" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/><rect x="271.2" y="44.0" width="8.8" height="0.0" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/15</span></div></div>
           </div>
         </div></div>
@@ -2688,7 +2688,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-06-15 19:07 UTC</span>
+    <span class="meta">opinion · 2026-06-15 19:10 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (29) tracking real (134). PR #21 in production.</li><li><strong>Blended CPL $4.08</strong> on $546.99 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
