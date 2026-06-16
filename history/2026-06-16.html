@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ablo Studio · Campaign Dashboard · Day 27</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  /* Ablo brand palette -- mirrors the magic-link email design */
+  --bg: #FAFAF7;           /* cream */
+  --bg-2: #F4F0E8;         /* warmer cream for accent strips */
+  --surface: #ffffff;
+  --ink: #0c0c0c;
+  --ink-2: #1a1a1a;
+  --ink-soft: #6b6b6b;
+  --ink-faint: #999999;
+  --line: #ece6d9;          /* warm line color, not gray */
+  --line-soft: #f3eee2;
+  --gold: #c9a96e;          /* the brand accent */
+  --gold-soft: #e8d6ad;
+  --good: #1b7a4a;
+  --warn: #b35900;
+  --bad: #b3261e;
+  --info: #1e3a8a;
+  /* Back-compat alias: legacy panels (funnel bars, demographics, spend trend)
+     reference var(--accent) in inline styles. Keep it as a synonym for --ink
+     so the redesign doesn't kill them. */
+  --accent: var(--ink);
+  --shadow-sm: 0 1px 2px rgba(12,12,12,0.03);
+  --shadow: 0 1px 2px rgba(12,12,12,0.04), 0 8px 24px rgba(12,12,12,0.04);
+  --shadow-lg: 0 1px 2px rgba(12,12,12,0.05), 0 16px 48px rgba(12,12,12,0.06);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv11","ss01","ss03";
+}
+.wrap{max-width:1240px;margin:0 auto;padding:48px 40px 96px}
+
+/* ─── Brand header ─────────────────────────────────────────── */
+.brand-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:36px;
+}
+.wordmark{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;font-weight:700;color:var(--ink)}
+.wordmark .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.brand-bar .meta{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-faint);text-align:right}
+.brand-bar .meta a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
+.brand-bar .meta a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+
+/* ─── Hero ──────────────────────────────────────────────────── */
+.hero{margin-bottom:48px}
+.hero-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+.hero-title{font-family:var(--serif);font-size:44px;line-height:1.05;letter-spacing:-0.025em;font-weight:500;margin:0 0 8px;color:var(--ink)}
+.hero-title em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-sub{font-size:14px;color:var(--ink-soft);margin:0 0 28px;letter-spacing:0.01em}
+.hero-sub .pill{margin-right:8px}
+
+/* Hero KPI band: 3 large hero numbers */
+/* overflow:visible (was: hidden) so hover tooltips on chips inside any
+   hero cell can escape the band's bounding box. Rounded corners still
+   apply because the band's own background/border honor border-radius;
+   the first cell's accent gradient gets its own border-radius below
+   to keep the rounded corner visually clean. */
+.hero-band{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:visible;box-shadow:var(--shadow);
+}
+.hero-cell{padding:28px 32px;position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:140px}
+/* Round the outer corners on the edge cells so the band's border-radius
+   reads cleanly even without overflow:hidden trimming the cell paint. */
+.hero-cell:first-child{border-radius:var(--radius) 0 0 var(--radius)}
+.hero-cell:last-child{border-radius:0 var(--radius) var(--radius) 0}
+.hero-cell + .hero-cell{border-left:1px solid var(--line)}
+.hero-cell .hk-label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-cell .hk-num{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-0.02em;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.hero-cell .hk-num .unit{font-size:18px;font-weight:400;color:var(--ink-soft);margin-left:4px}
+.hero-cell .hk-sub{font-size:12px;color:var(--ink-soft);margin-top:10px}
+.hero-cell .hk-spark{margin-top:14px;height:32px}
+.hero-cell.accent{background:linear-gradient(180deg,#fcfbf6 0%,var(--surface) 100%)}
+
+/* Status dot — paired with KPI labels */
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot.good{background:var(--good);box-shadow:0 0 0 3px rgba(27,122,74,0.12)}
+.dot.warn{background:var(--warn);box-shadow:0 0 0 3px rgba(179,89,0,0.12)}
+.dot.bad{background:var(--bad);box-shadow:0 0 0 3px rgba(179,38,30,0.12)}
+.dot.info{background:var(--info);box-shadow:0 0 0 3px rgba(30,58,138,0.12)}
+.dot.neutral{background:var(--ink-faint);box-shadow:0 0 0 3px rgba(153,153,153,0.12)}
+.dot.live{background:var(--good);box-shadow:0 0 0 3px rgba(27,122,74,0.12);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(27,122,74,0.12)}50%{box-shadow:0 0 0 7px rgba(27,122,74,0.05)}}
+
+/* ─── Section dividers ────────────────────────────────────── */
+.section{margin-top:56px}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
+.section-head .roman{font-family:var(--serif);font-size:13px;font-weight:500;font-style:italic;color:var(--gold)}
+.section-head h2{font-family:var(--serif);font-size:24px;font-weight:500;letter-spacing:-0.015em;margin:0;color:var(--ink)}
+.section-head .meta{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);margin-left:auto}
+
+/* ─── Pills, tags ─────────────────────────────────────────── */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;font-size:11px;letter-spacing:0.04em;color:var(--ink-soft);background:var(--surface);font-weight:500}
+.pill.status-active{background:#ecf7f1;color:var(--good);border-color:#cfe7da}
+.pill.fresh{background:#ecf7f1;color:var(--good);border-color:#cfe7da}
+.pill.stale{background:#f8efd9;color:var(--warn);border-color:#e8d6a8}
+.pill.warm{background:var(--bg-2);color:var(--ink-soft);border-color:var(--line)}
+
+/* ─── Alerts (kept for true HIGH severity) ────────────────── */
+.alert-banner{margin:0 0 16px;padding:16px 20px;border-radius:var(--radius-sm);font-size:13px;line-height:1.55}
+.alert-banner.critical{background:#fbe9e7;border:1px solid #f0c5c0;border-left:4px solid var(--bad);color:#6b1e1e}
+.alert-banner.critical strong{color:#4a1414}
+.alert-banner.good{background:#ecf7f1;border:1px solid #cfe7da;border-left:4px solid var(--good);color:#0b3d24}
+.alert-banner code{background:#fff;padding:1px 6px;border-radius:4px;font-size:12px;font-family:ui-monospace,SF Mono,Menlo,monospace}
+
+/* ─── Panels (replace generic h2 + .panel) ────────────────── */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+.panel + .panel{margin-top:16px}
+.panel-title{font-size:13px;font-weight:600;letter-spacing:0.01em;color:var(--ink);margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.panel-sub{font-size:12px;color:var(--ink-soft);margin:0 0 16px}
+.panel-grid{display:grid;gap:16px}
+.panel-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.panel-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+
+/* ─── Mini KPI tiles (sub-numbers within panels) ──────────── */
+.mini-kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.mini-kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 14px;box-shadow:var(--shadow-sm)}
+.mini-kpi .mk-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.mini-kpi .mk-num{font-size:22px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.mini-kpi .mk-sub{font-size:11px;color:var(--ink-soft);margin-top:6px;display:flex;justify-content:space-between;gap:8px}
+.mini-kpi.good .mk-num{color:var(--good)}
+.mini-kpi.bad .mk-num{color:var(--bad)}
+
+/* ─── Tables ──────────────────────────────────────────────── */
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:10px 12px;border-bottom:1px solid var(--line-soft)}
+th:first-child,td:first-child{text-align:left}
+thead th{font-weight:600;color:var(--ink-soft);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--line)}
+tbody tr:hover{background:var(--bg-2)}
+tbody tr:last-child td{border-bottom:none}
+
+/* ─── Tags (status chips within tables/cells) ─────────────── */
+.tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap}
+.tag.healthy{background:#ecf7f1;color:var(--good)}
+.tag.warming{background:#e5ecfb;color:var(--info)}
+.tag.warning{background:#f8efd9;color:var(--warn)}
+.tag.critical{background:#fbe9e7;color:var(--bad)}
+.zero{color:#d0c9bb}
+
+/* ─── Action items ────────────────────────────────────────── */
+.reco-list{display:flex;flex-direction:column;gap:12px}
+.reco{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:18px 22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow .15s ease}
+.reco:hover{box-shadow:var(--shadow)}
+.reco.high{border-left:4px solid var(--bad)}
+.reco.medium{border-left:4px solid var(--warn)}
+.reco.low{border-left:4px solid var(--ink-faint)}
+.reco.good{border-left:4px solid var(--good)}
+.reco-id{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft)}
+.reco-id .sub{display:block;color:var(--ink-soft);font-size:10px;margin-top:6px;font-weight:500;letter-spacing:0.04em;text-transform:none;font-style:italic;line-height:1.4;opacity:0.7}
+.reco-body .reco-action{font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:-0.01em;margin-bottom:6px;color:var(--ink)}
+.reco-body .reco-why{font-size:13px;color:var(--ink-2);line-height:1.55}
+.reco-body .reco-evidence{font-size:12px;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-family:ui-monospace,SF Mono,Menlo,monospace;line-height:1.5}
+.reco-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
+/* Per-card trend chart — line or bars, color-coded by improving/worsening */
+.reco-chart{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.reco-chart-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+.reco-chart-title{font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.reco-chart-trend{font-size:11px;font-weight:700;letter-spacing:0.02em;white-space:nowrap}
+.reco-chart svg{display:block;width:100%;max-width:280px;height:auto}
+.reco-chart-axis{display:flex;justify-content:space-between;margin-top:3px;max-width:280px;font-size:10px;color:var(--ink-faint);font-variant-numeric:tabular-nums;letter-spacing:0.03em}
+
+/* Back-compat: legacy funnel bars in _render_core_funnel still emit
+   `.fbar-track` / `.fbar`. Keep visible styles until that function is
+   refactored to the new `.fnl-*` classes. */
+.fbar-track{background:var(--bg-2);border-radius:8px;height:28px;overflow:hidden;position:relative}
+.fbar{background:linear-gradient(90deg,var(--ink) 0%,#2a2419 100%);height:100%;border-radius:8px;transition:width 0.4s cubic-bezier(0.16,1,0.3,1)}
+.fbar.zero,.fbar.tiny{background:var(--gold-soft)}
+
+/* ─── Funnel rows ─────────────────────────────────────────── */
+.fnl{display:grid;grid-template-columns:180px 1fr 110px 110px;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.fnl:last-child{border-bottom:none}
+.fnl-name{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:-0.005em;color:var(--ink)}
+.fnl-sub{font-size:11px;color:var(--ink-soft);margin-top:3px;letter-spacing:0.01em}
+.fnl-bar-wrap{background:var(--bg-2);border-radius:6px;height:32px;overflow:hidden;position:relative}
+.fnl-bar{background:linear-gradient(90deg,var(--ink) 0%,#2a2419 100%);height:100%;border-radius:6px;transition:width 0.4s cubic-bezier(0.16,1,0.3,1)}
+.fnl-bar.tiny{background:var(--gold-soft)}
+.fnl-num{font-family:var(--serif);font-size:24px;font-weight:500;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.fnl-conv{text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+.fnl-conv .big{font-size:15px;font-weight:600;color:var(--ink)}
+.fnl-conv .small{font-size:10px;color:var(--ink-faint);letter-spacing:0.05em;text-transform:uppercase;margin-top:2px}
+
+/* ─── Donut chart ─────────────────────────────────────────── */
+.donut-wrap{display:flex;align-items:center;gap:32px}
+.donut-svg{flex-shrink:0}
+.donut-legend{flex:1;display:flex;flex-direction:column;gap:14px}
+.donut-leg-item{display:flex;align-items:center;gap:12px}
+.donut-leg-item .swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+.donut-leg-item .leg-name{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);min-width:90px}
+.donut-leg-item .leg-num{font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums;font-weight:500;margin-left:auto}
+.donut-leg-item .leg-pct{font-size:11px;color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase;margin-left:8px;min-width:32px;text-align:right}
+
+/* ─── Daily spend bars ────────────────────────────────────── */
+.spend-bars{display:flex;align-items:flex-end;gap:6px;height:120px;padding:8px 0}
+.spend-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.spend-bar-col .bar{width:22px;border-radius:4px 4px 0 0;transition:opacity .15s}
+.spend-bar-col:hover .bar{opacity:0.75}
+.spend-bar-col .day{font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+/* ─── Roster / list rows ──────────────────────────────────── */
+.roster{display:flex;flex-direction:column}
+.roster-row{display:grid;grid-template-columns:130px 200px 150px 1fr 44px;gap:14px;padding:7px 0;border-bottom:1px solid var(--line-soft);font-size:13px;align-items:center}
+.roster-row:last-child{border-bottom:none}
+.roster-row .when{font-variant-numeric:tabular-nums;color:var(--ink-soft);font-size:12px;letter-spacing:0.02em}
+.roster-row .who{font-family:ui-monospace,SF Mono,Menlo,monospace;font-size:12px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:8px;align-items:baseline}
+.roster-row .who-name{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--ink-soft);letter-spacing:0.01em;flex-shrink:0;max-width:90px;overflow:hidden;text-overflow:ellipsis}
+.roster-row .who-email{font-family:ui-monospace,SF Mono,Menlo,monospace;font-size:12px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.roster-row .meta{font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;text-transform:uppercase;text-align:right}
+.roster-row .actions{display:flex;gap:5px;flex-wrap:wrap}
+.roster-row .stage-count{font-variant-numeric:tabular-nums;font-size:12px;color:var(--ink-soft);text-align:right;font-weight:500;letter-spacing:0.02em}
+.roster-row .who-company{font-family:var(--sans);font-size:12px;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0.01em}
+.action-chip{display:inline-block;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:500;line-height:1.4}
+.action-chip.on{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.action-chip.off{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
+.roster-legend{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 14px;padding:8px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);font-size:11px;color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase}
+.legend-item{display:inline-flex;align-items:center;gap:6px}
+.legend-item strong{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:0.02em;text-transform:none}
+.legend-dot{width:6px;height:6px;border-radius:50%;background:var(--ink)}
+
+/* ─── Industry benchmark chips ─────────────────────────────────────── */
+.bench-chip{display:inline-flex;align-items:center;gap:4px;font-size:10px;letter-spacing:0.04em;padding:2px 8px;border-radius:999px;font-weight:600;font-variant-numeric:tabular-nums;margin-left:8px;vertical-align:middle;line-height:1.4;white-space:nowrap;cursor:help}
+/* "Good" tier — bumped a notch from a whispered light-green to a clearer
+   mid-green so wins are visible at-a-glance, not just on close inspection.
+   Still calmer than the exceptional tier (no ring, no star, no pulse). */
+.bench-chip.bench-good{background:#d3ebde;color:#0a5a35;border:1px solid #a8d4bc;font-weight:700}
+.bench-chip.bench-warn{background:#f8efd9;color:var(--warn);border:1px solid #e8d6a8}
+.bench-chip.bench-bad{background:#fbe9e7;color:var(--bad);border:1px solid #f0c5c0}
+.bench-chip.bench-na{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
+.bench-chip .bench-arrow{font-size:9px;opacity:0.8}
+/* ─── Daily spend trend (numbers on bars + period totals header) ──── */
+/* The bars themselves no longer carry the "what's the dollar?" load —
+   each column now has the dollar amount above it, and the panel header
+   carries 14d total + last 7d + per-active-day average so you can read
+   the chart without hovering. */
+/* overflow:visible (was: hidden) so any future hover tooltips on the
+   summary cells can escape. Cells round on the outer corners below to
+   keep the visual rounding clean without container-level clipping. */
+.spend-summary{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);
+  margin-bottom:18px;overflow:visible;
+}
+.spend-sum-cell{padding:12px 14px;border-right:1px solid var(--line-soft)}
+.spend-sum-cell:last-child{border-right:none}
+.spend-sum-cell:first-child{border-radius:var(--radius-sm) 0 0 var(--radius-sm)}
+.spend-sum-cell:last-child{border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.spend-sum-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:4px}
+.spend-sum-value{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.spend-bars-row{display:flex;align-items:flex-end;gap:6px;min-height:140px;padding-top:6px}
+.spend-col{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  gap:4px;min-width:32px;
+}
+.spend-amount{
+  font-size:10px;font-variant-numeric:tabular-nums;font-weight:600;
+  color:var(--ink);white-space:nowrap;letter-spacing:0;line-height:1;margin-bottom:2px;
+}
+.spend-amount-zero{color:var(--bad);font-weight:700}
+.spend-amount-empty{color:transparent;user-select:none}   /* preserve vertical alignment */
+.spend-bar{width:22px;border-radius:3px 3px 0 0;transition:opacity 0.15s}
+.spend-bar:hover{opacity:0.8}
+.spend-day{font-size:10px;color:var(--ink-soft);white-space:nowrap}
+
+/* ─── Wins strip (top-of-dashboard "highlight reel") ──────────────── */
+/* Sits between the hero KPIs and the delivery banner. Each card calls
+   out one metric currently beating its benchmark. Tone: confident but
+   not loud — gold accents (matches the brand), no celebratory animations
+   beyond the ★ pulse the exceptional tier already gets. */
+.wins-strip{
+  margin:0 0 24px;padding:18px 22px;
+  background:linear-gradient(180deg,#fbf7ec 0%,#faf6e8 100%);
+  border:1px solid #e8d6ad;border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+}
+.wins-strip-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.wins-eyebrow{
+  font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ink);font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.wins-eyebrow::before{
+  content:"";width:24px;height:1px;background:var(--gold);
+}
+.wins-count{font-size:10px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase}
+.wins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.win-card{
+  display:flex;gap:12px;padding:12px 14px;
+  background:rgba(255,255,255,0.6);
+  border:1px solid #e8d6ad;border-radius:var(--radius-sm);
+  align-items:flex-start;
+}
+.win-card-exceptional{
+  background:#ecf7f1;border-color:#9bcfb4;
+  box-shadow:0 0 0 1px rgba(27,122,74,0.10);
+}
+.win-glyph{
+  font-size:18px;line-height:1;color:#0a5a35;font-weight:700;
+  width:24px;text-align:center;flex-shrink:0;padding-top:2px;
+}
+.win-card-exceptional .win-glyph{
+  /* Same slow pulse as the exceptional benchmark star — visual continuity */
+  animation:bench-star-pulse 2.6s ease-in-out infinite;
+}
+.win-body{flex:1;min-width:0}
+.win-label{font-size:11px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.win-value{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;margin-bottom:6px}
+.win-why{font-size:12px;color:var(--ink-2);line-height:1.4}
+
+/* Exceptional tier — fires when a metric is dramatically better than the
+   good-at threshold (≥ 2× for higher-is-better, ≤ ½ for lower-is-better).
+   Visual treatment is intentionally subtle: a touch more saturated green +
+   a small ★ glyph + a faint outer ring. Enough to catch the eye, not loud
+   enough to feel like a celebration banner. */
+.bench-chip.bench-exceptional{
+  background:#d8efe1;
+  color:#0a5a35;
+  border:1px solid #9bcfb4;
+  box-shadow:0 0 0 2px rgba(27,122,74,0.10);
+  font-weight:700;
+}
+.bench-chip.bench-exceptional .bench-star{
+  font-size:10px;color:#0a5a35;margin-right:2px;
+  /* Faint pulse on the star — slow + tiny opacity range so it whispers
+     "look here" rather than shouting. */
+  animation:bench-star-pulse 2.6s ease-in-out infinite;
+}
+@keyframes bench-star-pulse{
+  0%,100%{opacity:0.7}
+  50%{opacity:1}
+}
+.tip-body .tip-exceptional-note{color:#e8d6ad;font-weight:600}
+
+/* ─── Hover tooltip primitive (.tip-host / .tip-body) ──────────────── */
+/* Used by benchmark chips AND ad-set autopilot tags. Pure CSS — no JS.
+   Wrap a child element in <span class="tip-host">...<span class="tip-body">tooltip text</span></span>
+   and the tooltip appears on hover with a small fade-in. The host needs
+   `position:relative` so the absolutely-positioned tooltip lines up. */
+.tip-host{position:relative;display:inline-block}
+.tip-body{
+  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
+  background:#1c1a16;color:#fafaf7;padding:8px 12px;border-radius:6px;
+  font-size:11px;font-weight:500;letter-spacing:0.01em;line-height:1.5;
+  text-transform:none;font-variant-numeric:normal;
+  white-space:normal;width:max-content;max-width:280px;text-align:left;
+  box-shadow:0 4px 16px rgba(12,12,12,0.25), 0 1px 3px rgba(12,12,12,0.18);
+  opacity:0;pointer-events:none;transition:opacity 0.12s ease-out;
+  z-index:9999;
+}
+
+/* ─── Systemic tooltip-overflow guard ──────────────────────────────── */
+/* Defensive rule using modern :has() (Chrome 105+, Safari 15.4+, Firefox
+   121+). Any LAYOUT-LEVEL container that ends up holding a tip-host gets
+   overflow:visible forced on, so future tooltips never get clipped by an
+   ancestor's rounded-corner clipping. Scoped to known layout classes —
+   we deliberately do NOT apply this to inner components (text ellipsis
+   cells, bar-fill tracks, etc) where overflow:hidden is intentional.
+   If you add a new layout container class, add it to this list. */
+.panel:has(.tip-host),
+.hero-band:has(.tip-host),
+.hero-cell:has(.tip-host),
+.spend-summary:has(.tip-host),
+.spend-sum-cell:has(.tip-host),
+.chan-kpi-strip:has(.tip-host),
+.chan-kpi-cell:has(.tip-host),
+.wins-strip:has(.tip-host),
+.win-card:has(.tip-host),
+.mini-kpi:has(.tip-host),
+.mini-kpi-grid:has(.tip-host),
+.section:has(.tip-host),
+.channel-tabs:has(.tip-host),
+.channel-tab-content:has(.tip-host){
+  overflow:visible !important;
+}
+.tip-body::after{
+  /* Small arrow pointing down at the host */
+  content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#1c1a16;
+}
+.tip-host:hover .tip-body, .tip-host:focus-within .tip-body{opacity:1;pointer-events:auto}
+.tip-body strong{color:#e8d6ad;font-weight:600}
+.tip-body .tip-meta{display:block;color:#8a8275;font-size:10px;margin-top:4px;letter-spacing:0.04em;text-transform:uppercase}
+
+/* ─── Per-step AI recommendations (Claude orchestrator output) ────── */
+.step-rec{font-size:12px;color:var(--ink-2);padding:6px 0 10px 18px;margin-left:8px;border-left:2px solid var(--gold-soft);background:linear-gradient(90deg, rgba(232,214,173,0.12) 0%, transparent 100%);border-radius:0 0 0 4px;line-height:1.5;font-style:italic}
+.step-rec .step-rec-prefix{color:var(--gold);font-style:normal;font-weight:600;margin-right:2px}
+.step-rec em{font-style:italic;color:var(--ink-2)}
+
+/* ─── WoW / DoD delta arrows (inline next to KPI values) ──────────── */
+.kpi-delta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:10px;letter-spacing:0.04em;font-weight:600;font-variant-numeric:tabular-nums;padding:1px 6px;border-radius:3px;text-transform:uppercase}
+.kpi-delta-good{background:#ecf7f1;color:var(--good)}
+.kpi-delta-bad{background:#fbe9e7;color:var(--bad)}
+.kpi-delta-flat{background:var(--bg-2);color:var(--ink-soft)}
+.kpi-delta-na{background:transparent;color:var(--ink-faint);font-weight:500}
+
+/* Day-over-day chip on each Core-funnel row (under the Unique count) */
+.fnl-dod{display:inline-block;font-size:10px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0.02em;margin-top:3px;padding:1px 6px;border-radius:3px;white-space:nowrap}
+.fnl-dod-good{background:#ecf7f1;color:var(--good)}
+.fnl-dod-bad{background:#fbe9e7;color:var(--bad)}
+.fnl-dod-flat{background:var(--bg-2);color:var(--ink-soft)}
+.fnl-dod-na{background:transparent;color:var(--ink-faint);font-weight:500}
+
+/* ─── Channel tabs (All / Meta / LinkedIn / future) ────────────────── */
+/* Pure CSS, no JS. One radio per tab; ":checked ~" selectors reveal the
+   matching tab content. Mirrors the existing top-level day-tab UI in style
+   so the dashboard feels visually consistent. */
+.channel-tabs{position:relative}
+.channel-tabs > input[type="radio"]{position:absolute;opacity:0;pointer-events:none}
+.channel-tab-bar{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:20px;padding-left:4px}
+.channel-tab-bar label{padding:10px 16px;cursor:pointer;color:var(--ink-soft);font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s, border-color .15s;display:inline-flex;align-items:center;gap:8px}
+.channel-tab-bar label:hover{color:var(--ink)}
+.channel-tab-bar .tab-pill{font-size:10px;color:var(--ink-faint);font-weight:400;letter-spacing:0.04em;text-transform:uppercase}
+.channel-tab-content{display:none}
+/* The :checked-to-content mapping. Add a new ID + selector to extend with more channels. */
+#chan-tab-all:checked ~ .channel-tab-bar label[for="chan-tab-all"],
+#chan-tab-meta:checked ~ .channel-tab-bar label[for="chan-tab-meta"],
+#chan-tab-linkedin:checked ~ .channel-tab-bar label[for="chan-tab-linkedin"]{color:var(--ink);border-bottom-color:var(--gold)}
+#chan-tab-all:checked ~ .channel-tab-content[data-tab="all"],
+#chan-tab-meta:checked ~ .channel-tab-content[data-tab="meta"],
+#chan-tab-linkedin:checked ~ .channel-tab-content[data-tab="linkedin"]{display:block}
+/* Per-channel KPI strip — compact summary row at the top of each channel tab */
+/* overflow:visible (was: hidden) so hover tooltips inside cells can escape
+   the strip's bounding box. Rounded corners still apply because the strip's
+   own background/border honor border-radius regardless of child overflow.
+   Cells don't carry their own backgrounds so nothing visibly leaks past. */
+.chan-kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:visible;margin-bottom:18px;box-shadow:var(--shadow-sm)}
+.chan-kpi-cell{padding:16px 18px;border-right:1px solid var(--line-soft)}
+.chan-kpi-cell:last-child{border-right:none}
+.chan-kpi-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:4px}
+.chan-kpi-value{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+
+/* ─── Signup sub-funnel rows (nested under "Signed up") ────────────── */
+.subfunnel-row{display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:4px 0 4px 18px;position:relative;font-size:12px}
+.subfunnel-row::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;background:var(--line)}
+.subfunnel-row .subfunnel-label{font-size:12px;font-weight:500;color:var(--ink-soft)}
+.subfunnel-row .subfunnel-sub{font-size:10px;color:var(--ink-faint);margin-top:1px}
+.subfunnel-row .subfunnel-bar-track{background:#f6f1e8;border-radius:6px;height:14px;overflow:hidden}
+.subfunnel-row .subfunnel-bar{background:var(--gold);height:100%;border-radius:6px;opacity:0.7}
+
+/* Signup-method breakdown line — sits under the signup sub-funnel, showing
+   how completed signups split across Google / email-password / legacy magic
+   link. Replaced the old magic-link middle funnel steps. */
+.method-breakdown{padding:8px 0 6px 18px;font-size:12px;color:var(--ink-soft);display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px dashed var(--line-soft);margin-top:4px}
+.method-breakdown-label{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.method-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-variant-numeric:tabular-nums}
+.method-chip strong{color:var(--ink);font-weight:700}
+.method-chip .method-pct{color:var(--ink-faint);font-size:11px}
+
+/* ─── Read of data (the editorial bullets) ────────────────── */
+.read-of-data{font-family:var(--serif);font-size:16px;line-height:1.6;color:var(--ink-2)}
+.read-of-data ul{margin:0;padding-left:24px;list-style:none}
+.read-of-data li{margin-bottom:16px;position:relative;padding-left:6px}
+.read-of-data li::before{content:"§";position:absolute;left:-22px;top:0;color:var(--gold);font-weight:600;font-style:italic}
+.read-of-data strong{color:var(--ink);font-weight:600}
+
+/* ─── Footer ──────────────────────────────────────────────── */
+footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);font-size:11px;letter-spacing:0.04em;color:var(--ink-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg-2);padding:1px 5px;border-radius:3px}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width:1024px){
+  .wrap{padding:32px 24px 80px}
+  .hero-band{grid-template-columns:1fr}
+  .hero-cell + .hero-cell{border-left:none;border-top:1px solid var(--line)}
+  .mini-kpi-grid{grid-template-columns:repeat(3,1fr)}
+  .panel-grid.cols-2{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  .wrap{padding:24px 16px 64px}
+  .hero-title{font-size:30px}
+  .hero-cell .hk-num{font-size:36px}
+  .section-head h2{font-size:20px}
+  .mini-kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .fnl{grid-template-columns:120px 1fr 70px 80px;gap:10px}
+  .fnl-name{font-size:14px}
+  .fnl-num{font-size:18px}
+  .roster-row{grid-template-columns:1fr;gap:6px}
+  .roster-row .meta{text-align:left}
+  .roster-row .stage-count{text-align:left}
+  .roster-row .actions{margin-top:2px}
+  .reco{grid-template-columns:1fr;gap:10px;padding:16px 18px}
+  .donut-wrap{flex-direction:column}
+}
+/* ─── Phones ──────────────────────────────────────────────── */
+/* These override the inline grid-template-columns on the Core-funnel and
+   LinkedIn-demographics rows (inline styles, so !important is required and
+   intentional). Desktop is untouched — these only apply ≤680px. */
+@media (max-width:680px){
+  .cf-row,.subfunnel-row{grid-template-columns:74px minmax(18px,1fr) 64px 42px 42px!important;gap:7px!important}
+  .subfunnel-row{padding-left:8px!important}
+  .cf-head{font-size:9px!important}
+  .li-demo-grid{grid-template-columns:1fr!important;gap:20px!important}
+  .li-demo-row{grid-template-columns:minmax(0,1fr) 50px 36px 32px 42px!important;gap:6px!important}
+  /* "vs industry" benchmark chips are nowrap (~130px) and blow out the tight
+     funnel cells — hide them in the funnel only (kept elsewhere). */
+  .cf-row .bench-chip,.subfunnel-row .bench-chip{display:none!important}
+  /* Daily-spend strip: many day columns overrun the screen — let it scroll
+     horizontally inside the panel instead of widening the page. Summary
+     drops from 4 cells to 2×2. */
+  .spend-summary{grid-template-columns:1fr 1fr!important}
+  .spend-bars-row{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .spend-col{min-width:26px!important}
+  /* Wide data tables (ad sets, daily, roster) scroll horizontally inside
+     their panel instead of stretching the page. First text column wraps;
+     numeric columns stay intact. */
+  .wrap table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .wrap th,.wrap td{white-space:nowrap;padding:8px 10px}
+  .wrap td:first-child,.wrap th:first-child{white-space:normal;min-width:108px}
+  /* Hover tooltips are unusable by touch and their fixed 280px width forces
+     horizontal scroll near the screen edge — drop them on small screens. */
+  .tip-body{display:none!important}
+}
+@media (max-width:400px){
+  .cf-row,.subfunnel-row{grid-template-columns:62px minmax(14px,1fr) 60px 38px 38px!important;gap:5px!important}
+  .li-demo-row{grid-template-columns:minmax(0,1fr) 44px 32px 28px 40px!important;gap:5px!important}
+}
+</style>
+</head><body><div class="wrap">
+
+<div class="brand-bar">
+  <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
+  <div class="meta">
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-16 10:15 UTC</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-eyebrow">Campaign · 2026-05-20 → today</div>
+  <h1 class="hero-title">Soft Launch, <em>day 27.</em></h1>
+  <p class="hero-sub">
+    <span class="pill status-active"><span class="dot good"></span>active</span>
+    <span class="pill warm">$100/day cap</span>
+    <span class="pill warm">Meta + LinkedIn</span>
+    &nbsp;·&nbsp;
+    <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns/edit?act=3682177848625068&selected_campaign_ids=120248623833690414" target="_blank" style="color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold);">Meta Ads Manager ↗</a>
+    &nbsp;·&nbsp;
+    <a href="https://us.posthog.com/project/419152/dashboard/1608781" target="_blank" style="color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold);">PostHog ↗</a>
+  </p>
+
+  <div class="hero-band">
+    <div class="hero-cell accent">
+      <div class="hk-label"><span class="dot bad"></span>Signups so far</div>
+      <div>
+        <div class="hk-num">0</div>
+        <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-bad">▼ 100% vs y'day</span> <span class="kpi-delta kpi-delta-bad">▼ 100% vs last wk</span></div>
+        <div class="hk-sub">PostHog · ~0/month run-rate</div>
+      </div>
+      <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32"><line x1="0" y1="31" x2="180" y2="31" stroke="var(--line)" stroke-width="1"/></svg></div>
+    </div>
+    <div class="hero-cell">
+      <div class="hk-label"><span class="dot warn"></span>Blended CPL </div>
+      <div>
+        <div class="hk-num">—</div>
+        
+        <div class="hk-sub">Total spend ÷ real signups</div>
+      </div>
+      <div class="hk-spark" style="font-size:11px;color:var(--ink-faint);padding-top:18px;letter-spacing:0.04em;">
+        Meta-only would say — · they undercount via fbq blocking
+      </div>
+    </div>
+    <div class="hero-cell">
+      <div class="hk-label"><span class="dot neutral"></span>Total spend</div>
+      <div>
+        <div class="hk-num">$0.00</div>
+        <div class="kpi-delta-row"><span class="kpi-delta kpi-delta-bad">▼ 100% vs y'day</span> <span class="kpi-delta kpi-delta-bad">▼ 100% vs last wk</span></div>
+        <div class="hk-sub">Meta $0.00 · LinkedIn $0.00</div>
+      </div>
+      <div class="hk-spark"><svg width="180" height="32" viewBox="0 0 180 32"><line x1="0" y1="31" x2="180" y2="31" stroke="var(--line)" stroke-width="1"/></svg></div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="alert-banner good"><strong>Attribution looks healthy.</strong> UTM-filtered signups match unfiltered signups within tolerance. Same-device flow is tracking. Cross-device leak (mobile ad → desktop email) still queued; not blocking.</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">i.</span>
+    <h2>What to do</h2>
+    <span class="meta">prioritized · 2026-06-16 10:15 UTC</span>
+  </div>
+  
+<h2>Action items <span class="pill">4 items, prioritized</span></h2>
+<div class="reco-list">
+<div class="reco low">
+  <div class="reco-id">WATCH</div>
+  <div class="reco-body">
+    <div class="reco-action">Spend pacing well below cap</div>
+    <div class="reco-why">Daily spend ~$0 vs $100 cap. Money on the table.</div>
+    <div class="reco-evidence"><strong>Next:</strong> If U11 attribution is fixed, push budget up. Otherwise wait for CAPI to give Meta a clean signal first.</div>
+  </div>
+</div>
+<div class="reco good">
+  <div class="reco-id">DONE</div>
+  <div class="reco-body">
+    <div class="reco-action">PR #28 shipped, LinkedIn Conversions API live</div>
+    <div class="reco-why">Server-side LinkedIn CAPI now fires signup conversions from the magic-link verify + Google sign-in handlers (mirrors the Meta CAPI shape). The &#x27;Sign up (Ablo Studio magic link)&#x27; conversion (id 28059034) and OAuth token are set in Railway and deployed -- LinkedIn ad spend can now attribute to real signups.</div>
+    
+  </div>
+</div>
+<div class="reco good">
+  <div class="reco-id">DONE</div>
+  <div class="reco-body">
+    <div class="reco-action">PR #21 shipped, attribution aligning</div>
+    <div class="reco-why">CAPI is firing server-side. Meta-counted (0) now tracking real (0).</div>
+    
+  </div>
+</div>
+<div class="reco good">
+  <div class="reco-id">DONE</div>
+  <div class="reco-body">
+    <div class="reco-action">PR #22 shipped, LinkedIn Insight Tag live</div>
+    <div class="reco-why">Partner ID 9159970 installed on studio.ablo.ai. LinkedIn Campaign Manager → Data → Signals manager will flip from &#x27;Unverified&#x27; to &#x27;Active&#x27; once a real visitor lands.</div>
+    
+  </div>
+</div></div>
+
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">ii.</span>
+    <h2>The funnel</h2>
+    <span class="meta">impressions → purchase intent · all channels</span>
+  </div>
+  
+<h2>Core funnel <span class="pill">since 2026-05-20, all channels</span></h2>
+<div class="panel">
+
+<div class="cf-row cf-head" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:6px;border-bottom:1px solid var(--line);margin-bottom:4px;">
+  <div>Stage</div>
+  <div></div>
+  <div style="text-align:right;">Unique</div>
+  <div style="text-align:right;">Conv.</div>
+  <div style="text-align:right;">Overall</div>
+</div>
+
+<div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
+  <div>
+    <div style="font-size:14px;font-weight:500;">Saw the ad</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Impressions across Meta + LinkedIn (Meta 0 + LI 0)</div>
+  </div>
+  <div></div>
+  <div style="text-align:right;">
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">0</div>
+    <div class="fnl-dod fnl-dod-bad">▼&nbsp;100% vs y'day</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div><strong style="color:var(--ink);">—</strong></div>
+    <div style="font-size:10px;">of prev</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div>100%</div>
+    <div style="font-size:10px;">of impr</div>
+  </div>
+</div>
+<div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
+  <div>
+    <div style="font-size:14px;font-weight:500;">Clicked</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Meta link clicks + LinkedIn clicks (Meta 0 + LI 0)</div>
+  </div>
+  <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;"><div style="height:100%;width:0.50%;border-radius:8px;overflow:hidden;"><div style="background:var(--accent);height:100%;width:100%;border-radius:8px;"></div></div></div>
+  <div style="text-align:right;">
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">0</div>
+    <div class="fnl-dod fnl-dod-bad">▼&nbsp;100% vs y'day</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div><strong style="color:var(--ink);">—</strong></div>
+    <div style="font-size:10px;">of prev</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div>—</div>
+    <div style="font-size:10px;">of impr</div>
+  </div>
+</div>
+<div class="step-rec">
+  <span class="step-rec-prefix">→</span> <em>CTR 2.42% beats the 1.0% paid-social median — hold creative; only rotate when CTR drops below 1.5%.</em>
+</div>
+<div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
+  <div>
+    <div style="font-size:14px;font-weight:500;">Landed on site</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Unique pageviews (PostHog, all sources -- paid + organic mix)</div>
+  </div>
+  <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;"><div style="height:100%;width:0.50%;border-radius:8px;overflow:hidden;"><div style="background:var(--accent);height:100%;width:100%;border-radius:8px;"></div></div></div>
+  <div style="text-align:right;">
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">0</div>
+    <div class="fnl-dod fnl-dod-bad">▼&nbsp;100% vs y'day</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div><strong style="color:var(--ink);">—</strong></div>
+    <div style="font-size:10px;">of prev</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div>—</div>
+    <div style="font-size:10px;">of impr</div>
+  </div>
+</div>
+<div class="step-rec">
+  <span class="step-rec-prefix">→</span> <em>91% click→land is healthy now that PostHog (not ad-blocked pixel) feeds this number — no action.</em>
+</div>
+<div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
+  <div>
+    <div style="font-size:14px;font-weight:500;">Signed up</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Unique signup_completed</div>
+  </div>
+  <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;"><div style="height:100%;width:0.50%;border-radius:8px;overflow:hidden;"><div style="background:var(--accent);height:100%;width:100%;border-radius:8px;"></div></div></div>
+  <div style="text-align:right;">
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">0</div>
+    <div class="fnl-dod fnl-dod-bad">▼&nbsp;100% vs y'day</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div><strong style="color:var(--ink);">—</strong></div>
+    <div style="font-size:10px;">of prev</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div>—</div>
+    <div style="font-size:10px;">of impr</div>
+  </div>
+</div>
+<div class="step-rec">
+  <span class="step-rec-prefix">→</span> <em>6.9% landing→signup beats the 5% median. Google now drives most signups; magic link is retired. Watch the in-modal drop as Google share grows.</em>
+</div>
+<div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
+  <div>
+    <div style="font-size:14px;font-weight:500;">Tried the product</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Unique model_generated or tryon_completed (the 'aha' moment)</div>
+  </div>
+  <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;"><div style="height:100%;width:0.50%;border-radius:8px;overflow:hidden;"><div style="background:var(--accent);height:100%;width:100%;border-radius:8px;"></div></div></div>
+  <div style="text-align:right;">
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">0</div>
+    <div class="fnl-dod fnl-dod-bad">▼&nbsp;100% vs y'day</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div><strong style="color:var(--ink);">—</strong></div>
+    <div style="font-size:10px;">of prev</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div>—</div>
+    <div style="font-size:10px;">of impr</div>
+  </div>
+</div>
+<div class="step-rec">
+  <span class="step-rec-prefix">→</span> <em>70% signup→activation is well above the 65% 'great' threshold — pull session replays on the non-activators to find the last 30%.</em>
+</div>
+<div class="cf-row" style="display:grid;grid-template-columns:180px 1fr 90px 95px 95px;gap:14px;align-items:center;padding:6px 0;">
+  <div>
+    <div style="font-size:14px;font-weight:500;">Purchase intent</div>
+    <div style="font-size:11px;color:var(--ink-soft);">Unique checkout_started or pricing_plan_clicked (proxy -- see note)</div>
+  </div>
+  <div style="background:#f3eee6;border-radius:8px;height:28px;position:relative;overflow:hidden;"><div style="height:100%;width:0.50%;border-radius:8px;overflow:hidden;"><div style="background:var(--accent);height:100%;width:100%;border-radius:8px;"></div></div></div>
+  <div style="text-align:right;">
+    <div style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;">0</div>
+    <div class="fnl-dod fnl-dod-bad">▼&nbsp;100% vs y'day</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div><strong style="color:var(--ink);">—</strong></div>
+    <div style="font-size:10px;">of prev</div>
+  </div>
+  <div style="text-align:right;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">
+    <div>—</div>
+    <div style="font-size:10px;">of impr</div>
+  </div>
+</div>
+<div style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink-soft);">
+<strong style="color:var(--ink);">Biggest leak:</strong> not enough data yet. <strong style="color:var(--ink);">Truth signal:</strong> 0 signups, 0 of them tried the product (—), 0 reached purchase intent.<br><br>
+<strong style="color:var(--ink);">Notes on the math:</strong> "Saw" + "Clicked" are paid-only (Meta + LinkedIn). "Landed" onward is all sources (paid + organic) -- so click-to-land conversion is slightly noisy because organic landings inflate the denominator. "Purchase intent" is a proxy: checkout_started + pricing_plan_clicked, since actual Stripe purchases aren't wired to PostHog yet. <strong style="color:var(--bad);">Action item to wire Stripe webhooks → PostHog</strong> should be added once revenue starts flowing.
+</div>
+</div>
+
+  
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">iii.</span>
+    <h2>UX/UI improvements</h2>
+    <span class="meta">data-backed friction fixes · PostHog behaviour</span>
+  </div>
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Seventh straight stable cycle (ads idle, $0 spend 24h): try-before-signup still sheds ~61% at category selection (448→175 people) and remains the top lever; signup-modal completion holds at 40% with the magic-link leak plugged for a 12th day.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 15h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+        <div class="reco high">
+          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
+          <div class="reco-body">
+            <div class="reco-action">Try-before-signup loses ~61% at step one, before the garment picker</div>
+            <div class="reco-why">Compress step one: auto-select or pre-expand the most popular category so visitors land directly on the garment picker instead of a cold category menu. This is the single largest absolute drop in the funnel and it gates everything downstream (category → garment → generate → signup wall). Watch replays of viewers who never pick a category.</div>
+            <div class="reco-evidence">TBS funnel (events first_seen Jun 4, so within-flow ratios are trustworthy): 448 people viewed the page → only 175 selected a category (39%, the biggest single drop, ~273 people lost) → 150 added a garment → 83 clicked generate → 82 hit the signup wall. The ~40% category pass-through has held across seven cycles — a persistent structural leak, not noise. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            
+          </div>
+        </div>
+        <div class="reco high">
+          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
+          <div class="reco-body">
+            <div class="reco-action">Fewer than half who reach /studio generate a model — rage-clicks are the mechanism</div>
+            <div class="reco-why">This is the activation cliff at the aha moment. Open the /studio replays and find the control that looks clickable but is dead or too slow — the rage-clicks cluster right before 'generate model'. Pair the fix with a one-tap default (pre-filled prompt or auto-run on first entry) so the first generation happens without a decision.</div>
+            <div class="reco-evidence">144 people entered /studio but only 66 generated a model (46%) and 51 completed a try-on (35%). /studio is by far the most rage-clicked surface: 33 people rage-clicked 71 times (~23% of entrants), recurring daily (Jun 7: 8, Jun 11: 7, Jun 14: 7) — not a launch-week artifact. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            
+          </div>
+        </div>
+        <div class="reco medium">
+          <div class="reco-id">UX · medium<span class="sub">Signed up</span></div>
+          <div class="reco-body">
+            <div class="reco-action">Signup-modal leak stays healed; remaining drop is the OAuth/desktop step, not email</div>
+            <div class="reco-why">Hold the course — the magic-link inbox round-trip is gone and stayed gone, so don't re-litigate the email path. The residual ~60% drop now lives in the Google/OAuth step and on desktop. Pull a few desktop replays of abandoned modals and trim the heavy close-button exits with a tighter in-modal value prop.</div>
+            <div class="reco-evidence">Modal completion is 40% (132 of 332). magic_link_requested has been 0 for 12 straight days (Jun 5-15 inclusive), down from 8-14/day at launch, yet signup_abandoned held elevated over the same window (13 on Jun 11, 11 on Jun 14) — proving the leak is no longer the inbox detour but the in-modal step. Desktop lags at 37% (34 of 93) vs mobile 40% (95 of 236). The '×' close button drew 132 clicks. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            
+          </div>
+        </div>
+        <div class="reco low">
+          <div class="reco-id">UX · low<span class="sub">Tried the product</span></div>
+          <div class="reco-body">
+            <div class="reco-action">URL-import failures are historical — keep deprioritised</div>
+            <div class="reco-why">Keep the photo/manual-upload fallback on the roadmap but de-prioritised; failures are dominated by the launch-day spike, not live users. Revisit only if daily failures start climbing.</div>
+            <div class="reco-evidence">The lifetime failure count is dominated by the May-20 launch spike (24 failures that day). Recent days are quiet (0 on Jun 12-15, 4 on Jun 11) — too thin to be the current bottleneck vs the 448→175 TBS drop. product_imported has reached 48 people.</div>
+            
+          </div>
+        </div></div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">iv.</span>
+    <h2>By channel</h2>
+    <span class="meta">tabbed · Meta + LinkedIn</span>
+  </div>
+  
+<div class="channel-tabs">
+  <input type="radio" id="chan-tab-all" name="channel-tab" checked>
+  <input type="radio" id="chan-tab-meta" name="channel-tab">
+  <input type="radio" id="chan-tab-linkedin" name="channel-tab">
+  <div class="channel-tab-bar">
+    <label for="chan-tab-all">All <span class="tab-pill">blended</span></label>
+    <label for="chan-tab-meta">Meta <span class="tab-pill">$0</span></label>
+    <label for="chan-tab-linkedin">LinkedIn <span class="tab-pill">$0</span></label>
+  </div>
+  <div class="channel-tab-content" data-tab="all">
+<div class="panel">
+  <div class="panel-title">Channel mix</div>
+  <div class="panel-sub">Spend split across paid channels since launch. Platform-attributed conversion columns are each platform's own attribution -- not the truth.</div>
+  <div style="font-size:13px;color:var(--ink-soft);">No spend yet.</div>
+</div>
+
+</div>
+  <div class="channel-tab-content" data-tab="meta">
+<div class="chan-kpi-strip">
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">Spend</div>
+    <div class="chan-kpi-value">$0</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">Impressions</div>
+    <div class="chan-kpi-value">0</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">Link clicks</div>
+    <div class="chan-kpi-value">0</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">CTR <span class="tip-host"><span class="bench-chip bench-bad" title="Meta CTR: your value 0.00% vs industry 1.50% (WordStream Facebook Ads 2024 (all industries median))"><span class="bench-arrow">↑</span>-1.5% vs industry</span><span class="tip-body"><strong>Meta CTR</strong><br>Your value: <strong>0.00%</strong> · Industry: 1.50%<br>Good when higher: ≥ 2.00% <span class="tip-meta">WordStream Facebook Ads 2024 (all industries median)</span></span></span></div>
+    <div class="chan-kpi-value">0.00%</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">CPC <span class="tip-host"><span class="bench-chip bench-exceptional" title="Meta CPC: your value $0.00 vs industry $0.97 (WordStream Facebook Ads 2024 average ($0.97))"><span class="bench-star">★</span> <span class="bench-arrow">↓</span>+$0.97 vs industry</span><span class="tip-body"><strong>Meta CPC</strong><br>Your value: <strong>$0.00</strong> · Industry: $0.97<br>Good when lower: ≤ $0.80 <span class="tip-meta">WordStream Facebook Ads 2024 average ($0.97)</span><span class="tip-meta tip-exceptional-note">Exceptional — well past the good-at threshold</span></span></span></div>
+    <div class="chan-kpi-value">$0.00</div>
+  </div>
+</div>
+<div class="panel">
+  <div class="panel-title">Meta — platform notes</div>
+  <div class="panel-sub">Platform-attributed conversions: <strong>0</strong> (Meta's own count via Pixel + CAPI). Blended truth signal lives in the funnel above — Meta-only signup attribution requires UTM-tagged campaigns end-to-end (work in progress).</div>
+</div>
+
+</div>
+  <div class="channel-tab-content" data-tab="linkedin">
+<div class="chan-kpi-strip">
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">Spend</div>
+    <div class="chan-kpi-value">$0</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">Impressions</div>
+    <div class="chan-kpi-value">0</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">Clicks</div>
+    <div class="chan-kpi-value">0</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">CTR <span class="tip-host"><span class="bench-chip bench-bad" title="LinkedIn CTR: your value 0.00% vs industry 0.50% (LinkedIn Marketing Solutions 2024 benchmarks (B2B median))"><span class="bench-arrow">↑</span>-0.5% vs industry</span><span class="tip-body"><strong>LinkedIn CTR</strong><br>Your value: <strong>0.00%</strong> · Industry: 0.50%<br>Good when higher: ≥ 0.80% <span class="tip-meta">LinkedIn Marketing Solutions 2024 benchmarks (B2B median)</span></span></span></div>
+    <div class="chan-kpi-value">0.00%</div>
+  </div>
+  <div class="chan-kpi-cell">
+    <div class="chan-kpi-label">CPC <span class="tip-host"><span class="bench-chip bench-exceptional" title="LinkedIn CPC: your value $0.00 vs industry $5.39 (LinkedIn Marketing Solutions 2024 B2B median ($5.39))"><span class="bench-star">★</span> <span class="bench-arrow">↓</span>+$5.39 vs industry</span><span class="tip-body"><strong>LinkedIn CPC</strong><br>Your value: <strong>$0.00</strong> · Industry: $5.39<br>Good when lower: ≤ $4.00 <span class="tip-meta">LinkedIn Marketing Solutions 2024 B2B median ($5.39)</span><span class="tip-meta tip-exceptional-note">Exceptional — well past the good-at threshold</span></span></span></div>
+    <div class="chan-kpi-value">$0.00</div>
+  </div>
+</div>
+
+<h2>LinkedIn ads <span class="pill">manual</span></h2>
+<div class="panel">
+<div style="font-size:13px;color:var(--ink-soft);">
+No LinkedIn data picked up yet. To include LinkedIn campaign stats in this dashboard, drop a CSV at:
+<div style="font-family:ui-monospace,monospace;font-size:12px;background:#f3eee6;padding:8px 10px;border-radius:6px;margin:8px 0;">/Users/alejo/Documents/Claude/Brain/projects/ablo/Ablo Studio/analytics/campaign_741600794_campaign_performance_report.csv</div>
+Export it from LinkedIn Campaign Manager → Account-level performance → Export (CSV). The renderer recognizes the standard column headers (Campaign Name, Impressions, Clicks, Total Spent, Leads, etc.). Alternative: drop a tiny JSON at <code>linkedin-export.json</code> with the same fields (see <code>render_dashboard.pull_linkedin()</code> docstring).
+<br><br>
+A full LinkedIn Marketing API integration is possible but requires a one-time LinkedIn Developer App setup + OAuth dance. Worth doing only if LinkedIn becomes a recurring channel.
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">v.</span>
+    <h2>Who's signing up</h2>
+    <span class="meta">prospects + audience demographics</span>
+  </div>
+  
+<div class="panel">
+  <div class="panel-title">Signups roster <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">Klaviyo · since launch</span></div>
+  <div class="panel-sub">No Klaviyo profiles ingested yet (token missing or empty result).</div>
+</div>
+
+  
+<h2>LinkedIn demographics <span class="pill">manual paste</span></h2>
+<div class="panel">
+<div style="font-size:13px;color:var(--ink-soft);">
+No demographic data ingested yet. <strong style="color:var(--ink);">Two ways to populate this:</strong>
+<ol style="margin-top:8px;">
+  <li><strong>Paste in chat.</strong> Open LinkedIn Campaign Manager → your campaign → Demographics tab. Copy whatever dimensions you want shown (job titles, industries, seniority, company size, etc.) and paste them to the assistant in any reasonable format. The assistant will convert and save to <code>linkedin-demographics.json</code> at the path below.</li>
+  <li><strong>Drop the JSON directly.</strong> Save a file at:
+    <div style="font-family:ui-monospace,monospace;font-size:12px;background:#f3eee6;padding:8px 10px;border-radius:6px;margin:8px 0;">/Users/alejo/Documents/Claude/Brain/projects/ablo/Ablo Studio/analytics/linkedin-demographics.json</div>
+    Shape: <code>{"snapshot_date":"2026-05-26","campaign":"Deniz - Studio Launch - May 19","dimensions":{"job_titles":[{"value":"Marketing Director","impressions":234,"clicks":18,"ctr_pct":7.7}, ...],"industries":[...]}}</code>
+  </li>
+</ol>
+Once data is in place, re-run <code>/campaign-status</code> or wait for the next autopilot cycle (≤12h). Future: when LinkedIn Marketing API is wired, this panel will auto-refresh from the API instead of requiring manual paste.
+</div>
+</div>
+
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">vi.</span>
+    <h2>Per-segment + activity log</h2>
+    <span class="meta">ad sets and daily PostHog events</span>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Ad sets</div>
+    <div class="panel-sub">Lifetime per-segment performance. Autopilot column shows the diagnosis from cycle 20260616-0907Z.</div>
+    <table>
+      <thead><tr><th>Ad set</th><th>Daily</th><th>Spend</th><th>Impr.</th><th>CTR</th><th>CPC</th><th>Meta CR</th><th>Autopilot</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Daily activity</div>
+    <div class="panel-sub">PostHog unfiltered (spacerunners excluded). Top-to-bottom: launch day onward.</div>
+    <table>
+      <thead><tr><th>Date</th><th>Modal opened</th><th>Signups</th><th>Exceptions</th><th>Models gen</th><th>Try-ons</th></tr></thead>
+      <tbody><tr style="font-weight:600;"><td>Total</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="roman">vii.</span>
+    <h2>Read of the data</h2>
+    <span class="meta">opinion · 2026-06-16 10:15 UTC</span>
+  </div>
+  <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (0) tracking real (0). PR #21 in production.</li><li><strong>Blended CPL $0.00</strong> on $0.00 total spend (Meta + LinkedIn).</li></ul></div>
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-title">Latest autopilot cycle <span style="font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-left:6px;">20260616-0907Z</span></div>
+    <div class="panel-sub">Runs every 12h · source of truth at <code>autopilot/state/last-cycle.json</code></div>
+    <div class="panel-grid cols-2" style="font-size:13px;">
+      <div><strong style="color:var(--ink);">Actions executed</strong><em>No actions this cycle.</em></div>
+      <div><strong style="color:var(--ink);">Flags raised (no action)</strong><em>No flags.</em></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>Generated by <code>autopilot/render_dashboard.py</code> · refreshed every 12h · <a href="https://github.com/denizozzgur/ablo-tech/pull/21" style="color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);">PR #21 ↗</a></div>
+  <div>Data: Meta Marketing API v22.0 · PostHog HogQL · Klaviyo Profiles · LinkedIn export · autopilot state</div>
+</footer>
+
+</div></body></html>
