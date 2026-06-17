@@ -538,7 +538,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-06-17 19:07 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-17 19:11 UTC</span>
   </div>
 </div>
 
@@ -636,7 +636,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-06-17 19:07 UTC</span>
+    <span class="meta">prioritized · 2026-06-17 19:11 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">5 items, prioritized</span></h2>
@@ -925,22 +925,22 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Signup completion is stuck at 40% even though magic-link requests fell to zero after Jun 4 — the inbox round-trip was NOT the leak, so the biggest lever now is diagnosing the in-modal / Google drop on session recordings.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 4h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Signup rate into the funnel is healthy (10.2% of landed, above benchmark); the leak is now INSIDE the signup modal — and since magic-link was removed Jun 5, the old 'demote email' fix is stale, so the biggest lever is diagnosing the Google-OAuth drop on session recordings.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
-          <div class="reco-id">UX · high <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Signed up</span></div>
+          <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">Signup still loses 60% — and removing magic-link didn't fix it</div>
-            <div class="reco-why">Stop assuming the email round-trip is the cause; it's already gone. Pull the session recordings of modal-open-then-abandon and find the real blocker (Google consent bounce-back, a required field, or a slow/blank state after 'Continue with Google'). Fix what the recordings actually show before touching copy again.</div>
-            <div class="reco-evidence">347 opened the modal, 140 completed = 40%, essentially flat vs a week ago (281 opened, 110 signed up = 39%). Crucially, magic_link_requested dropped to 0 every day after 2026-06-04, yet the completion rate didn't move — so the inbox round-trip the baseline blamed is not the leak. Mobile 40% vs desktop 39%, so it's the flow, not the layout. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Signup modal still completes at 40% — and removing magic-link didn't move it</div>
+            <div class="reco-why">Stop treating the email round-trip as the cause; it's already gone and Google is already the primary button. Pull the recordings of modal-open-then-abandon and find the real blocker (Google consent bounce-back, a blank/slow state after 'Continue with Google', or a required field). The '×' close button is being hammered — people are actively dismissing the modal, not getting stuck waiting.</div>
+            <div class="reco-evidence">348 opened the modal, 141 completed = 40.5%, flat vs a week ago (281 opened / 110 = 39%). magic_link_requested fell to 0 every day from Jun 5 onward (was 14/13/10 at launch) yet completion didn't budge — so the inbox round-trip the baseline blamed is NOT the leak. The '×' close target logged 134 clicks (≈ one per completed signup) and 146 'Continue with Google' clicks. Mobile 40% vs desktop 39% — it's the flow, not the layout. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="7.9" height="17.6" rx="1.5" fill="var(--good)"/><rect x="10.9" y="13.4" width="7.9" height="30.6" rx="1.5" fill="var(--good)"/><rect x="21.8" y="27.5" width="7.9" height="16.5" rx="1.5" fill="var(--good)"/><rect x="32.7" y="40.5" width="7.9" height="3.5" rx="1.5" fill="var(--good)"/><rect x="43.5" y="36.9" width="7.9" height="7.1" rx="1.5" fill="var(--good)"/><rect x="54.4" y="33.4" width="7.9" height="10.6" rx="1.5" fill="var(--good)"/><rect x="65.3" y="11.1" width="7.9" height="32.9" rx="1.5" fill="var(--good)"/><rect x="76.2" y="25.2" width="7.9" height="18.8" rx="1.5" fill="var(--good)"/><rect x="87.1" y="24.0" width="7.9" height="20.0" rx="1.5" fill="var(--good)"/><rect x="98.0" y="42.8" width="7.9" height="1.2" rx="1.5" fill="var(--good)"/><rect x="108.8" y="42.8" width="7.9" height="1.2" rx="1.5" fill="var(--good)"/><rect x="119.7" y="19.3" width="7.9" height="24.7" rx="1.5" fill="var(--good)"/><rect x="130.6" y="4.0" width="7.9" height="40.0" rx="1.5" fill="var(--good)"/><rect x="141.5" y="24.0" width="7.9" height="20.0" rx="1.5" fill="var(--good)"/><rect x="152.4" y="38.1" width="7.9" height="5.9" rx="1.5" fill="var(--good)"/><rect x="163.3" y="29.9" width="7.9" height="14.1" rx="1.5" fill="var(--good)"/><rect x="174.2" y="39.3" width="7.9" height="4.7" rx="1.5" fill="var(--good)"/><rect x="185.0" y="33.4" width="7.9" height="10.6" rx="1.5" fill="var(--good)"/><rect x="195.9" y="31.1" width="7.9" height="12.9" rx="1.5" fill="var(--good)"/><rect x="206.8" y="28.7" width="7.9" height="15.3" rx="1.5" fill="var(--good)"/><rect x="217.7" y="34.6" width="7.9" height="9.4" rx="1.5" fill="var(--good)"/><rect x="228.6" y="41.6" width="7.9" height="2.4" rx="1.5" fill="var(--good)"/><rect x="239.5" y="31.1" width="7.9" height="12.9" rx="1.5" fill="var(--good)"/><rect x="250.3" y="42.8" width="7.9" height="1.2" rx="1.5" fill="var(--good)"/><rect x="261.2" y="38.1" width="7.9" height="5.9" rx="1.5" fill="var(--good)"/><rect x="272.1" y="39.3" width="7.9" height="4.7" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/17</span></div></div>
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
-            <div class="reco-action">Rage-clicks on /studio are still happening</div>
-            <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow). This sits right before the 'generate model' aha, so each frustrated exit is a lost activation. It's ongoing, not historical — rage-clicks as recently as Jun 14 (7) and Jun 16 (3).</div>
-            <div class="reco-evidence">35 people rage-clicked /studio 74 times — ~23% of the 152 who entered the studio. The daily series keeps producing spikes (Jun 11: 7, Jun 14: 7) rather than dying off. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Rage-clicks on /studio are still recurring right before the aha moment</div>
+            <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow). This sits immediately before 'generate model', so each frustrated exit is a lost activation. It's ongoing, not a launch artifact — fresh spikes Jun 11 (7) and Jun 14 (7).</div>
+            <div class="reco-evidence">35 people rage-clicked /studio 74 times — ~23% of the 152 who entered the studio. The daily rageclick_studio series keeps producing spikes rather than dying off. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 13.0,41.0 24.1,41.0 35.1,27.4 46.2,38.3 57.2,32.9 68.2,27.4 79.3,38.3 90.3,22.0 101.4,41.0 112.4,41.0 123.4,19.3 134.5,30.1 145.5,24.7 156.6,22.0 167.6,19.3 178.6,30.1 189.7,38.3 200.7,30.1 211.8,22.0 222.8,41.0 233.8,38.3 244.9,22.0 255.9,38.3 267.0,32.9 278.0,38.3 2,43" fill="var(--good)" fill-opacity="0.10"/><polyline points="2.0,3.0 13.0,41.0 24.1,41.0 35.1,27.4 46.2,38.3 57.2,32.9 68.2,27.4 79.3,38.3 90.3,22.0 101.4,41.0 112.4,41.0 123.4,19.3 134.5,30.1 145.5,24.7 156.6,22.0 167.6,19.3 178.6,30.1 189.7,38.3 200.7,30.1 211.8,22.0 222.8,41.0 233.8,38.3 244.9,22.0 255.9,38.3 267.0,32.9 278.0,38.3" fill="none" stroke="var(--good)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/17</span></div></div>
           </div>
         </div>
@@ -948,7 +948,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
           <div class="reco-body">
             <div class="reco-action">Over half who enter the studio never generate a single model</div>
-            <div class="reco-why">Shorten time-to-first-generation: put a one-tap default ('Surprise me' / pre-filled prompt) front-and-center so a first shot appears with zero setup. A small power-group already leans hard on 'Surprise me' (208 clicks from 23 people ≈ 9 each) — promote that path to everyone who lands in the studio instead of leaving it buried.</div>
+            <div class="reco-why">Shorten time-to-first-generation: put a one-tap default (pre-filled prompt or 'Surprise me') front-and-center so a first shot appears with zero setup. A small power-group already leans hard on 'Surprise me' (208 clicks from 23 people ≈ 9 each) — promote that path to everyone who lands in the studio instead of leaving it buried.</div>
             <div class="reco-evidence">152 entered the studio but only 67 generated a model (44%) and 54 completed a try-on. The ~56% who enter and leave without generating is the activation choke right before the aha, and overlaps with the /studio rage-clicks above. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Models generated, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▼&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,41.0 13.0,36.5 24.1,29.8 35.1,7.5 46.2,36.5 57.2,38.8 68.2,3.0 79.3,27.6 90.3,16.4 101.4,41.0 112.4,36.5 123.4,20.9 134.5,34.3 145.5,36.5 156.6,27.6 167.6,34.3 178.6,27.6 189.7,27.6 200.7,29.8 211.8,34.3 222.8,38.8 233.8,41.0 244.9,29.8 255.9,38.8 267.0,41.0 278.0,36.5 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,41.0 13.0,36.5 24.1,29.8 35.1,7.5 46.2,36.5 57.2,38.8 68.2,3.0 79.3,27.6 90.3,16.4 101.4,41.0 112.4,36.5 123.4,20.9 134.5,34.3 145.5,36.5 156.6,27.6 167.6,34.3 178.6,27.6 189.7,27.6 200.7,29.8 211.8,34.3 222.8,38.8 233.8,41.0 244.9,29.8 255.9,38.8 267.0,41.0 278.0,36.5" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/17</span></div></div>
           </div>
@@ -958,7 +958,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">URL-import failures are a launch-day artifact, not current friction</div>
             <div class="reco-why">Down-weight this — the chart shows it already got better. Keep the photo/manual fallback in place, but don't spend the next sprint hardening the scraper; the live failure rate is near zero. Re-escalate only if failures climb again.</div>
-            <div class="reco-evidence">The 16/24 failure headline is dominated by 2026-05-20, which alone logged 24 scrape failures. Every day in the last week is 0 except a single blip of 4 on Jun 11. The importer is no longer the wall the baseline described.</div>
+            <div class="reco-evidence">The 16/24 failure headline is dominated by 2026-05-20, which alone logged 24 scrape failures. The last 7 days are 0 except a single blip of 4 on Jun 11. The importer is no longer the wall the baseline described.</div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">URL-import scrape failures, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="4.0" width="7.9" height="40.0" rx="1.5" fill="var(--ink-soft)"/><rect x="10.9" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="21.8" y="42.3" width="7.9" height="1.7" rx="1.5" fill="var(--ink-soft)"/><rect x="32.7" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="43.5" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="54.4" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="65.3" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="76.2" y="40.7" width="7.9" height="3.3" rx="1.5" fill="var(--ink-soft)"/><rect x="87.1" y="35.7" width="7.9" height="8.3" rx="1.5" fill="var(--ink-soft)"/><rect x="98.0" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="108.8" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="119.7" y="39.0" width="7.9" height="5.0" rx="1.5" fill="var(--ink-soft)"/><rect x="130.6" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="141.5" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="152.4" y="39.0" width="7.9" height="5.0" rx="1.5" fill="var(--ink-soft)"/><rect x="163.3" y="42.3" width="7.9" height="1.7" rx="1.5" fill="var(--ink-soft)"/><rect x="174.2" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="185.0" y="42.3" width="7.9" height="1.7" rx="1.5" fill="var(--ink-soft)"/><rect x="195.9" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="206.8" y="37.3" width="7.9" height="6.7" rx="1.5" fill="var(--ink-soft)"/><rect x="217.7" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="228.6" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="239.5" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="250.3" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="261.2" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/><rect x="272.1" y="44.0" width="7.9" height="0.0" rx="1.5" fill="var(--ink-soft)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/17</span></div></div>
           </div>
         </div></div>
@@ -1320,7 +1320,7 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
      <span style="color:var(--warn);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;margin-left:8px;">PostHog +46 missing</span>
   </div>
   <div class="panel-sub">Real people who completed magic-link verify, with the funnel actions PostHog saw them take. spacerunners.com excluded. Company shown where known (Apollo + manual enrichment).</div>
-  <div class="roster-legend"><span class="legend-item"><span class="legend-dot"></span>Studio <strong>62/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Model <strong>34/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Product <strong>26/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Try-on <strong>25/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Pricing <strong>0/97</strong></span></div>
+  <div class="roster-legend"><span class="legend-item"><span class="legend-dot"></span>Studio <strong>0/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Model <strong>0/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Product <strong>0/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Try-on <strong>0/97</strong></span><span class="legend-item"><span class="legend-dot"></span>Pricing <strong>0/97</strong></span></div>
   <div class="roster">
 <div class="roster-row">
   <div class="when">2026-06-08 03:54</div>
@@ -1340,8 +1340,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-08 01:56</div>
   <div class="who"><span class="who-email">lawsonparks@pacificcoastlc.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-08 00:39</div>
@@ -1354,15 +1354,15 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-08 00:12</div>
   <div class="who"><span class="who-name">Jorge</span><span class="who-email">jasantamari@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-07 22:43</div>
   <div class="who"><span class="who-name">Francisco Javi</span><span class="who-email">colegiodanielaanderica@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-07 20:12</div>
@@ -1375,8 +1375,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-07 19:54</div>
   <div class="who"><span class="who-name">Jayce</span><span class="who-email">jaycecourt4@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-07 15:21</div>
@@ -1431,8 +1431,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-06 18:14</div>
   <div class="who"><span class="who-name">Maryam</span><span class="who-email">maryrezvan1@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-06 18:05</div>
@@ -1445,8 +1445,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-06 16:19</div>
   <div class="who"><span class="who-name">Monica</span><span class="who-email">monicasara638@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-06 15:07</div>
@@ -1459,36 +1459,36 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-06 14:24</div>
   <div class="who"><span class="who-email">shanksd98@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-06 08:11</div>
   <div class="who"><span class="who-name">abishek</span><span class="who-email">abisheksham123@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-06 04:45</div>
   <div class="who"><span class="who-name">Lol</span><span class="who-email">lololol128212@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-05 20:46</div>
   <div class="who"><span class="who-name">Njegos</span><span class="who-email">njsrblxai@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-05 20:05</div>
   <div class="who"><span class="who-name">Doug E. Beatz</span><span class="who-email">dougebeatz@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-05 12:59</div>
@@ -1515,8 +1515,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-05 04:46</div>
   <div class="who"><span class="who-name">Nes</span><span class="who-email">assaidnes@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip on">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-05 02:47</div>
@@ -1543,8 +1543,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-04 14:42</div>
   <div class="who"><span class="who-name">Alessandro</span><span class="who-email">forzainter1908e@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-04 13:52</div>
@@ -1564,15 +1564,15 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-04 07:55</div>
   <div class="who"><span class="who-name">Kais</span><span class="who-email">kaissailor@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-04 06:31</div>
   <div class="who"><span class="who-name">Alejo</span><span class="who-email">escrivalejo@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-04 03:08</div>
@@ -1585,8 +1585,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-04 02:51</div>
   <div class="who"><span class="who-email">mmarimari165@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-03 22:08</div>
@@ -1599,15 +1599,15 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-03 19:41</div>
   <div class="who"><span class="who-email">holly@littlestamford.com</span></div>
   <div class="who-company">The Little Stamford Company (1 emp)</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-03 19:37</div>
   <div class="who"><span class="who-name">Valentin</span><span class="who-email">valentin_0.0@hotmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-03 16:36</div>
@@ -1620,36 +1620,36 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-03 15:01</div>
   <div class="who"><span class="who-email">tampaonyx3@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-03 08:23</div>
   <div class="who"><span class="who-email">woodaj36713@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-03 08:11</div>
   <div class="who"><span class="who-name">Kenneth</span><span class="who-email">landike19647@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-03 03:03</div>
   <div class="who"><span class="who-email">lilysuda18@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-02 23:43</div>
   <div class="who"><span class="who-email">tampaonyx2@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-02 15:35</div>
@@ -1662,8 +1662,8 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-02 15:00</div>
   <div class="who"><span class="who-email">thecassonsuk@me.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-06-02 10:08</div>
@@ -1676,29 +1676,29 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-06-02 07:09</div>
   <div class="who"><span class="who-name">Lotta</span><span class="who-email">lotta.virtanen@npco.fi</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-30 11:58</div>
   <div class="who"><span class="who-name">Alyse</span><span class="who-email">ceo@alyyoclothingco.com</span></div>
   <div class="who-company">ALYYO Clothing Co (2 emp)</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 18:20</div>
   <div class="who"><span class="who-email">tblmf2024@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 16:02</div>
   <div class="who"><span class="who-name">INPS_</span><span class="who-email">inps7799@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 15:26</div>
@@ -1711,50 +1711,50 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-05-29 14:14</div>
   <div class="who"><span class="who-email">info@nakedslang.com</span></div>
   <div class="who-company">Naked Slang</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 09:59</div>
   <div class="who"><span class="who-name">Sébastien C</span><span class="who-email">otograf@gmail.com</span></div>
   <div class="who-company">Freelance fashion photographer</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 08:53</div>
   <div class="who"><span class="who-name">Amber</span><span class="who-email">lessoramber32@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 08:43</div>
   <div class="who"><span class="who-name">neeva</span><span class="who-email">neevadlondon@gmail.com</span></div>
   <div class="who-company">NeevaD London</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 02:20</div>
   <div class="who"><span class="who-email">kyle.remington2008@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-29 00:12</div>
   <div class="who"><span class="who-email">lucydeany0306@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 23:58</div>
   <div class="who"><span class="who-email">j47039414@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 21:07</div>
@@ -1767,50 +1767,50 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-05-28 19:00</div>
   <div class="who"><span class="who-email">rik.dalpont@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 15:07</div>
   <div class="who"><span class="who-name">Stefan</span><span class="who-email">schukahlstefan43@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 15:03</div>
   <div class="who"><span class="who-name">Sara</span><span class="who-email">sarahhadyan@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 14:44</div>
   <div class="who"><span class="who-name">Bih</span><span class="who-email">bihhildazelda@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 12:12</div>
   <div class="who"><span class="who-name">F</span><span class="who-email">fwitt2025@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 10:47</div>
   <div class="who"><span class="who-name">MMS</span><span class="who-email">smmasinde47@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 08:07</div>
   <div class="who"><span class="who-name">molod</span><span class="who-email">moloud.iii2000@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-28 07:46</div>
@@ -1830,29 +1830,29 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-05-27 23:57</div>
   <div class="who"><span class="who-name">Dani</span><span class="who-email">rierax82@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-27 23:00</div>
   <div class="who"><span class="who-name">Jayce</span><span class="who-email">jaycefreeder@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip on">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-27 19:31</div>
   <div class="who"><span class="who-name">ELILOUCREA</span><span class="who-email">elilou.crea@gmail.com</span></div>
   <div class="who-company">ElilouCrea</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-27 18:50</div>
   <div class="who"><span class="who-name">Armelle</span><span class="who-email">armellelou@gmail.com</span></div>
   <div class="who-company">ElilouCrea</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-27 18:39</div>
@@ -1879,15 +1879,15 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-05-27 17:03</div>
   <div class="who"><span class="who-email">gdo@live.it</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-27 15:47</div>
   <div class="who"><span class="who-email">frank.77@hotmail.it</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-27 15:11</div>
@@ -1900,36 +1900,36 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-05-27 05:38</div>
   <div class="who"><span class="who-email">chidaluemy25@gmail.com</span></div>
   <div class="who-company">Duke University</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-26 23:17</div>
   <div class="who"><span class="who-email">gbrandrea86@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-26 22:34</div>
   <div class="who"><span class="who-email">reico_36@hotmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-25 16:17</div>
   <div class="who"><span class="who-email">jaimit1988@gmail.com</span></div>
   <div class="who-company">Independent (Apollo)</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-22 12:20</div>
   <div class="who"><span class="who-email">g.russo9257@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-22 10:14</div>
@@ -1942,64 +1942,64 @@ Source: spend/impressions/clicks from <code>campaign_741600794_campaign_performa
   <div class="when">2026-05-22 10:05</div>
   <div class="who"><span class="who-email">zerocoreshop@gmail.com</span></div>
   <div class="who-company">Zero Core</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-22 08:37</div>
   <div class="who"><span class="who-email">djtiros@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-22 07:46</div>
   <div class="who"><span class="who-email">serignefall883@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-22 07:05</div>
   <div class="who"><span class="who-email">helpttl@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">3/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-21 21:23</div>
   <div class="who"><span class="who-email">watervixenswim@gmail.com</span></div>
   <div class="who-company">Water Vixen Swim</div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip on">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">4/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-21 19:50</div>
   <div class="who"><span class="who-email">mhedvall@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-21 17:57</div>
   <div class="who"><span class="who-email">cincyredstarsgm@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip on">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-21 17:45</div>
   <div class="who"><span class="who-email">jhwcreates@icloud.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">1/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div>
 <div class="roster-row">
   <div class="when">2026-05-20 10:02</div>
   <div class="who"><span class="who-name">Nsofugil</span><span class="who-email">nsofugil@gmail.com</span></div>
   <div class="who-company"></div>
-  <div class="actions"><span class="action-chip on">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip on">Try-on</span><span class="action-chip off">Pricing</span></div>
-  <div class="stage-count">2/5</div>
+  <div class="actions"><span class="action-chip off">Studio</span><span class="action-chip off">Model</span><span class="action-chip off">Product</span><span class="action-chip off">Try-on</span><span class="action-chip off">Pricing</span></div>
+  <div class="stage-count">0/5</div>
 </div></div>
 </div>
 
@@ -2688,7 +2688,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-06-17 19:07 UTC</span>
+    <span class="meta">opinion · 2026-06-17 19:11 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (29) tracking real (143). PR #21 in production.</li><li><strong>Blended CPL $3.83</strong> on $546.99 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
