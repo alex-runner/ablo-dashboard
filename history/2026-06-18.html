@@ -538,7 +538,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-06-18 19:07 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-18 19:09 UTC</span>
   </div>
 </div>
 
@@ -636,7 +636,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-06-18 19:07 UTC</span>
+    <span class="meta">prioritized · 2026-06-18 19:09 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">5 items, prioritized</span></h2>
@@ -925,13 +925,13 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Funnel is steady (signups 10.1% of landed, above benchmark); the new lever this cycle is the try-before-signup flow — 46% of people who add a garment never click Generate, the tightest-intent leak right before the aha.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 12h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Funnel steady (signups 10.1% of landed, above benchmark); the tightest leak is unchanged — 46% who add a garment in the try-before-signup flow never click Generate, right before the aha and the signup wall.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · -1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
           <div class="reco-id">UX · high <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
           <div class="reco-body">
             <div class="reco-action">Nearly half who add a garment in the try-before-signup flow never hit Generate</div>
             <div class="reco-why">In the try-before-signup (tbs) flow people pick a category and add a garment, then stall just before generating — the step right before the model and the signup wall. Make the Generate CTA unmissable the moment a garment is added (sticky button / auto-scroll to it), and confirm the signup wall isn't interrupting before they see a result. All tbs events are the same age (first seen Jun 4), so this is a real in-flow drop, not instrumentation newness.</div>
-            <div class="reco-evidence">tbs flow: 510 viewed the page → 199 selected a category → 169 added a garment → only 91 clicked Generate. That's a 46% drop from garment-added to Generate, the sharpest intent-weighted leak in the funnel. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">tbs flow (people): 525 viewed the page → 202 selected a category → 171 added a garment → only 92 clicked Generate. That's a 46% drop from garment-added to Generate, and 91 then hit the signup wall — the sharpest intent-weighted leak in the funnel. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             
           </div>
         </div>
@@ -940,7 +940,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">Signup modal still completes at ~41% — and removing magic-link didn't move it</div>
             <div class="reco-why">Stop treating the email round-trip as the cause; it's already gone and Google is the primary button. Pull recordings of modal-open-then-abandon and find the real blocker (Google consent bounce-back, a blank/slow state after 'Continue with Google', or a required field). The '×' is being hammered — people are actively dismissing, not stuck waiting.</div>
-            <div class="reco-evidence">348 opened the modal, 141 completed = 41%, flat vs a week ago (~39%). magic_link_requested = 0 every day since Jun 5 (was 14/13/10 at launch) yet completion didn't budge — the inbox round-trip the baseline blamed is NOT the leak. The '×' close target logged 137 clicks vs 147 'Continue with Google'. Mobile 40% vs desktop 39% — it's the flow, not the layout. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">351 opened the modal, 143 completed = 41%, flat vs a week ago (~40%). magic_link_requested = 0 every day since Jun 5 (was 14/13/10 at launch) yet completion didn't budge — the inbox round-trip the baseline blamed is NOT the leak. The '×' close target logged 138 clicks vs 149 'Continue with Google'. Mobile 40% (98/245) vs desktop 40% (41/102) — it's the flow, not the layout. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--ink-soft)">→&nbsp;holding steady</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="7.5" height="17.6" rx="1.5" fill="var(--ink-soft)"/><rect x="10.5" y="13.4" width="7.5" height="30.6" rx="1.5" fill="var(--ink-soft)"/><rect x="21.0" y="27.5" width="7.5" height="16.5" rx="1.5" fill="var(--ink-soft)"/><rect x="31.4" y="40.5" width="7.5" height="3.5" rx="1.5" fill="var(--ink-soft)"/><rect x="41.9" y="36.9" width="7.5" height="7.1" rx="1.5" fill="var(--ink-soft)"/><rect x="52.4" y="33.4" width="7.5" height="10.6" rx="1.5" fill="var(--ink-soft)"/><rect x="62.9" y="11.1" width="7.5" height="32.9" rx="1.5" fill="var(--ink-soft)"/><rect x="73.4" y="25.2" width="7.5" height="18.8" rx="1.5" fill="var(--ink-soft)"/><rect x="83.9" y="24.0" width="7.5" height="20.0" rx="1.5" fill="var(--ink-soft)"/><rect x="94.3" y="42.8" width="7.5" height="1.2" rx="1.5" fill="var(--ink-soft)"/><rect x="104.8" y="42.8" width="7.5" height="1.2" rx="1.5" fill="var(--ink-soft)"/><rect x="115.3" y="19.3" width="7.5" height="24.7" rx="1.5" fill="var(--ink-soft)"/><rect x="125.8" y="4.0" width="7.5" height="40.0" rx="1.5" fill="var(--ink-soft)"/><rect x="136.3" y="24.0" width="7.5" height="20.0" rx="1.5" fill="var(--ink-soft)"/><rect x="146.7" y="38.1" width="7.5" height="5.9" rx="1.5" fill="var(--ink-soft)"/><rect x="157.2" y="29.9" width="7.5" height="14.1" rx="1.5" fill="var(--ink-soft)"/><rect x="167.7" y="39.3" width="7.5" height="4.7" rx="1.5" fill="var(--ink-soft)"/><rect x="178.2" y="33.4" width="7.5" height="10.6" rx="1.5" fill="var(--ink-soft)"/><rect x="188.7" y="31.1" width="7.5" height="12.9" rx="1.5" fill="var(--ink-soft)"/><rect x="199.1" y="28.7" width="7.5" height="15.3" rx="1.5" fill="var(--ink-soft)"/><rect x="209.6" y="34.6" width="7.5" height="9.4" rx="1.5" fill="var(--ink-soft)"/><rect x="220.1" y="41.6" width="7.5" height="2.4" rx="1.5" fill="var(--ink-soft)"/><rect x="230.6" y="31.1" width="7.5" height="12.9" rx="1.5" fill="var(--ink-soft)"/><rect x="241.1" y="42.8" width="7.5" height="1.2" rx="1.5" fill="var(--ink-soft)"/><rect x="251.6" y="38.1" width="7.5" height="5.9" rx="1.5" fill="var(--ink-soft)"/><rect x="262.0" y="36.9" width="7.5" height="7.1" rx="1.5" fill="var(--ink-soft)"/><rect x="272.5" y="41.6" width="7.5" height="2.4" rx="1.5" fill="var(--ink-soft)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/18</span></div></div>
           </div>
         </div>
@@ -949,7 +949,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">Rage-clicks on /studio are still recurring right before the aha moment</div>
             <div class="reco-why">Open the /studio session recordings and find the control that looks clickable but doesn't respond (or is too slow). This sits immediately before 'generate model', so each frustrated exit is a lost activation. Ongoing, not a launch artifact — fresh spikes Jun 11 (7) and Jun 14 (7).</div>
-            <div class="reco-evidence">35 people rage-clicked /studio 74 times — ~23% of the 152 who entered the studio. The daily rageclick_studio series keeps producing spikes rather than dying off. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">36 people rage-clicked /studio 76 times — ~23% of the 155 who entered the studio. The daily rageclick_studio series keeps producing spikes rather than dying off. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Rage-clicks on /studio, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,3.0 12.6,41.0 23.2,41.0 33.8,27.4 44.5,38.3 55.1,32.9 65.7,27.4 76.3,38.3 86.9,22.0 97.5,41.0 108.2,41.0 118.8,19.3 129.4,30.1 140.0,24.7 150.6,22.0 161.2,19.3 171.8,30.1 182.5,38.3 193.1,30.1 203.7,22.0 214.3,41.0 224.9,38.3 235.5,22.0 246.2,38.3 256.8,32.9 267.4,38.3 278.0,35.6 2,43" fill="var(--good)" fill-opacity="0.10"/><polyline points="2.0,3.0 12.6,41.0 23.2,41.0 33.8,27.4 44.5,38.3 55.1,32.9 65.7,27.4 76.3,38.3 86.9,22.0 97.5,41.0 108.2,41.0 118.8,19.3 129.4,30.1 140.0,24.7 150.6,22.0 161.2,19.3 171.8,30.1 182.5,38.3 193.1,30.1 203.7,22.0 214.3,41.0 224.9,38.3 235.5,22.0 246.2,38.3 256.8,32.9 267.4,38.3 278.0,35.6" fill="none" stroke="var(--good)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/18</span></div></div>
           </div>
         </div>
@@ -958,7 +958,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           <div class="reco-body">
             <div class="reco-action">Over half who enter the studio never generate a single model</div>
             <div class="reco-why">Shorten time-to-first-generation: put a one-tap default (pre-filled prompt or 'Surprise me') front-and-center so a first shot appears with zero setup. A small power-group already leans hard on 'Surprise me' (191 clicks from just 23 people ≈ 8x each) — that retry pattern suggests slow/unclear results; add a clear loading + result state and promote the path to everyone.</div>
-            <div class="reco-evidence">152 entered the studio but only 67 generated a model (44%) and 55 completed a try-on. The ~56% who enter and leave without generating is the activation choke, and overlaps with the /studio rage-clicks above. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-evidence">155 entered the studio but only 69 generated a model (44%) and 57 completed a try-on. The ~56% who enter and leave without generating is the activation choke, and overlaps with the /studio rage-clicks above. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Models generated, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▼&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44" preserveAspectRatio="none"><polygon points="278,43 2.0,41.0 12.6,36.5 23.2,29.8 33.8,7.5 44.5,36.5 55.1,38.8 65.7,3.0 76.3,27.6 86.9,16.4 97.5,41.0 108.2,36.5 118.8,20.9 129.4,34.3 140.0,36.5 150.6,27.6 161.2,34.3 171.8,27.6 182.5,27.6 193.1,29.8 203.7,34.3 214.3,38.8 224.9,41.0 235.5,29.8 246.2,38.8 256.8,41.0 267.4,36.5 278.0,36.5 2,43" fill="var(--bad)" fill-opacity="0.10"/><polyline points="2.0,41.0 12.6,36.5 23.2,29.8 33.8,7.5 44.5,36.5 55.1,38.8 65.7,3.0 76.3,27.6 86.9,16.4 97.5,41.0 108.2,36.5 118.8,20.9 129.4,34.3 140.0,36.5 150.6,27.6 161.2,34.3 171.8,27.6 182.5,27.6 193.1,29.8 203.7,34.3 214.3,38.8 224.9,41.0 235.5,29.8 246.2,38.8 256.8,41.0 267.4,36.5 278.0,36.5" fill="none" stroke="var(--bad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/18</span></div></div>
           </div>
         </div></div>
@@ -2688,7 +2688,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-06-18 19:07 UTC</span>
+    <span class="meta">opinion · 2026-06-18 19:09 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (29) tracking real (145). PR #21 in production.</li><li><strong>Blended CPL $3.77</strong> on $546.99 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
