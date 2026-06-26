@@ -538,7 +538,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
 <div class="brand-bar">
   <div class="wordmark"><span class="dot"></span>ABLO&nbsp;&nbsp;STUDIO</div>
   <div class="meta">
-    <span class="pill"><span class="dot live"></span>refreshed 2026-06-26 19:08 UTC</span>
+    <span class="pill"><span class="dot live"></span>refreshed 2026-06-26 19:11 UTC</span>
   </div>
 </div>
 
@@ -636,7 +636,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div class="section-head">
     <span class="roman">i.</span>
     <h2>What to do</h2>
-    <span class="meta">prioritized · 2026-06-26 19:08 UTC</span>
+    <span class="meta">prioritized · 2026-06-26 19:11 UTC</span>
   </div>
   
 <h2>Action items <span class="pill">5 items, prioritized</span></h2>
@@ -925,23 +925,32 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
     <h2>UX/UI improvements</h2>
     <span class="meta">data-backed friction fixes · PostHog behaviour</span>
   </div>
-  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Little moved this cycle — ads are idle again ($0/24h, 0 impressions, baking) so all lift is organic and recent daily dips are traffic not friction; the same top lever stands and is NOT improving: the try-before-signup builder still loses ~64% at its very first step (714 → 254), upstream of the signup wall everyone worries about.</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 6h ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
+  <div class="panel-sub" style="margin-bottom:6px;font-size:14px;color:var(--ink-2);">Ads are paused again ($0/24h, 0 impressions, baking), so all lift is on-site — and while the funnel grew this week (signups 143→168), purchase intent stayed flat at 6, exposing monetization as the new wall above the unchanged top lever: the try-before-signup builder still loses ~64% at its very first step (717 → 255).</div><div class="panel-sub" style="margin-bottom:14px;">Reasoned by Claude over live PostHog behaviour · 1m ago. Re-thought every cycle — it can surface new friction patterns, not just preset checks.</div><div class="reco-list">
         <div class="reco high">
-          <div class="reco-id">UX · high <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
+          <div class="reco-id">UX · high<span class="sub">Tried the product</span></div>
           <div class="reco-body">
             <div class="reco-action">Try-before-signup builder loses ~64% at the very first step</div>
-            <div class="reco-why">This is the main entry to the product (714 people vs 188 who entered the old /studio), so its top-of-funnel drop is the single highest-leverage fix on the page — and it hasn't moved since last cycle. Pre-select a sensible default category (or collapse the category step entirely) and let users add a garment in one tap instead of choose-category → then-add. Watch tbs_category_selected recover.</div>
-            <div class="reco-evidence">tbs_page_viewed 714 people → tbs_category_selected 254 (36%) → tbs_garment_added 223 → tbs_generate_clicked 122 → tbs_signup_wall_shown 121. The biggest cliff is the very first step, page-viewed → category-selected (−460 people, −64%), upstream of the signup wall. These events are live ~3 weeks at high volume, so the drop is real, not newness. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-why">This is the main entry to the product (717 people vs 405 who open the signup modal), so its top-of-funnel drop is the single highest-leverage fix on the page — and it hasn't moved since last cycle. Pre-select a sensible default category (or collapse the category step) so users add a garment in one tap instead of choose-category → then-add. Watch tbs_category_selected recover.</div>
+            <div class="reco-evidence">tbs_page_viewed 717 → tbs_category_selected 255 (36%) → tbs_garment_added 224 → tbs_generate_clicked 122 → tbs_signup_wall_shown 121. The cliff is the very first step, page-viewed → category-selected (−462 people, −64%), upstream of the signup wall. The category→add step is healthy (255→224 = 88%). These events are live ~3 weeks at high volume, so the drop is real, not newness. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             
           </div>
         </div>
         <div class="reco high">
           <div class="reco-id">UX · high<span class="sub">Signed up</span></div>
           <div class="reco-body">
-            <div class="reco-action">Signup modal still the biggest single-step leak (237 lost) — magic-link cause stays stale</div>
-            <div class="reco-why">Do NOT act on the old 'demote magic-link' fix — magic_link_requested has fired ZERO every day since Jun 5, so the inbox round-trip is no longer the leak. Open the last-7-days signup_abandoned replays and find the current dead step before touching UI. The '×' close is the 7th most-clicked target site-wide (146 clicks, ~tied with 'Generate my first shot' at 138), so a big share open the wall and dismiss it with intent — soften the wall / make Google a true one-tap.</div>
-            <div class="reco-evidence">405 opened the signup modal, 168 completed (41%). Mobile 40% (116/289) vs Desktop 41% (46/111) — even, so it's the flow not the layout. magic_link_requested ran 6–14/day through Jun 4 then flatlined to 0, yet signup_abandoned is still 4–9/day this week (2 on Jun 26 only because traffic is idle). · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-action">Signup modal still the biggest single auth leak (237 lost) — magic-link cause stays stale</div>
+            <div class="reco-why">Do NOT act on the old 'demote magic-link' fix — magic_link_requested has fired ZERO every day since Jun 5, so the inbox round-trip is no longer the leak. Open the last-7-days signup_abandoned replays, mobile first (71% of opens), and find the current dead step before touching UI. The '×' close is the 7th most-clicked target site-wide (146 clicks), so many open the wall and dismiss with intent — make Google a true one-tap.</div>
+            <div class="reco-evidence">405 opened the modal, 168 completed (41%), and the recent 2-week ratio is the same ~37%. Mobile 40% (116/289) vs Desktop 41% (46/111) — even, so it's the flow not the layout. magic_link_requested ran 6–14/day through Jun 4 then flatlined to 0, yet completion never improved — so the blocker is in the Google/email flow itself. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
             <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">People who abandoned signup, per day</span><span class="reco-chart-trend" style="color:var(--good)">▼&nbsp;improving</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="26.4" width="7.0" height="17.6" rx="1.5" fill="var(--good)"/><rect x="8.0" y="13.4" width="7.0" height="30.6" rx="1.5" fill="var(--good)"/><rect x="16.1" y="27.5" width="7.0" height="16.5" rx="1.5" fill="var(--good)"/><rect x="24.1" y="40.5" width="7.0" height="3.5" rx="1.5" fill="var(--good)"/><rect x="32.1" y="36.9" width="7.0" height="7.1" rx="1.5" fill="var(--good)"/><rect x="40.1" y="33.4" width="7.0" height="10.6" rx="1.5" fill="var(--good)"/><rect x="48.2" y="11.1" width="7.0" height="32.9" rx="1.5" fill="var(--good)"/><rect x="56.2" y="25.2" width="7.0" height="18.8" rx="1.5" fill="var(--good)"/><rect x="64.2" y="24.0" width="7.0" height="20.0" rx="1.5" fill="var(--good)"/><rect x="72.3" y="42.8" width="7.0" height="1.2" rx="1.5" fill="var(--good)"/><rect x="80.3" y="42.8" width="7.0" height="1.2" rx="1.5" fill="var(--good)"/><rect x="88.3" y="19.3" width="7.0" height="24.7" rx="1.5" fill="var(--good)"/><rect x="96.3" y="4.0" width="7.0" height="40.0" rx="1.5" fill="var(--good)"/><rect x="104.4" y="24.0" width="7.0" height="20.0" rx="1.5" fill="var(--good)"/><rect x="112.4" y="38.1" width="7.0" height="5.9" rx="1.5" fill="var(--good)"/><rect x="120.4" y="29.9" width="7.0" height="14.1" rx="1.5" fill="var(--good)"/><rect x="128.5" y="39.3" width="7.0" height="4.7" rx="1.5" fill="var(--good)"/><rect x="136.5" y="33.4" width="7.0" height="10.6" rx="1.5" fill="var(--good)"/><rect x="144.5" y="31.1" width="7.0" height="12.9" rx="1.5" fill="var(--good)"/><rect x="152.5" y="28.7" width="7.0" height="15.3" rx="1.5" fill="var(--good)"/><rect x="160.6" y="34.6" width="7.0" height="9.4" rx="1.5" fill="var(--good)"/><rect x="168.6" y="41.6" width="7.0" height="2.4" rx="1.5" fill="var(--good)"/><rect x="176.6" y="31.1" width="7.0" height="12.9" rx="1.5" fill="var(--good)"/><rect x="184.7" y="42.8" width="7.0" height="1.2" rx="1.5" fill="var(--good)"/><rect x="192.7" y="38.1" width="7.0" height="5.9" rx="1.5" fill="var(--good)"/><rect x="200.7" y="36.9" width="7.0" height="7.1" rx="1.5" fill="var(--good)"/><rect x="208.7" y="39.3" width="7.0" height="4.7" rx="1.5" fill="var(--good)"/><rect x="216.8" y="40.5" width="7.0" height="3.5" rx="1.5" fill="var(--good)"/><rect x="224.8" y="40.5" width="7.0" height="3.5" rx="1.5" fill="var(--good)"/><rect x="232.8" y="33.4" width="7.0" height="10.6" rx="1.5" fill="var(--good)"/><rect x="240.9" y="39.3" width="7.0" height="4.7" rx="1.5" fill="var(--good)"/><rect x="248.9" y="34.6" width="7.0" height="9.4" rx="1.5" fill="var(--good)"/><rect x="256.9" y="39.3" width="7.0" height="4.7" rx="1.5" fill="var(--good)"/><rect x="264.9" y="33.4" width="7.0" height="10.6" rx="1.5" fill="var(--good)"/><rect x="273.0" y="41.6" width="7.0" height="2.4" rx="1.5" fill="var(--good)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/26</span></div></div>
+          </div>
+        </div>
+        <div class="reco medium">
+          <div class="reco-id">UX · medium <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Purchase intent</span></div>
+          <div class="reco-body">
+            <div class="reco-action">Funnel grew +17% this week but purchase intent didn't move at all</div>
+            <div class="reco-why">Acquisition and activation are both climbing while monetization is flat, so the next lever is the activated → intent step, not more signups. Add a clear, low-friction 'see pricing / unlock' moment right after the first successful try-on, and instrument what happens between a completed try-on and a pricing view.</div>
+            <div class="reco-evidence">Week-over-week: signups 143→168 (+17%), activated 87→102 (+17%), but purchase_intent held at exactly 6→6. Only 6 of 102 who tried the product showed intent (5.9%). The 102 denominator is solid; the intent count is thin (n=6), so treat as a signal to watch and instrument, not a precise rate yet. · <a href="https://us.posthog.com/project/419152/replay" target="_blank">Watch session recordings ↗</a></div>
+            <div class="reco-chart"><div class="reco-chart-head"><span class="reco-chart-title">Purchase-intent events, per day</span><span class="reco-chart-trend" style="color:var(--bad)">▼&nbsp;getting worse</span></div><svg width="280" height="44" viewBox="0 0 280 44"><rect x="0.0" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="8.0" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="16.1" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="24.1" y="24.0" width="7.0" height="20.0" rx="1.5" fill="var(--bad)"/><rect x="32.1" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="40.1" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="48.2" y="24.0" width="7.0" height="20.0" rx="1.5" fill="var(--bad)"/><rect x="56.2" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="64.2" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="72.3" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="80.3" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="88.3" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="96.3" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="104.4" y="34.0" width="7.0" height="10.0" rx="1.5" fill="var(--bad)"/><rect x="112.4" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="120.4" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="128.5" y="24.0" width="7.0" height="20.0" rx="1.5" fill="var(--bad)"/><rect x="136.5" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="144.5" y="24.0" width="7.0" height="20.0" rx="1.5" fill="var(--bad)"/><rect x="152.5" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="160.6" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="168.6" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="176.6" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="184.7" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="192.7" y="4.0" width="7.0" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="200.7" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="208.7" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="216.8" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="224.8" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="232.8" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="240.9" y="4.0" width="7.0" height="40.0" rx="1.5" fill="var(--bad)"/><rect x="248.9" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="256.9" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="264.9" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/><rect x="273.0" y="44.0" width="7.0" height="0.0" rx="1.5" fill="var(--bad)"/></svg><div class="reco-chart-axis"><span>05/20</span><span>06/26</span></div></div>
           </div>
         </div>
         <div class="reco medium">
@@ -954,7 +963,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
           </div>
         </div>
         <div class="reco low">
-          <div class="reco-id">UX · low <span style="color:var(--gold);font-weight:700;">✦ new</span><span class="sub">Tried the product</span></div>
+          <div class="reco-id">UX · low<span class="sub">Tried the product</span></div>
           <div class="reco-body">
             <div class="reco-action">URL-importer's 18/29 failure rate is a launch-day artifact, already resolved</div>
             <div class="reco-why">Deprioritise — the lifetime fail rate is dominated by day-one breakage that's already fixed. Keep the photo/manual fallback, but the scraper no longer needs engineering attention. Flagging so the dashboard stops treating a solved problem as live friction.</div>
@@ -1087,7 +1096,7 @@ footer code{font-family:ui-monospace,SF Mono,Menlo,monospace;background:var(--bg
   <div><div class="kpi-label">Clicks</div><div class="kpi-value">265</div></div>
   <div><div class="kpi-label">CTR</div><div class="kpi-value">5.95%</div></div>
   <div><div class="kpi-label">CPC</div><div class="kpi-value">$1.15</div></div>
-  <div><div class="kpi-label">Signups (PostHog)</div><div class="kpi-value stuck-num">0</div></div>
+  <div><div class="kpi-label">Signups (PostHog)</div><div class="kpi-value good-num">1</div></div>
 </div>
 
 <table>
@@ -2492,7 +2501,7 @@ Top values per dimension, sorted by impressions desc. Sourced from 2026-05-29 --
   <div class="section-head">
     <span class="roman">vii.</span>
     <h2>Read of the data</h2>
-    <span class="meta">opinion · 2026-06-26 19:08 UTC</span>
+    <span class="meta">opinion · 2026-06-26 19:11 UTC</span>
   </div>
   <div class="panel read-of-data"><ul><li><strong>Attribution is healing.</strong> Meta-counted (29) tracking real (170). PR #21 in production.</li><li><strong>Blended CPL $3.22</strong> on $546.99 total spend (Meta + LinkedIn).</li></ul></div>
   <div class="panel" style="margin-top:14px;">
